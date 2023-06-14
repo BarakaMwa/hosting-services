@@ -114,7 +114,7 @@ class USER
         $mail->IsSMTP();
         $mail->SMTPDebug  = 0;
         $mail->SMTPAuth   = true;
-        $mail->SMTPSecure = "SSL/TLS";
+        $mail->SMTPSecure = "ssl";
         $mail->Host       = "smtp.titan.email";
         $mail->Port       = 465;
         $mail->AddAddress($email);

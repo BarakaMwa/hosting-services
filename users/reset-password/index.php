@@ -25,7 +25,7 @@ if(isset($_GET['id']) && isset($_GET['code']))
 
             if($cpass!==$pass)
             {
-                $msg = "<div class='alert alert-block'>
+                $msg = "<div class='alert alert-warning>
       <button class='close' data-dismiss='alert'>&times;</button>
       <strong>Sorry!</strong>  Password Doesn't match. 
       </div>";

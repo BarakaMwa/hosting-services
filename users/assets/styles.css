@@ -297,4 +297,9 @@ iframe {
         margin-bottom: 2em;
         text-align: center
     }
+
+    .form-signin{
+        width: 50%;
+        margin-left: 25%;
+    }
 }

@@ -78,9 +78,9 @@ if (isset($_POST['btn-signup'])) {
     <form class="form-signin" method="post">
         <h2 class="form-signin-heading">Sign Up</h2>
         <hr/>
-        <input type="text" class="input-block-level" placeholder="Username" name="txtuname" required/>
-        <input type="email" class="input-block-level" placeholder="Email address" name="txtemail" required/>
-        <input type="password" class="input-block-level" placeholder="Password" name="txtpass" required/>
+        <input type="text" class="form-control-sm form-control" placeholder="Username" name="txtuname" required/>
+        <input type="email" class="form-control-sm form-control" placeholder="Email address" name="txtemail" required/>
+        <input type="password" class="form-control-sm form-control" placeholder="Password" name="txtpass" required/>
         <hr/>
         <button class="btn btn-large btn-primary" type="submit" name="btn-signup">Sign Up</button>
         <a href="index.php" style="float:right;" class="btn btn-large">Sign In</a>

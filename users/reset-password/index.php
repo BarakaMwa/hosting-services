@@ -25,7 +25,7 @@ if(isset($_GET['id']) && isset($_GET['code']))
 
             if($cpass!==$pass)
             {
-                $msg = "<div class='alert alert-block'>
+                $msg = "<div class='alert alert-warning>
       <button class='close' data-dismiss='alert'>&times;</button>
       <strong>Sorry!</strong>  Password Doesn't match. 
       </div>";
@@ -78,8 +78,8 @@ if(isset($_GET['id']) && isset($_GET['code']))
             echo $msg;
         }
         ?>
-        <input type="password" class="input-block-level" placeholder="New Password" name="pass" required />
-        <input type="password" class="input-block-level" placeholder="Confirm New Password" name="confirm-pass" required />
+        <input type="password" class="form-control-sm form-control" placeholder="New Password" name="pass" required />
+        <input type="password" class="form-control-sm form-control" placeholder="Confirm New Password" name="confirm-pass" required />
         <hr />
         <button class="btn btn-large btn-primary" type="submit" name="btn-reset-pass">Reset Your Password</button>
 

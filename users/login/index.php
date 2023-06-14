@@ -5,7 +5,7 @@ $user_login = new USER();
 
 if($user_login->is_logged_in()!="")
 {
-    $user_login->redirect('home.php');
+    $user_login->redirect('../home-page/index.php');
 }
 
 if(isset($_POST['btn-login']))
@@ -15,7 +15,7 @@ if(isset($_POST['btn-login']))
 
     if($user_login->login($email,$upass))
     {
-        $user_login->redirect('home.php');
+        $user_login->redirect('../home-page/index.php');
     }
 }
 ?>
@@ -64,8 +64,8 @@ if(isset($_POST['btn-login']))
         <input type="password" class="form-control" placeholder="Password" name="txtupass" required />
         <hr />
         <button class="btn btn-large btn-primary" type="submit" name="btn-login">Sign in</button>
-        <a href="../register/" style="float:right;" class="btn btn-large">Sign Up</a><hr />
-        <a href="../forget-password/">Lost your Password ? </a>
+        <a href="../register/index.php" style="float:right;" class="btn btn-large">Sign Up</a><hr />
+        <a href="../forget-password/index.php">Lost your Password ? </a>
     </form>
 
 </div> <!-- /container -->

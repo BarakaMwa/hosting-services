@@ -1,7 +1,7 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-require_once 'connection.php';
+require_once './connection.php';
 
 class USER
 {
@@ -119,7 +119,7 @@ class USER
         $mail->IsSMTP();
         $mail->SMTPDebug  = 0;
         $mail->SMTPAuth   = true;
-        $mail->SMTPSecure = "ssl";
+        $mail->SMTPSecure = "ssl/tsl";
         $mail->Host       = "smtp.titan.email";
         $mail->Port       = 465;
         $mail->AddAddress($email);

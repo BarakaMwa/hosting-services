@@ -117,10 +117,10 @@ class USER
         require './mailer/src/SMTP.php';
         $mail = new PHPMailer();
         $mail->IsSMTP();
-        $mail->SMTPDebug  = true;
+        $mail->SMTPDebug  = SMTP::DEBUG_SERVER;
         $mail->SMTPAuth   = true;
-        $mail->SMTPSecure = "ssl";
-        $mail->Host       = "ssl://smtp.titan.email";
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $mail->Host       = "smtp.titan.email";
         $mail->Port       = 465;
         $mail->AddAddress($email);
         $mail->Username="info@infyenterprise.com";

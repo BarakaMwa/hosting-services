@@ -109,13 +109,13 @@ class USER
 
     function send_mail($email,$message,$subject)
     {
-        require_once('mailer/src/phpmailer.php');
+        require_once('./mailer/src/phpmailer.php');
         $mail = new PHPMailer();
         $mail->IsSMTP();
         $mail->SMTPDebug  = 0;
         $mail->SMTPAuth   = true;
-        $mail->SMTPSecure = "ssl";
-        $mail->Host       = "smtp.gmail.com";
+        $mail->SMTPSecure = "SSL/TLS";
+        $mail->Host       = "smtp.titan.email";
         $mail->Port       = 465;
         $mail->AddAddress($email);
         $mail->Username="info@infyenterprise.com";

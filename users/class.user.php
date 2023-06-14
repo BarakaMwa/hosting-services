@@ -1,5 +1,6 @@
 <?php
-
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 require_once 'connection.php';
 
 class USER
@@ -109,7 +110,11 @@ class USER
 
     function send_mail($email,$message,$subject)
     {
-        require_once('./mailer/src/phpmailer.php');
+
+
+        require './mailer/src/Exception.php';
+        require './mailer/src/PHPMailer.php';
+        require './mailer/src/SMTP.php';
         $mail = new PHPMailer();
         $mail->IsSMTP();
         $mail->SMTPDebug  = 0;

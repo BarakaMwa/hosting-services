@@ -47,14 +47,14 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a tabindex="-1" href="logout.php">Logout</a>
+                                <a tabindex="-1" href="../logout/" class="text-danger">Logout</a>
                             </li>
                         </ul>
                     </li>
                 </ul>
                 <ul class="nav">
                     <li class="active">
-                        <a href="https://codingcage.com/">Coding Cage</a>
+                        <a href="#">Hosted Services</a>
                     </li>
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">Tutorials <b class="caret"></b>

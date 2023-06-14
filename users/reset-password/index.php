@@ -78,8 +78,8 @@ if(isset($_GET['id']) && isset($_GET['code']))
             echo $msg;
         }
         ?>
-        <input type="password" class="form-control-sm" placeholder="New Password" name="pass" required />
-        <input type="password" class="form-control-sm" placeholder="Confirm New Password" name="confirm-pass" required />
+        <input type="password" class="form-control" placeholder="New Password" name="pass" required />
+        <input type="password" class="form-control" placeholder="Confirm New Password" name="confirm-pass" required />
         <hr />
         <button class="btn btn-large btn-primary" type="submit" name="btn-reset-pass">Reset Your Password</button>
 

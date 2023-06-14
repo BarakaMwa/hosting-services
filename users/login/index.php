@@ -71,5 +71,6 @@ if(isset($_POST['btn-login']))
 </div> <!-- /container -->
 <script src="../bootstrap/js/jquery-1.9.1.min.js"></script>
 <script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../assets/js/custom.js"></script>
 </body>
 </html>

@@ -3,13 +3,12 @@ session_start();
 require_once '../class.user.php';
 $user_home = new USER();
 
-if(!$user_home->is_logged_in())
-{
+if (!$user_home->is_logged_in()) {
     $user_home->redirect('../logout/index.php');
 }
 
 $stmt = $user_home->runQuery("SELECT * FROM tbl_users WHERE userID=:uid");
-$stmt->execute(array(":uid"=>$_SESSION['userSession']));
+$stmt->execute(array(":uid" => $_SESSION['userSession']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 ?>
@@ -42,7 +41,8 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
             <div class="nav-collapse collapse">
                 <ul class="nav pull-right">
                     <li class="dropdown">
-                        <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i>
+                        <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i
+                                    class="icon-user"></i>
                             <?php echo $row['userEmail']; ?> <i class="caret"></i>
                         </a>
                         <ul class="dropdown-menu">

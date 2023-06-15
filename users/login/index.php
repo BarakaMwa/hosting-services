@@ -3,18 +3,15 @@ session_start();
 require_once '../class.user.php';
 $user_login = new USER();
 
-if($user_login->is_logged_in()!="")
-{
+if ($user_login->is_logged_in() != "") {
     $user_login->redirect('../home-page/index.php');
 }
 
-if(isset($_POST['btn-login']))
-{
+if (isset($_POST['btn-login'])) {
     $email = trim($_POST['txtemail']);
     $upass = trim($_POST['txtupass']);
 
-    if($user_login->login($email,$upass))
-    {
+    if ($user_login->login($email, $upass)) {
         $user_login->redirect('../home-page/index.php');
     }
 }
@@ -37,8 +34,7 @@ if(isset($_POST['btn-login']))
 <body id="login">
 <div class="container">
     <?php
-    if(isset($_GET['inactive']))
-    {
+    if (isset($_GET['inactive'])) {
         ?>
         <div class='alert alert-danger'>
             <button class='close' data-dismiss='alert'>&times;</button>
@@ -49,8 +45,7 @@ if(isset($_POST['btn-login']))
     ?>
     <form class="form-signin" method="post">
         <?php
-        if(isset($_GET['error']))
-        {
+        if (isset($_GET['error'])) {
             ?>
             <div class='alert alert-warning'>
                 <button class='close' data-dismiss='alert'>&times;</button>
@@ -59,12 +54,14 @@ if(isset($_POST['btn-login']))
             <?php
         }
         ?>
-        <h2 class="form-signin-heading">Sign In.</h2><hr />
-        <input type="email" class="form-control" placeholder="Email address" name="txtemail" required />
-        <input type="password" class="form-control" placeholder="Password" name="txtupass" required />
-        <hr />
+        <h2 class="form-signin-heading">Sign In.</h2>
+        <hr/>
+        <input type="email" class="form-control" placeholder="Email address" name="txtemail" required/>
+        <input type="password" class="form-control" placeholder="Password" name="txtupass" required/>
+        <hr/>
         <button class="btn btn-large btn-primary" type="submit" name="btn-login">Sign in</button>
-        <a href="../register/index.php" style="float:right;" class="btn btn-large">Sign Up</a><hr />
+        <a href="../register/index.php" style="float:right;" class="btn btn-large">Sign Up</a>
+        <hr/>
         <a href="../forget-password/index.php">Lost your Password ? </a>
     </form>
 

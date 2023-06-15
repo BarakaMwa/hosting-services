@@ -2,13 +2,11 @@
 require_once '../class.user.php';
 $user = new USER();
 
-if(empty($_GET['id']) && empty($_GET['code']))
-{
+if (empty($_GET['id']) && empty($_GET['code'])) {
     $user->redirect('index.php');
 }
 
-if(isset($_GET['id'], $_GET['code']))
-{
+if (isset($_GET['id'], $_GET['code'])) {
     $id = base64_decode($_GET['id']);
     $code = $_GET['code'];
 
@@ -16,36 +14,30 @@ if(isset($_GET['id'], $_GET['code']))
     $statusN = "N";
 
     $stmt = $user->runQuery("SELECT userID,userStatus FROM tbl_users WHERE userID=:uID AND tokenCode=:code LIMIT 1");
-    $stmt->execute(array(":uID"=>$id,":code"=>$code));
-    $row=$stmt->fetch(PDO::FETCH_ASSOC);
-    if($stmt->rowCount() > 0)
-    {
-        if($row['userStatus']==$statusN)
-        {
+    $stmt->execute(array(":uID" => $id, ":code" => $code));
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($stmt->rowCount() > 0) {
+        if ($row['userStatus'] == $statusN) {
             $stmt = $user->runQuery("UPDATE tbl_users SET userStatus=:status WHERE userID=:uID");
-            $stmt->bindparam(":status",$statusY);
-            $stmt->bindparam(":uID",$id);
+            $stmt->bindparam(":status", $statusY);
+            $stmt->bindparam(":uID", $id);
             $stmt->execute();
 
             $msg = "
              <div class='alert alert-success'>
        <button class='close' data-dismiss='alert'>&times;</button>
-       <strong>WoW !</strong>  Your Account is Now Activated : <a href='index.php'>Login here</a>
+       <strong>WoW !</strong>  Your Account is Now Activated : <a href='../login/index.php'>Login here</a>
           </div>
           ";
-        }
-        else
-        {
+        } else {
             $msg = "
              <div class='alert alert-warning'>
        <button class='close' data-dismiss='alert'>&times;</button>
-       <strong>sorry !</strong>  Your Account is allready Activated : <a href='index.php'>Login here</a>
+       <strong>sorry !</strong>  Your Account is already Activated : <a href='../login/index.php'>Login here</a>
           </div>
           ";
         }
-    }
-    else
-    {
+    } else {
         $msg = "
          <div class='alert alert-info'>
       <button class='close' data-dismiss='alert'>&times;</button>
@@ -72,7 +64,9 @@ if(isset($_GET['id'], $_GET['code']))
 </head>
 <body id="login">
 <div class="container">
-    <?php if(isset($msg)) { echo $msg; } ?>
+    <?php if (isset($msg)) {
+        echo $msg;
+    } ?>
 </div> <!-- /container -->
 <script src="../vendors/jquery-1.9.1.min.js"></script>
 <script src="../bootstrap/js/bootstrap.min.js"></script>

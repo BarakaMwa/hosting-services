@@ -1,7 +1,9 @@
 <?php
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
+
 require_once 'connection.php';
 
 class USER
@@ -28,63 +30,48 @@ class USER
         return $stmt;
     }
 
-    public function register($uname,$email,$upass,$code)
+    public function register($uname, $email, $upass, $code)
     {
-        try
-        {
+        try {
             $password = md5($upass);
             $stmt = $this->conn->prepare("INSERT INTO tbl_users(userName,userEmail,userPass,tokenCode) 
                                                 VALUES(:user_name, :user_mail, :user_pass, :active_code)");
-            $stmt->bindparam(":user_name",$uname);
-            $stmt->bindparam(":user_mail",$email);
-            $stmt->bindparam(":user_pass",$password);
-            $stmt->bindparam(":active_code",$code);
+            $stmt->bindparam(":user_name", $uname);
+            $stmt->bindparam(":user_mail", $email);
+            $stmt->bindparam(":user_pass", $password);
+            $stmt->bindparam(":active_code", $code);
             $stmt->execute();
             return $stmt;
-        }
-        catch(PDOException $ex)
-        {
+        } catch (PDOException $ex) {
             echo $ex->getMessage();
         }
     }
 
-    public function login($email,$upass)
+    public function login($email, $upass)
     {
-        try
-        {
+        try {
             $stmt = $this->conn->prepare("SELECT * FROM tbl_users WHERE userEmail=:email_id");
-            $stmt->execute(array(":email_id"=>$email));
-            $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
+            $stmt->execute(array(":email_id" => $email));
+            $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if($stmt->rowCount() == 1)
-            {
-                if($userRow['userStatus']=="Y")
-                {
-                    if($userRow['userPass']==md5($upass))
-                    {
+            if ($stmt->rowCount() == 1) {
+                if ($userRow['userStatus'] == "Y") {
+                    if ($userRow['userPass'] == md5($upass)) {
                         $_SESSION['userSession'] = $userRow['userID'];
                         return true;
-                    }
-                    else
-                    {
+                    } else {
                         header("Location: ../login/index.php?error");
                         exit;
                     }
-                }
-                else
-                {
+                } else {
                     header("Location: ../login/index.php?inactive");
                     exit;
                 }
-            }
-            else
-            {
+            } else {
                 header("Location: ../login/index.php?error");
                 exit;
             }
-        }
-        catch(PDOException $ex)
-        {
+        } catch (PDOException $ex) {
             echo $ex->getMessage();
         }
     }
@@ -92,8 +79,7 @@ class USER
 
     public function is_logged_in()
     {
-        if(isset($_SESSION['userSession']))
-        {
+        if (isset($_SESSION['userSession'])) {
             return true;
         }
     }
@@ -109,7 +95,7 @@ class USER
         $_SESSION['userSession'] = false;
     }
 
-    function send_mail($email,$message,$subject)
+    function send_mail($email, $message, $subject)
     {
 
 
@@ -118,17 +104,17 @@ class USER
         require 'mailer/src/SMTP.php';
         $mail = new PHPMailer();
         $mail->IsSMTP();
-        $mail->SMTPDebug  = 0;
-        $mail->SMTPAuth   = true;
+        $mail->SMTPDebug = 0;
+        $mail->SMTPAuth = true;
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-        $mail->Host       = "smtp.titan.email";
-        $mail->Port       = 465;
+        $mail->Host = "smtp.titan.email";
+        $mail->Port = 465;
         $mail->AddAddress($email);
-        $mail->Username="info@infyenterprise.com";
-        $mail->Password="2SU!cwD@j!3.hTX";
-        $mail->SetFrom('info@infyenterprise.com','Infy Enterprise');
-        $mail->AddReplyTo("info@infyenterprise.com","Infy Enterprise");
-        $mail->Subject    = $subject;
+        $mail->Username = "info@infyenterprise.com";
+        $mail->Password = "2SU!cwD@j!3.hTX";
+        $mail->SetFrom('info@infyenterprise.com', 'Infy Enterprise');
+        $mail->AddReplyTo("info@infyenterprise.com", "Infy Enterprise");
+        $mail->Subject = $subject;
         $mail->MsgHTML($message);
         $mail->Send();
     }

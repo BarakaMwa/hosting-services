@@ -37,7 +37,7 @@ if(isset($_GET['id'], $_GET['code']))
         else
         {
             $msg = "
-             <div class='alert alert-error'>
+             <div class='alert alert-warning'>
        <button class='close' data-dismiss='alert'>&times;</button>
        <strong>sorry !</strong>  Your Account is allready Activated : <a href='index.php'>Login here</a>
           </div>
@@ -47,7 +47,7 @@ if(isset($_GET['id'], $_GET['code']))
     else
     {
         $msg = "
-         <div class='alert alert-error'>
+         <div class='alert alert-info'>
       <button class='close' data-dismiss='alert'>&times;</button>
       <strong>sorry !</strong>  No Account Found : <a href='signup.php'>Signup here</a>
       </div>

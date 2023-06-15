@@ -113,12 +113,12 @@ class USER
     {
 
 
-        require './mailer/src/Exception.php';
-        require './mailer/src/PHPMailer.php';
-        require './mailer/src/SMTP.php';
+        require 'mailer/src/Exception.php';
+        require 'mailer/src/PHPMailer.php';
+        require 'mailer/src/SMTP.php';
         $mail = new PHPMailer();
         $mail->IsSMTP();
-        $mail->SMTPDebug  = SMTP::DEBUG_SERVER;
+        $mail->SMTPDebug  = 0;
         $mail->SMTPAuth   = true;
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Host       = "smtp.titan.email";

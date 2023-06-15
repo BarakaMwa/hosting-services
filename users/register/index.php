@@ -21,7 +21,7 @@ if (isset($_POST['btn-signup'])) {
 
     if ($stmt->rowCount() > 0) {
         $msg = "
-        <div class='alert alert-error'>
+        <div class='alert alert-info'>
     <button class='close' data-dismiss='alert'>&times;</button>
      <strong>Sorry !</strong>  email allready exists , Please Try another one
      </div>
@@ -35,11 +35,11 @@ if (isset($_POST['btn-signup'])) {
             $message = "     
       Hello $uname,
       <br /><br />
-      Welcome to Coding Cage!<br/>
+      Welcome to Infy Enterprise!<br/>
       To complete your registration  please , just click following link<br/>
       <br /><br />
-      <a href='http://www.SITE_URL.com/verify.php?id=$id&code=$code'>Click HERE to Activate :)</a>
-      <br /><br />
+      <a href='https://www.infyenterprise.com/hosting-services/users/verify/index.php?id=$id&code=$code'>Click HERE to Activate :)</a>
+      <br/><br />
       Thanks,";
 
             $subject = "Confirm Registration";

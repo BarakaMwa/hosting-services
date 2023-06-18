@@ -1,0 +1,23 @@
+
+a	Web:S52548"@Add "lang" and/or "xml:lang" attributes to this "<html>" element(œ÷Ãûÿÿÿÿ8ºêüÜ‹1
+\	php:S1131"@Remove the useless trailing whitespaces at the end of this line.(Åçğú8„ëüÜ‹1
+\	php:S1808";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ8„ëüÜ‹1
+\	php:S1808";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ8„ëüÜ‹1
+\	php:S1808";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ8„ëüÜ‹1
+g	php:S1808."FMove this "else" to the same line as the previous closing curly brace.(„¶áìøÿÿÿÿ8„ëüÜ‹1
+\	php:S1808";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ8„ëüÜ‹1
+\	php:S1808";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ8„ëüÜ‹1
+g	php:S1808!"FMove this "else" to the same line as the previous closing curly brace.(„¶áìøÿÿÿÿ8„ëüÜ‹1
+\	php:S1808"";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ8„ëüÜ‹1
+\	php:S1808/";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ8„ëüÜ‹1
+\	php:S1808M";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ8„ëüÜ‹1
+e	php:S1808"DPut one space between this "if" keyword and the opening parenthesis.(‰ğùäûÿÿÿÿ8„ëüÜ‹1
+`	php:S1808
+"DPut one space between this "if" keyword and the opening parenthesis.(Ó¹ãÕ8„ëüÜ‹1
+e	php:S1808"DPut one space between this "if" keyword and the opening parenthesis.(Ô›ÆÖşÿÿÿÿ8„ëüÜ‹1
+`	php:S1808"DPut one space between this "if" keyword and the opening parenthesis.(²ŠãÁ8„ëüÜ‹1
+e	php:S1808"DPut one space between this "if" keyword and the opening parenthesis.(àÑæ£ıÿÿÿÿ8„ëüÜ‹1
+`	php:S1808L"DPut one space between this "if" keyword and the opening parenthesis.(¼Åå¥8„ëüÜ‹1
+:php:S113"'Add a new line at the end of this file.8„ëüÜ‹1
+d	php:S1779"PReplace all non line feed end of line characters in this file "index.php" by LF.8’å÷‹1
+r	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(ÿåß¡ÿÿÿÿÿ8„ëüÜ‹1

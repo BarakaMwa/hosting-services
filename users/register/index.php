@@ -48,7 +48,7 @@ if (isset($_POST['btn-signup'])) {
             $msg = "
      <div class='alert alert-success'>
       <button class='close' data-dismiss='alert'>&times;</button>
-      <strong>Success!</strong>  We've sent an email to $email.
+      <strong>Success!</strong>  We've emailed $email.
                     Please click on the confirmation link in the email to create your account. 
        </div>
      ";

@@ -8,7 +8,8 @@ $status = false;
 if ($user->is_logged_in() != "") {
     $response["message"] = "Logging You In";
     $response["status"] = true;
-    return json_encode($response, JSON_THROW_ON_ERROR);
+    echo json_encode($response, JSON_THROW_ON_ERROR);
+    exit();
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -45,55 +46,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $response['status'] = false;
         $response['message'] = $msg;
     }
-    return json_encode($response, JSON_THROW_ON_ERROR);
+    echo json_encode($response, JSON_THROW_ON_ERROR);
+    exit();
+
 } else {
     $response["message"] = "Invalid Request";
     $response["status"] = false;
-    return json_encode($response, JSON_THROW_ON_ERROR);
+    echo json_encode($response, JSON_THROW_ON_ERROR);
+    exit();
 }
-?>
-
-<!-- <!DOCTYPE html>
-<html> -->
-<!--<head>-->
-<!--    <title>Forgot Password</title>-->
-<!--    <!-- Bootstrap -->-->
-<!--    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">-->
-<!--    <link href="../bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">-->
-<!--    <link href="../assets/styles.css" rel="stylesheet" media="screen">-->
-<!--    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->-->
-<!--    <!--[if lt IE 9]>-->
-<!--    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>-->
-<!--    <![endif]-->-->
-<!--</head>-->
-<!--<body id="login">-->
-<!--<div class="container">-->
-<!---->
-<!--    <form class="form-signin" method="post">-->
-<!--        <h2 class="form-signin-heading">Forgot Password</h2>-->
-<!--        <hr/>-->
-<!---->
-<!--        --><?php
-//        if (isset($msg)) {
-//            echo $msg;
-//        } else {
-//            ?>
-<!--            <div class='alert alert-info'>-->
-<!--                Please enter your email address. You will receive a link to create a new password via email.!-->
-<!--            </div>-->
-<!--            --><?php
-//        }
-//        ?>
-<!---->
-<!--        <input type="email" class="form-control" placeholder="Email address" name="txtemail" required/>-->
-<!--        <hr/>-->
-<!--        <button class="btn btn-danger btn-primary" type="submit" name="btn-submit">Generate new Password</button>-->
-<!--        <a href="../register/index.php" class="btn btn-info btn-primary" type="button">Sign Up</a>-->
-<!--        <a href="../login/index.php" class="btn btn-light btn-primary" type="button">Sign In</a>-->
-<!--    </form>-->
-<!---->
-<!--</div> <!-- /container -->-->
-<!--<script src="../bootstrap/js/jquery-1.9.1.min.js"></script>-->
-<!--<script src="../bootstrap/js/bootstrap.min.js"></script>-->
-<!--</body>-->
-<!--</html>-->

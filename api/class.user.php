@@ -61,41 +61,43 @@ class USER
                         return true;
                     } else {
                         header("Location: ../login/index.php?error");
-                        exit;
+//                        return false;
                     }
                 } else {
                     header("Location: ../login/index.php?inactive");
-                    exit;
+//                    return false;
                 }
             } else {
                 header("Location: ../login/index.php?error");
-                exit;
+//                return false;
             }
         } catch (PDOException $ex) {
             echo $ex->getMessage();
+            return false;
         }
     }
 
 
-    public function is_logged_in()
+    public function is_logged_in(): bool
     {
         if (isset($_SESSION['userSession'])) {
             return true;
         }
+        return false;
     }
 
-    public function redirect($url)
+    public function redirect($url): void
     {
         header("Location: $url");
     }
 
-    public function logout()
+    public function logout(): void
     {
         session_destroy();
         $_SESSION['userSession'] = false;
     }
 
-    function send_mail($email, $message, $subject)
+    public function send_mail($email, $message, $subject): void
     {
 
 

@@ -7,7 +7,8 @@ $status = false;
 
 if ($user->is_logged_in() != "") {
     $response["message"] = "Logging You In";
-    $response["status"] = true;
+    $response["success"] = true;
+    $response["status"] = "success";
     echo json_encode($response, JSON_THROW_ON_ERROR);
     exit();
 }
@@ -51,7 +52,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 } else {
     $response["message"] = "Invalid Request";
-    $response["status"] = false;
+    $response["success"] = false;
+    $response["status"] = "error";
     echo json_encode($response, JSON_THROW_ON_ERROR);
     exit();
 }

@@ -21,19 +21,22 @@ if ($_SESSION["REQUEST_METHOD"] == "POST") {
 
     if ($user_login->login($email, $password)) {
 
-        $response["status"] = true;
+        $response["success"] = true;
+        $response["status"] = "success";
         $response["message"] = "Login successful";
         echo json_encode($response, JSON_THROW_ON_ERROR);
         exit();
 //        $user_login->redirect('../home-page/index.php');
     }
-    $response["status"] = false;
+    $response["success"] = false;
+    $response["status"] = "error";
     $response["message"] = "Invalid logins";
     echo json_encode($response, JSON_THROW_ON_ERROR);
     exit();
-}else{
-    $response["status"] = false;
-    $response["message"] = "Invalid Requests";
+} else {
+    $response["success"] = false;
+    $response["status"] = "error";
+    $response["message"] = "Invalid Request";
     echo json_encode($response, JSON_THROW_ON_ERROR);
     exit();
 }

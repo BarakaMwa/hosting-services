@@ -14,10 +14,10 @@ if ($user_login->is_logged_in() != "") {
 }
 
 if ($_SESSION["REQUEST_METHOD"] == "POST") {
-    $email = trim($_POST['txtemail']);
-    $upass = trim($_POST['txtupass']);
+    $email = trim($_POST['username']);
+    $password = trim($_POST['password']);
 
-    if ($user_login->login($email, $upass)) {
+    if ($user_login->login($email, $password)) {
 
         $response["status"] = true;
         $response["message"] = "Login successful";

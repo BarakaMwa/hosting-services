@@ -1,9 +1,0 @@
-
-\	php:S1808";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ8ÿ‹µÝ‹1
-\	php:S1808";Move this open curly brace to the end of the previous line.(ÒÌâ–øÿÿÿÿ8ÿ‹µÝ‹1
-e	php:S1808"DPut one space between this "if" keyword and the opening parenthesis.(Ë®™Åúÿÿÿÿ8ÿ‹µÝ‹1
-e	php:S1808"DPut one space between this "if" keyword and the opening parenthesis.(À¦«ùûÿÿÿÿ8ÿ‹µÝ‹1
->	php:S1780"Remove this closing tag "?>".(Ö‘äÏúÿÿÿÿ8ÿ‹µÝ‹1
-:php:S113"'Add a new line at the end of this file.8ÿ‹µÝ‹1
-d	php:S1779"PReplace all non line feed end of line characters in this file "index.php" by LF.8ýŒ¶Ý‹1
-m	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(ªú¸”8ÿ‹µÝ‹1

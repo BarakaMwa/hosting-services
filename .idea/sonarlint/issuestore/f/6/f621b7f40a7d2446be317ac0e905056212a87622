@@ -1,17 +1,0 @@
-
-\	php:S1131%"@Remove the useless trailing whitespaces at the end of this line.(ώΆ‰λ8§ρί‹1
-sphp:S100P"SRename function "is_logged_in" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ªΊψÿÿÿÿ8©ρί‹1
-pphp:S100b"PRename function "send_mail" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(βΘ£κϊÿÿÿÿ8©ρί‹1
-^	php:S1784b"=Explicitly mention the visibility of this method "send_mail".(βΘ£κϊÿÿÿÿ8©ρί‹1
-:php:S113"'Add a new line at the end of this file.8©ρί‹1
-i	php:S1779"UReplace all non line feed end of line characters in this file "class.user.php" by LF.8•ªΫο‹1
-y	php:S1192q"XDefine a constant instead of duplicating this literal "info@infyenterprise.com" 3 times.(§υΩ“ώÿÿÿÿ8©ρί‹1
-~	php:S1488"]Immediately return this expression instead of assigning it to the temporary variable "$stmt".(ΙςΈωÿÿÿÿ8©ρί‹1
-y	php:S1488"]Immediately return this expression instead of assigning it to the temporary variable "$stmt".(ΚΒ«“8©ρί‹1
-G	php:S2003f"&Replace "require" with "require_once".(―π™κώÿÿÿÿ8©ρί‹1
-B	php:S2003g"&Replace "require" with "require_once".(™Ξ¥8©ρί‹1
-G	php:S2003h"&Replace "require" with "require_once".(¬έÿÿÿÿÿ8¦μΘο‹1
-r	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(―¥Ίμÿÿÿÿÿ8©ρί‹1
-m	php:S4833f"LReplace "require" with namespace import mechanism through the "use" keyword.(―π™κώÿÿÿÿ8©ρί‹1
-h	php:S4833g"LReplace "require" with namespace import mechanism through the "use" keyword.(™Ξ¥8©ρί‹1
-m	php:S4833h"LReplace "require" with namespace import mechanism through the "use" keyword.(¬έÿÿÿÿÿ8¦μΘο‹1

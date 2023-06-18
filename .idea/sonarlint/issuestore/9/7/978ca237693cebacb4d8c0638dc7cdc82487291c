@@ -1,8 +1,0 @@
-
-a	Web:S5254>"@Add "lang" and/or "xml:lang" attributes to this "<html>" element(œ÷Ãûÿÿÿÿ8ªá”İ‹1
-a	php:S1131#"@Remove the useless trailing whitespaces at the end of this line.(•´×åùÿÿÿÿ8Úá”İ‹1
-\	php:S11314"@Remove the useless trailing whitespaces at the end of this line.(ğÿ½÷8Úá”İ‹1
-fphp:S103)"KSplit this 134 characters long line (which is greater than 120 authorized).(ı²±8›ßï‹1
-:php:S113"'Add a new line at the end of this file.8Úá”İ‹1
-Kphp:S121M"0Add curly braces around the nested statement(s).(˜Ûªœ8Úá”İ‹1
-m	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(ªú¸”8Úá”İ‹1

@@ -30,26 +30,6 @@ D
 ?
 users/index.php,f\a\fa99d51e2291a6da67f167f8ca89708cdeff8b1e
 G
-users/assets/styles.css,4\1\41248ddb25587414dc13a7ca25cdab84eb6a1c3b
-G
 users/assets/scripts.js,1\7\177639befee763ba28103baaaa0202c6e14e9c80
-F
-users/verify/index.php,2\1\21b8917c1f415cb7783e49ad978488ffe808001e
 N
 users/mailer/src/Exception.php,a\c\ac97f12d53b84220c3193c65279c38c496a35367
-D
-users/class.user.php,f\6\f621b7f40a7d2446be317ac0e905056212a87622
-M
-api/forget-password/index.php,0\f\0ff4d80eadc70e00fdce3f6e4a01b2002f8d625d
-O
-users/forget-password/index.php,9\3\9329449746f367cddd7017bcf159fc93d6fa3b75
-I
-users/home-page/index.php,6\d\6dd8ff06089d933b133ce42d0c771a89ce3a56e4
-F
-users/logout/index.php,3\f\3fcc474eb9e09726d9837d58f7dfb1338a397d02
-H
-users/register/index.php,9\7\978ca237693cebacb4d8c0638dc7cdc82487291c
-E
-users/login/index.php,d\e\de0dc2bd2115a503b637889e76bb2a082aacbcde
-N
-users/reset-password/index.php,3\8\389da9d279c0ae37d99ab3e4fd898284bd5b2129

@@ -26,6 +26,10 @@ if ($_SESSION["REQUEST_METHOD"] == "POST") {
     $response["status"] = false;
     $response["message"] = "Invalid logins";
     return json_encode($response, JSON_THROW_ON_ERROR);
+}else{
+    $response["status"] = false;
+    $response["message"] = "Invalid Requests";
+    return json_encode($response, JSON_THROW_ON_ERROR);
 }
 ?>
 
@@ -77,7 +81,9 @@ if ($_SESSION["REQUEST_METHOD"] == "POST") {
 <!--        <a href="../forget-password/index.php">Lost your Password ? </a>-->
 <!--    </form>-->
 <!---->
-<!--</div> <!-- /container -->-->
+<!--</div>
+<!-- /container -->
+-->
 <!--<script src="../bootstrap/js/jquery-1.9.1.min.js"></script>-->
 <!--<script src="../bootstrap/js/bootstrap.min.js"></script>-->
 <!--<script src="../assets/js/custom.js"></script>-->

@@ -29,7 +29,7 @@ if ($_SESSION["REQUEST_METHOD"] == "POST") {
 }else{
     $response["status"] = false;
     $response["message"] = "Invalid Requests";
-    return json_encode($response, JSON_THROW_ON_ERROR);
+    echo json_encode($response, JSON_THROW_ON_ERROR);
 }
 ?>
 

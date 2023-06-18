@@ -1,4 +1,6 @@
 <?php
+
+require_once '../headers-api.php';
 session_start();
 require_once '../class.user.php';
 $user_login = new USER();

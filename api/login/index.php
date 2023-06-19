@@ -15,7 +15,7 @@ if ($user_login->is_logged_in() != "") {
     exit();
 }
 
-if ($_SESSION["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST['username']);
     $password = trim($_POST['password']);
 

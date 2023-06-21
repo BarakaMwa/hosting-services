@@ -9,7 +9,7 @@ class Database
     private $password = "c23:aoE21rI+";
     public $conn;
 
-    public function dbConnection()
+    public function dbConnection(): ?PDO
     {
 
         $this->conn = null;

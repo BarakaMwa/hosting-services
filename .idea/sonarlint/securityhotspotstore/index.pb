@@ -27,8 +27,6 @@ F
 users/mailer/README.md,3\e\3e19f7e5696bea5268d896cb9cca04617efa5231
 ?
 users/index.php,f\a\fa99d51e2291a6da67f167f8ca89708cdeff8b1e
-D
-users/connection.php,e\c\ecf31c34708ea0e5e0de44b319ea9a0b1185ab0c
 G
 users/assets/scripts.js,1\7\177639befee763ba28103baaaa0202c6e14e9c80
 N

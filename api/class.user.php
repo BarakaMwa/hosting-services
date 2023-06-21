@@ -77,7 +77,6 @@ class USER
         }
     }
 
-
     public function is_logged_in(): bool
     {
         if (isset($_SESSION['userSession'])) {

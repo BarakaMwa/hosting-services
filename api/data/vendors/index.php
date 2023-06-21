@@ -8,15 +8,15 @@ $response = array();
 $status = false;
 
 
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
+if ($_SERVER['REQUEST_METHOD'] == 'POST' or $_SERVER['REQUEST_METHOD'] == 'GET') {
     $database = new Database();
     $db = $database->dbConnection();
 
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $sql = "SELECT * FROM Vendors WHERE vendor_id is not null";
+    $sql = "SELECT * FROM `Vendors`";
 
-    $result = runQuery()->setFetchMode(PDO::FETCH_ASSOC);
+    $result = runQuery($sql, $db);
 
 
     $response["message"] = "Data Retrieval Success";
@@ -26,7 +26,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     echo json_encode($response, JSON_THROW_ON_ERROR);
     exit();
 
-}else{
+} else {
 
     $response["message"] = "Invalid Request";
     $response["success"] = false;
@@ -37,5 +37,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 function runQuery($sql, $db)
 {
-    return $db->prepare($sql);
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+//    return $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    return $stmt->fetchAll();
 }

@@ -5,22 +5,23 @@ $encryption_iv ="";
 $options ="";*/
 require_once '../../../headers-api.php';
 session_start();
-//require_once '../../../connection.php';
-require_once '../../../connection-local.php';
+require_once '../../../connection.php';
+//require_once '../../../connection-local.php';
 //require_once '../../Cipher.php';
 //require_once '../vendor.php';
 
 $response = array();
 $status = false;
-$vendor =  new Vendor();
+$vendor = new Vendor();
 
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' or $_SERVER['REQUEST_METHOD'] == 'GET') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET') {
 
     $database = new Database();
     $db = $database->dbConnection();
 //    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+//    todo: for testing
     $_POST['id'] = 5;
 
     $vendor_Id = 0;
@@ -28,18 +29,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' or $_SERVER['REQUEST_METHOD'] == 'GET')
         $vendor_Id = $_POST['id'];
     }
 
-    [$vendor_name, $active, $vendor_email, $user_id] = checkIfPostValuesAreSet($vendor_Id,$db);
+    $result = checkIfPostValuesAreSet($vendor_Id, $db);
 
-    $sql = $vendor->update($user_id, $vendor_name, $vendor_email, $active, $vendor_Id);
+    $sql = $vendor->updateVendor((int)$result['user_id'], (string)$result['vendor_name'], (string)$result['vendor_email'], (bool) $result['active'], $vendor_Id);
 
-    $result = runQuery($sql, $db);
+    $result = $vendor->runUpdateQuery($sql, $db);
 
     /* foreach ($result as $row) {
          $encrypted = encrypt($row['vendor_id'],$ciphering,$encryption_iv,$options);
          $row["vendor_id"] = $encrypted;
          $row["0"] = $encrypted;
      }*/
-
 
     $response["message"] = "Data Removal Success";
     $response["success"] = true;
@@ -57,14 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' or $_SERVER['REQUEST_METHOD'] == 'GET')
     exit();
 }
 
-function runQuery($sql, $db)
-{
-    $stmt = $db->prepare($sql);
-    $stmt->execute();
-//    return $stmt->setFetchMode(PDO::FETCH_ASSOC);
-    return $stmt->fetchAll();
-}
-
 /**
  * @param int $vendor_Id
  * @param PDO|null $db
@@ -74,13 +66,15 @@ function checkIfPostValuesAreSet(int $vendor_Id, ?PDO $db): array
 {
     $vendor = new Vendor();
     $sql = $vendor->getAllById($vendor_Id);
-    $result = runQuery($sql,$db);
+    $result = $vendor->runSelectAllQuery($sql, $db);
+    $result = $result[0];
+//    echo $result['active'];
     $vendor_name = $result['vendor_name'];
     if (isset($_POST['vendor_name']) && !empty($_POST['vendor_name'])) {
         $vendor_name = $_POST['vendor_name'];
     }
 
-    $active = $result['active'];
+    (bool)$active = $result['active'];
     if (isset($_POST['active']) && !empty($_POST['active'])) {
         $active = $_POST['active'];
     }
@@ -95,5 +89,5 @@ function checkIfPostValuesAreSet(int $vendor_Id, ?PDO $db): array
         $user_id = $_POST['user_id'];
     }
 
-    return array($vendor_name, $active, $vendor_email, $user_id);
+    return array("vendor_name" => $vendor_name, "active" => $active, "vendor_email" => $vendor_email, "user_id" => $user_id);
 }

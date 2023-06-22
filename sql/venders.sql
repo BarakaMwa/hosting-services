@@ -116,3 +116,25 @@ values
     (3, 3, 3, NULL, 'https://example.com/image3.png'),
     (4, 4, 4, NULL, 'https://example.com/image4.png'),
     (5, 5, 5, NULL, 'https://example.com/image5.png');
+
+
+alter table Users
+    add active bool default true not null;
+
+alter table QR_code
+    add active bool default true not null;
+
+alter table Cart
+    add active bool default true not null;
+
+alter table Invoices
+    add active bool default true not null;
+
+alter table Payments
+    add active bool default true not null;
+
+alter table Products
+    add active bool default true not null;
+
+alter table Vendor
+    add active bool default true not null;

@@ -9,13 +9,50 @@ class Vendor
     private $vendor_email;
     private $active;
 
+    /**
+     * @param $sql
+     * @param $db
+     * @return mixed
+     */
+    public function runSelectAllQuery($sql, $db)
+    {
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+//    return $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll();
+    }
 
+    /**
+     * @param $sql
+     * @param $db
+     * @return void
+     */
+    public function runUpdateQuery($sql, $db): void
+    {
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+//    return $stmt->setFetchMode(PDO::FETCH_ASSOC);
+//        return $stmt->fetchAll();
+    }
+
+    /**
+     * @param $sql
+     * @param $db
+     * @return void
+     */
+    public function runDeleteQuery($sql, $db): void
+    {
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+//    return $stmt->setFetchMode(PDO::FETCH_ASSOC);
+//        return $stmt->fetchAll();
+    }
     /**
      * @return string
      */
     public function getGetAll(): string
     {
-        return "SELECT * FROM `Vendors`";
+        return "SELECT * FROM Vendors";
     }
 
     /**
@@ -33,36 +70,30 @@ class Vendor
      */
     public function getAllById(int $vendor_id): string
     {
-        return "SELECT * FROM Vendors WHERE vendor_id = $vendor_id";
+        return "SELECT * FROM `Vendors` WHERE vendor_id = $vendor_id";
     }
 
     /**
      * @param bool $active
-     * @param $vendor_Id
+     * @param int $vendor_Id
      * @return string
      */
-    public function getByIdAndActive(bool $active, $vendor_Id): string
+    public function getByIdAndActive(bool $active,int $vendor_Id): string
     {
         return "SELECT * FROM Vendors WHERE active = $active and vendor_id = $vendor_Id";
     }
 
 
     /**
-     * @param $user_id
-     * @param $vendor_name
-     * @param $vendor_email
-     * @param $active
+     * @param int $user_id
+     * @param string $vendor_name
+     * @param string $vendor_email
+     * @param bool $active
      * @param int $vendor_Id
      * @return string
      */
-    public function update($user_id, $vendor_name, $vendor_email, $active, int $vendor_Id): string
+    public function updateVendor(int $user_id, string $vendor_name, string $vendor_email, bool $active, int $vendor_Id): string
     {
-        $sql = "UPDATE Vendors v
-SET v.user_id      = $user_id,
-    v.vendor_name  = $vendor_name,
-    v.vendor_email = $vendor_email,
-    v.active = $active,
-WHERE v.vendor_id = $vendor_Id;";
-        return $sql;
+        return "UPDATE Vendors v SET v.user_id      = $user_id,    v.vendor_name  = '".$vendor_name."',    v.vendor_email = '".$vendor_email."',   v.active = $active WHERE v.vendor_id = $vendor_Id";
     }
 }

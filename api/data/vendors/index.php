@@ -5,17 +5,15 @@ $encryption_iv ="";
 $options ="";*/
 require_once '../../headers-api.php';
 session_start();
-//require_once '../../connection.php';
-require_once '../../connection-local.php';
+require_once '../../connection.php';
+//require_once '../../connection-local.php';
 //require_once '../../Cipher.php';
-
-$vendor = new Vendor();
 
 $response = array();
 $status = false;
 
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' or $_SERVER['REQUEST_METHOD'] == 'GET') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET') {
     $database = new Database();
     $db = $database->dbConnection();
 
@@ -32,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' or $_SERVER['REQUEST_METHOD'] == 'GET')
         $sql = $vendor->getAllByActive($active);
     }
 
-    $result = runQuery($sql, $db);
+    $result = $vendor->runSelectAllQuery($sql, $db);
 
    /* foreach ($result as $row) {
         $encrypted = encrypt($row['vendor_id'],$ciphering,$encryption_iv,$options);

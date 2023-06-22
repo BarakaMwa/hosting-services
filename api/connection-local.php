@@ -1,6 +1,8 @@
 <?php
 
 require_once 'data/vendor.php';
+$vendor = new Vendor();
+
 class Database
 {
 

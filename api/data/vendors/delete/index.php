@@ -15,8 +15,9 @@ $status = false;
 $vendor = new Vendor();
 
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET') {
 
+    $result = array();
     $database = new Database();
     $db = $database->dbConnection();
 //    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -27,13 +28,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
     $vendor_Id = 0;
     if (isset($_POST['id']) && !empty($_POST['id'])) {
         $vendor_Id = $_POST['id'];
+
+        $result = checkIfPostValuesAreSet($vendor_Id, $db);
+
+        $sql = $vendor->updateVendor((int)$result['user_id'], (string)$result['vendor_name'], (string)$result['vendor_email'], (bool) $result['active'], $vendor_Id);
+
+        $result = $vendor->runUpdateQuery($sql, $db);
+
+    }else{
+        $response["message"] = "Invalid Request";
+        $response["success"] = false;
+        $response["status"] = "error";
+        echo json_encode($response, JSON_THROW_ON_ERROR);
+        exit();
     }
-
-    $result = checkIfPostValuesAreSet($vendor_Id, $db);
-
-    $sql = $vendor->updateVendor((int)$result['user_id'], (string)$result['vendor_name'], (string)$result['vendor_email'], (bool) $result['active'], $vendor_Id);
-
-    $result = $vendor->runUpdateQuery($sql, $db);
 
     /* foreach ($result as $row) {
          $encrypted = encrypt($row['vendor_id'],$ciphering,$encryption_iv,$options);
@@ -65,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
 function checkIfPostValuesAreSet(int $vendor_Id, ?PDO $db): array
 {
     $vendor = new Vendor();
-    $sql = $vendor->getAllById($vendor_Id);
+    $sql = $vendor->getById($vendor_Id);
     $result = $vendor->runSelectAllQuery($sql, $db);
     $result = $result[0];
 //    echo $result['active'];

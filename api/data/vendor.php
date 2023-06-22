@@ -68,9 +68,18 @@ class Vendor
      * @param int $vendor_id
      * @return string
      */
-    public function getAllById(int $vendor_id): string
+    public function getById(int $vendor_id): string
     {
-        return "SELECT * FROM `Vendors` WHERE vendor_id = $vendor_id";
+        return "SELECT * FROM Vendors WHERE vendor_id = $vendor_id";
+    }
+
+    /**
+     * @param int $vendor_id
+     * @return string
+     */
+    public function deleteById(int $vendor_id): string
+    {
+        return "DELETE FROM Vendors WHERE vendor_id = $vendor_id";
     }
 
     /**

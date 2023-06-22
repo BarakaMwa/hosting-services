@@ -5,11 +5,11 @@ class Responses{
 
     /**
      * @param array $response
-     * @param $result
+     * @param array $result
      * @return void
      * @throws JsonException
      */
-    public function successDataRetrieved(array $response, $result): void
+    public function successDataRetrieved(array $response, array $result): void
     {
         $response["message"] = "Data Removal Success";
         $response["success"] = true;
@@ -45,6 +45,22 @@ class Responses{
         $response["message"] = "Invalid Request";
         $response["success"] = false;
         $response["status"] = "error";
+        echo json_encode($response, JSON_THROW_ON_ERROR);
+        exit();
+    }
+
+    /**
+     * @param array $response
+     * @param array $result
+     * @return void
+     * @throws JsonException
+     */
+    public function successDataDeactivated(array $response, array $result): void
+    {
+        $response["message"] = "Data Removal Success";
+        $response["success"] = true;
+        $response["status"] = "success";
+        $response["data"] = $result;
         echo json_encode($response, JSON_THROW_ON_ERROR);
         exit();
     }

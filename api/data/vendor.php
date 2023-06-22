@@ -97,7 +97,7 @@ class Vendor
     }
 
     /**
-     * @param bool $active
+     * @param int $active
      * @param int $vendor_Id
      * @return string
      */
@@ -111,7 +111,7 @@ class Vendor
      * @param int $user_id
      * @param string $vendor_name
      * @param string $vendor_email
-     * @param bool $active
+     * @param int $active
      * @param int $vendor_Id
      * @return string
      */

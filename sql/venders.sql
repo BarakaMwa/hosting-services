@@ -55,7 +55,15 @@ create TABLE QR_code (
   FOREIGN KEY (product_id) REFERENCES Products(product_id)
 );
 
-
+CREATE TABLE Images (
+  image_id INT PRIMARY KEY,
+  vendor_id INT,
+  product_id INT,
+  image_blob BLOB,
+  image_link VARCHAR(255),
+  FOREIGN KEY (vendor_id) REFERENCES Vendors(vendor_id),
+  FOREIGN KEY (product_id) REFERENCES Products(product_id)
+);
 
 -- Sample data for Users
 insert into Users (user_id, username, email)
@@ -139,4 +147,7 @@ alter table Products
     add active bool default true not null;
 
 alter table Vendor
+    add active bool default true not null;
+
+alter table Images
     add active bool default true not null;

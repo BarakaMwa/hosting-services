@@ -7,12 +7,10 @@ require_once '../../../headers-api.php';
 session_start();
 //require_once '../../../connection.php';
 require_once '../../../connection-local.php';
-//require_once '../../Cipher.php';
-//require_once '../vendor.php';
 
 $response = array();
+$responses = new Responses();
 $status = false;
-$vendor = new Vendor();
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -23,21 +21,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 //    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 //    todo: for testing
-    $_POST['id'] = 5;
+    $_POST['id'] = 1;
 
     try {
-        updatingVendorDelete($db, $vendor, $response);
+        $vendor = new Vendor();
+        updatingVendorDelete($db, $vendor, $response, $responses);
     } catch (JsonException $e) {
         $responses->errorUpDating($response,$e);
     }
 
 } else {
 
-    $response["message"] = "Invalid Request";
-    $response["success"] = false;
-    $response["status"] = "error";
-    echo json_encode($response, JSON_THROW_ON_ERROR);
-    exit();
+    $responses->errorInvalidRequest($response);
 }
 
 /**
@@ -81,11 +76,13 @@ function checkIfPostValuesAreSetAndDeactivate(int $vendor_Id, ?PDO $db): array
  * @param PDO|null $db
  * @param Vendor $vendor
  * @param array $response
+ * @param Responses $responses
  * @return void
  * @throws JsonException
  */
-function updatingVendorDelete(?PDO $db, Vendor $vendor, array $response): void
+function updatingVendorDelete(?PDO $db, Vendor $vendor, array $response, Responses $responses): void
 {
+    $result = array();
     if (isset($_POST['id']) && !empty($_POST['id'])) {
         $vendor_Id = $_POST['id'];
 
@@ -93,14 +90,10 @@ function updatingVendorDelete(?PDO $db, Vendor $vendor, array $response): void
 
         $sql = $vendor->updateVendor((int)$result['user_id'], (string)$result['vendor_name'], (string)$result['vendor_email'], (int)$result['active'], $vendor_Id);
 
-        $result = $vendor->runUpdateQuery($sql, $db);
+        $vendor->runUpdateQuery($sql, $db);
 
     } else {
-        $response["message"] = "Invalid Request";
-        $response["success"] = false;
-        $response["status"] = "error";
-        echo json_encode($response, JSON_THROW_ON_ERROR);
-        exit();
+        $responses->errorInvalidRequest($response);
     }
 
     /* foreach ($result as $row) {
@@ -109,10 +102,6 @@ function updatingVendorDelete(?PDO $db, Vendor $vendor, array $response): void
          $row["0"] = $encrypted;
      }*/
 
-    $response["message"] = "Data Removal Success";
-    $response["success"] = true;
-    $response["status"] = "success";
-    $response["data"] = $result;
-    echo json_encode($response, JSON_THROW_ON_ERROR);
-    exit();
+    $responses->successDataDeactivated($response, $result);
 }
+

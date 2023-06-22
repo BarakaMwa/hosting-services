@@ -7,12 +7,11 @@ require_once '../../../headers-api.php';
 session_start();
 //require_once '../../../connection.php';
 require_once '../../../connection-local.php';
-//require_once '../../Cipher.php';
-//require_once '../vendor.php';
 
 $response = array();
 $status = false;
 $vendor = new Vendor();
+$responses = new Responses();
 
 
 
@@ -27,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 //    $_POST['id'] = 5;
 
     try {
-        updatingVendorEdit($db, $vendor, $response);
+        updatingVendorEdit($db, $vendor, $response, $responses);
     } catch (JsonException $e) {
         $responses->errorUpDating($response, $e);
     }
@@ -78,10 +77,11 @@ function checkIfPostValuesAreSetAndEdit(int $vendor_Id, ?PDO $db): array
  * @param PDO|null $db
  * @param Vendor $vendor
  * @param array $response
+ * @param Responses $responses
  * @return void
  * @throws JsonException
  */
-function updatingVendorEdit(?PDO $db, Vendor $vendor, array $response): void
+function updatingVendorEdit(?PDO $db, Vendor $vendor, array $response, Responses $responses): void
 {
     $result =array();
     if (isset($_POST['id']) && !empty($_POST['id'])) {
@@ -91,7 +91,7 @@ function updatingVendorEdit(?PDO $db, Vendor $vendor, array $response): void
 
         $sql = $vendor->updateVendor((int)$result['user_id'], (string)$result['vendor_name'], (string)$result['vendor_email'], (int)$result['active'], $vendor_Id);
 
-        $result = $vendor->runUpdateQuery($sql, $db);
+        $vendor->runUpdateQuery($sql, $db);
 
     } else {
         $responses->errorInvalidRequest($response);

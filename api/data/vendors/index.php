@@ -7,12 +7,11 @@ require_once '../../headers-api.php';
 session_start();
 //require_once '../../connection.php';
 require_once '../../connection-local.php';
-//require_once '../../Cipher.php';
 
 $response = array();
 $status = false;
-
-
+$responses = new Responses();
+$vendor = new Vendor();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET') {
     $database = new Database();
@@ -22,9 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
 
     $sql = $vendor->getGetAll();
 
-//    $_POST['active'] = 1;
+//    $_POST['active'] = 0;
 
-    if(isset($_POST["active"]) and !empty($_POST["active"])){
+    if(isset($_POST["active"]) && !empty($_POST["active"])){
 
         (int)$active = $_POST["active"];
 

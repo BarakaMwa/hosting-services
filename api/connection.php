@@ -1,5 +1,6 @@
 <?php
 
+require_once 'data/vendor.php';
 class Database
 {
 

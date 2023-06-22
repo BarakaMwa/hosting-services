@@ -8,6 +8,7 @@ session_start();
 //require_once '../../../connection.php';
 require_once '../../../connection-local.php';
 //require_once '../../Cipher.php';
+//require_once '../vendor.php';
 
 $response = array();
 $status = false;
@@ -66,10 +67,10 @@ function runQuery($sql, $db)
 
 /**
  * @param int $vendor_Id
- * @param $db
+ * @param PDO|null $db
  * @return array
  */
-function checkIfPostValuesAreSet(int $vendor_Id, $db): array
+function checkIfPostValuesAreSet(int $vendor_Id, ?PDO $db): array
 {
     $vendor = new Vendor();
     $sql = $vendor->getAllById($vendor_Id);

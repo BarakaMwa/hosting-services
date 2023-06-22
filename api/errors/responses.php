@@ -1,7 +1,8 @@
 <?php
 
 
-class Responses{
+class Responses
+{
 
     /**
      * @param array $response
@@ -18,15 +19,16 @@ class Responses{
         echo json_encode($response, JSON_THROW_ON_ERROR);
         exit();
     }
+
     /**
      * @param array $response
-     * @param $e
+     * @param Exception $e
      * @return void
      * @throws JsonException
      */
-    public function errorUpDating(array $response, $e): void
+    public function errorUpDating(array $response, Exception $e): void
     {
-        $response["message"] = "Error Updating";
+        $response["message"] = "Error Updating Data";
         $response["success"] = false;
         $response["status"] = "error";
         $response["data"] = $e->getMessage();
@@ -61,6 +63,23 @@ class Responses{
         $response["success"] = true;
         $response["status"] = "success";
         $response["data"] = $result;
+        echo json_encode($response, JSON_THROW_ON_ERROR);
+        exit();
+    }
+
+
+    /**
+     * @param array $response
+     * @param Exception $e
+     * @return void
+     * @throws JsonException
+     */
+    public function errorInsertingData(array $response, Exception $e): void
+    {
+        $response["message"] = "Error Inserting Data";
+        $response["success"] = false;
+        $response["status"] = "error";
+        $response["data"] = $e->getMessage();
         echo json_encode($response, JSON_THROW_ON_ERROR);
         exit();
     }

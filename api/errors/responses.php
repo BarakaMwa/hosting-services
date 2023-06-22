@@ -12,7 +12,7 @@ class Responses
      */
     public function successDataRetrieved(array $response, array $result): void
     {
-        $response["message"] = "Data Removal Success";
+        $response["message"] = "Data Retrieval Success";
         $response["success"] = true;
         $response["status"] = "success";
         $response["data"] = $result;

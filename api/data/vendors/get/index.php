@@ -21,6 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
 
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $vendor_id = 0;
+
+    try {
     if (isset($_POST['id']) && !empty($_POST['id'])) {
         $vendor_id = $_POST['id'];
     } else if (isset($_GET['id']) && !empty($_GET['id'])) {
@@ -39,9 +41,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
         (int)$active = $_POST["active"];
 
         $sql = $vendor->getByIdAndActive($active, $vendor_id);
+    }else if (isset($_GET["active"]) && !empty($_GET["active"])) {
+
+        (int)$active = $_GET["active"];
+
+        $sql = $vendor->getByIdAndActive($active, $vendor_id);
     }
 
-    $result = $vendor->runSelectAllQuery($sql, $db);
+    $result = $vendor->runSelectOneQuery($sql, $db);
 
     /* foreach ($result as $row) {
          $encrypted = encrypt($row['vendor_id'],$ciphering,$encryption_iv,$options);
@@ -49,8 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
          $row["0"] = $encrypted;
      }*/
 
-
-    try {
         $responses->successDataRetrieved($response, $result);
     } catch (JsonException $e) {
         $responses->errorInsertingData($response, $e);

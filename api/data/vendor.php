@@ -25,6 +25,20 @@ class Vendor
     /**
      * @param $sql
      * @param $db
+     * @return mixed
+     */
+    public function runSelectOneQuery($sql, $db)
+    {
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+//    return $stmt-
+        $result = $stmt->fetchAll();
+        return $result[0];
+    }
+
+    /**
+     * @param $sql
+     * @param $db
      * @return void
      */
     public function runUpdateQuery($sql, $db): void

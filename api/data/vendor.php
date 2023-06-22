@@ -47,6 +47,20 @@ class Vendor
 //    return $stmt->setFetchMode(PDO::FETCH_ASSOC);
 //        return $stmt->fetchAll();
     }
+
+    /**
+     * @param $sql
+     * @param $db
+     * @return mixed
+     */
+    public function runQuery($sql, $db)
+    {
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+//    return $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll();
+    }
+
     /**
      * @return string
      */
@@ -56,10 +70,10 @@ class Vendor
     }
 
     /**
-     * @param bool $active
+     * @param int $active
      * @return string
      */
-    public function getAllByActive(bool $active): string
+    public function getAllByActive(int $active): string
     {
         return "SELECT * FROM Vendors WHERE active = $active";
     }
@@ -87,9 +101,9 @@ class Vendor
      * @param int $vendor_Id
      * @return string
      */
-    public function getByIdAndActive(bool $active,int $vendor_Id): string
+    public function getByIdAndActive(int $active,int $vendor_Id): string
     {
-        return "SELECT * FROM Vendors WHERE active = $active and vendor_id = $vendor_Id";
+        return "SELECT * FROM `Vendors` WHERE `active` = $active and `vendor_id` = $vendor_Id";
     }
 
 
@@ -101,8 +115,8 @@ class Vendor
      * @param int $vendor_Id
      * @return string
      */
-    public function updateVendor(int $user_id, string $vendor_name, string $vendor_email, bool $active, int $vendor_Id): string
+    public function updateVendor(int $user_id, string $vendor_name, string $vendor_email, int $active, int $vendor_Id): string
     {
-        return "UPDATE Vendors v SET v.user_id      = $user_id,    v.vendor_name  = '".$vendor_name."',    v.vendor_email = '".$vendor_email."',   v.active = $active WHERE v.vendor_id = $vendor_Id";
+        return "UPDATE Vendors SET user_id=$user_id, vendor_name='" . $vendor_name . "', vendor_email='" . $vendor_email . "', active=$active WHERE vendor_id=$vendor_Id";
     }
 }

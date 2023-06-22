@@ -55,6 +55,8 @@ create TABLE QR_code (
   FOREIGN KEY (product_id) REFERENCES Products(product_id)
 );
 
+
+
 -- Sample data for Users
 insert into Users (user_id, username, email)
 values

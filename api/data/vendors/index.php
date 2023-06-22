@@ -5,19 +5,20 @@ $encryption_iv ="";
 $options ="";*/
 require_once '../../headers-api.php';
 session_start();
-require_once '../../connection.php';
-//require_once '../../connection-local.php';
+//require_once '../../connection.php';
+require_once '../../connection-local.php';
 //require_once '../../Cipher.php';
 
 $response = array();
 $status = false;
 
 
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET') {
     $database = new Database();
     $db = $database->dbConnection();
 
-//    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $sql = $vendor->getGetAll();
 
@@ -25,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
 
     if(isset($_POST["active"]) and !empty($_POST["active"])){
 
-        $active = $_POST["active"];
+        (int)$active = $_POST["active"];
 
         $sql = $vendor->getAllByActive($active);
     }
@@ -39,26 +40,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
     }*/
 
 
-    $response["message"] = "Data Retrieval Success";
-    $response["success"] = true;
-    $response["status"] = "success";
-    $response["data"] = $result;
-    echo json_encode($response, JSON_THROW_ON_ERROR);
-    exit();
+    $responses->successDataRetrieved($response, $result);
 
 } else {
 
-    $response["message"] = "Invalid Request";
-    $response["success"] = false;
-    $response["status"] = "error";
-    echo json_encode($response, JSON_THROW_ON_ERROR);
-    exit();
+   $responses -> errorInvalidRequest($response);
 }
 
-function runQuery($sql, $db)
-{
-    $stmt = $db->prepare($sql);
-    $stmt->execute();
-//    return $stmt->setFetchMode(PDO::FETCH_ASSOC);
-    return $stmt->fetchAll();
-}
+

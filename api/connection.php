@@ -1,7 +1,9 @@
 <?php
 
 require_once 'data/vendor.php';
+require_once 'errors/responses.php';
 $vendor = new Vendor();
+$responses = new Responses();
 
 class Database
 {

@@ -47,7 +47,7 @@ class USER
         }
     }
 
-    public function login($email, $upass)
+    public function login($email, $upass): bool
     {
         try {
             $stmt = $this->conn->prepare("SELECT * FROM tbl_users WHERE userEmail=:email_id");
@@ -60,16 +60,16 @@ class USER
                         $_SESSION['userSession'] = $userRow['userID'];
                         return true;
                     } else {
-                        header("Location: ../login/index.php?error");
-//                        return false;
+//                        header("Location: ../login/index.php?error");
+                        return false;
                     }
                 } else {
-                    header("Location: ../login/index.php?inactive");
-//                    return false;
+//                    header("Location: ../login/index.php?inactive");
+                    return false;
                 }
             } else {
-                header("Location: ../login/index.php?error");
-//                return false;
+//                header("Location: ../login/index.php?error");
+                return false;
             }
         } catch (PDOException $ex) {
             echo $ex->getMessage();

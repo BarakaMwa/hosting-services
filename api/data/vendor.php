@@ -3,12 +3,6 @@
 class Vendor
 {
 
-    private $vendor_id;
-    private $user_id;
-    private $vendor_name;
-    private $vendor_email;
-    private $active;
-
     /**
      * @param $sql
      * @param $db

@@ -133,4 +133,25 @@ class Vendor
     {
         return "UPDATE Vendors SET user_id=$user_id, vendor_name='" . $vendor_name . "', vendor_email='" . $vendor_email . "', active=$active WHERE vendor_id=$vendor_Id";
     }
+
+    /**
+     * @param string $sql
+     * @param PDO|null $db
+     * @return void
+     */
+    public function runInsertQuery(string $sql, ?PDO $db): void
+    {
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+    }
+
+    /**
+     * @param array $result
+     * @return string
+     */
+    public function insertNewVendor(array $result): string
+    {
+       return "INSERT INTO Vendors (user_id, vendor_name, vendor_email, active) 
+               VALUES ( ".$result['user_id'].", '".$result["vendor_email"]."', '".$result["vendor_email"]."', ".$result['active'].")";
+    }
 }

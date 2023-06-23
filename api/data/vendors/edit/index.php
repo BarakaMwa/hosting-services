@@ -1,8 +1,5 @@
 <?php
 //todo validation
-/*$ciphering ="";
-$encryption_iv ="";
-$options ="";*/
 require_once '../../../headers-api.php';
 session_start();
 //require_once '../../../connection.php';
@@ -20,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
     $result = array();
     $database = new Database();
     $db = $database->dbConnection();
-//    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 //    todo: for testing
 //    $_POST['id'] = 5;
@@ -45,8 +42,8 @@ function checkIfPostValuesAreSetAndEdit(int $vendor_Id, ?PDO $db): array
 {
     $vendor = new Vendor();
     $sql = $vendor->getById($vendor_Id);
-    $result = $vendor->runSelectAllQuery($sql, $db);
-    $result = $result[0];
+    $result = $vendor->runSelectOneQuery($sql, $db);
+    
 //    todo for testing
 //    echo $result['active'];
     $vendor_name = $result['vendor_name'];

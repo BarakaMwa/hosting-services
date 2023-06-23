@@ -1,8 +1,5 @@
 <?php
 //todo validation
-/*$ciphering ="";
-$encryption_iv ="";
-$options ="";*/
 require_once '../../headers-api.php';
 session_start();
 //require_once '../../connection.php';
@@ -13,7 +10,8 @@ $status = false;
 $responses = new Responses();
 $vendor = new Vendor();
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] = 'GET') {
+
     $database = new Database();
     $db = $database->dbConnection();
 
@@ -37,7 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
         $row["vendor_id"] = $encrypted;
         $row["0"] = $encrypted;
     }*/
-
 
     $responses->successDataRetrieved($response, $result);
 

@@ -84,4 +84,24 @@ class Responses
         exit();
     }
 
+    public function warningInput(string $string)
+    {
+        $response["message"] = $string;
+        $response["success"] = false;
+        $response["status"] = "warning";
+        $response["data"] = null;
+        echo json_encode($response, JSON_THROW_ON_ERROR);
+        exit();
+    }
+
+    public function successDataInserted(array $response, array $result)
+    {
+        $response["message"] = "Data Inserted Success";
+        $response["success"] = true;
+        $response["status"] = "success";
+        $response["data"] = $result;
+        echo json_encode($response, JSON_THROW_ON_ERROR);
+        exit();
+    }
+
 }

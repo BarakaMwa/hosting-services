@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] = 'GET')
 
     $database = new Database();
     $db = $database->dbConnection();
-    $vendor = $database->vendor;
+    $vendor = $database->cart;
 
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 

@@ -21,8 +21,6 @@ U
 0users/bootstrap/css/bootstrap-responsive.min.css,a\3\a35797c545d54f64eb18f494c484718ee48a5fc2
 F
 users/mailer/README.md,3\e\3e19f7e5696bea5268d896cb9cca04617efa5231
-N
-users/mailer/src/PHPMailer.php,3\3\330c7ac1177471ceecf0ce41b11edbcd1ebd7110
 I
 users/mailer/src/POP3.php,e\f\efdc88f240e503f7d23e9986fdee9bcba75d26de
 ?

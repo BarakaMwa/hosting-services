@@ -98,6 +98,7 @@ function updatingVendorDelete(?PDO $db, Vendor $vendor, array $response, Respons
         $responses->errorInvalidRequest($response);
     }
 
+//    todo encrypt
     /* foreach ($result as $row) {
          $encrypted = encrypt($row['vendor_id'],$ciphering,$encryption_iv,$options);
          $row["vendor_id"] = $encrypted;

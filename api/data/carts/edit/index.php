@@ -16,16 +16,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
     $result = array();
     $database = new Database();
     $db = $database->dbConnection();
-    $vendor = $database->vendor;
+    $cart = $database->cart;
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 //    todo: for testing
-//    $_POST['id'] = 5;
+    $_POST['id'] = 5;
 
     try {
-        updatingVendorEdit($db, $vendor, $response, $responses);
+        updatingCartEdit($db, $cart, $response, $responses);
     } catch (JsonException $e) {
-        $responses->errorUpDating($response, $e);
+        $responses->errorUpDating($response, $e, "Cart");
     }
 
 } else {
@@ -34,32 +34,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 }
 
 /**
- * @param int $vendor_Id
+ * @param int $cart_Id
  * @param PDO|null $db
  * @return array
  */
-function checkIfPostValuesAreSetAndEdit(int $vendor_Id, ?PDO $db): array
+function checkIfPostValuesAreSetAndEdit(int $cart_Id, ?PDO $db): array
 {
     $database = new Database();
-    $vendor = $database->vendor;
-    $sql = $vendor->getById($vendor_Id);
+    $cart = $database->cart;
+    $sql = $cart->getById($cart_Id);
     $result = $database->runSelectOneQuery($sql, $db);
 
 //    todo for testing
 //    echo $result['active'];
-    $vendor_name = $result['vendor_name'];
-    if (isset($_POST['vendor_name']) && !empty($_POST['vendor_name'])) {
-        $vendor_name = $_POST['vendor_name'];
-    }
 
-    (int)$active = $result['active'];
+    $active = $result['active'];
     if (isset($_POST['active']) && !empty($_POST['active'])) {
         $active = $_POST['active'];
-    }
-
-    $vendor_email = $result['vendor_email'];
-    if (isset($_POST['vendor_email']) && !empty($_POST['vendor_email'])) {
-        $vendor_email = $_POST['vendor_email'];
     }
 
     $user_id = $result['user_id'];
@@ -67,31 +58,42 @@ function checkIfPostValuesAreSetAndEdit(int $vendor_Id, ?PDO $db): array
         $user_id = $_POST['user_id'];
     }
 
-    return array("vendor_name" => $vendor_name, "active" => $active, "vendor_email" => $vendor_email, "user_id" => $user_id);
+    $product_id = $result['product_id'];
+    if (isset($_POST['product_id']) && !empty($_POST['product_id'])) {
+        $product_id = $_POST['product_id'];
+    }
+
+    $quantity = $result['quantity'];
+    if (isset($_POST['quantity']) && !empty($_POST['quantity'])) {
+        $quantity = $_POST['quantity'];
+    }
+
+    return array("product_id" => $product_id, "active" => $active, "quantity" => $quantity, "user_id" => $user_id);
 }
 
 
 /**
  * @param PDO|null $db
- * @param Vendor $vendor
+ * @param Cart $cart
  * @param array $response
  * @param Responses $responses
  * @return void
  * @throws JsonException
  */
-function updatingVendorEdit(?PDO $db, Vendor $vendor, array $response, Responses $responses): void
+function updatingCartEdit(?PDO $db, Cart $cart, array $response, Responses $responses): void
 {
-    $database=new Database();
+    $database = new Database();
     $result = array();
     if (isset($_POST['id']) && !empty($_POST['id'])) {
-        $vendor_Id = $_POST['id'];
+        $cart_Id = $_POST['id'];
 
-        $result = checkIfPostValuesAreSetAndEdit($vendor_Id, $db);
+        $result = checkIfPostValuesAreSetAndEdit($cart_Id, $db);
 
 //        todo for testing
-//        $result['vendor_name'] = "BArakar";
+        $result['user_id'] = 5;
 
-        $sql = $vendor->updateVendor((int)$result['user_id'], (string)$result['vendor_name'], (string)$result['vendor_email'], (int)$result['active'], $vendor_Id);
+        $sql = $cart->updateCart((int)$result['user_id'], (int)$result['product_id'], (float)$result['quantity'], (int)$result['active'], (int)$cart_Id);
+
 
         $database->runQuery($sql, $db);
 
@@ -99,13 +101,14 @@ function updatingVendorEdit(?PDO $db, Vendor $vendor, array $response, Responses
         $responses->errorInvalidRequest($response);
     }
 
+//    todo encrypt
     /* foreach ($result as $row) {
-         $encrypted = encrypt($row['vendor_id'],$ciphering,$encryption_iv,$options);
-         $row["vendor_id"] = $encrypted;
+         $encrypted = encrypt($row['cart_id'],$ciphering,$encryption_iv,$options);
+         $row["cart_id"] = $encrypted;
          $row["0"] = $encrypted;
      }*/
 
-    $responses->successDataRetrieved($response, $result,"Cart");
+    $responses->successDataRetrieved($response, $result, "Cart");
 }
 
 

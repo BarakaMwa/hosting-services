@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] = 'GET')
 
     $sql = $cart->getGetAll();
 
-    $_POST['active'] = 0;
+//    $_POST['active'] = 0;
 
     if(isset($_POST["active"]) && !empty($_POST["active"])){
 
@@ -33,6 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] = 'GET')
 
     $result = $database->runSelectAllQuery($sql, $db);
 
+
+//    todo encrypt
    /* foreach ($result as $row) {
         $encrypted = encrypt($row['vendor_id'],$ciphering,$encryption_iv,$options);
         $row["vendor_id"] = $encrypted;

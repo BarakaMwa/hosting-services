@@ -20,13 +20,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 //    todo: for testing
-    $_POST['id'] = 1;
+//    $_POST['id'] = 1;
 
     try {
         $cart = $database->cart;
         updatingCartDelete($db, $cart, $response, $responses);
     } catch (JsonException $e) {
-        $responses->errorUpDating($response,$e);
+        $responses->errorUpDating($response, $e, "Cart");
     }
 
 } else {
@@ -56,8 +56,10 @@ checkIfPostValuesAreSetAndDeactivate(int $cart_Id, ?PDO $db): array
     }
 
     (int)$active = $result['active'];
-
-//    todo for testing
+    if($active === 0 || $active === false) {
+        $responses = new Responses();
+        $responses->warningAlreadyDeleted();
+    }
     $active = 0;
 
     $user_id = $result['user_id'];
@@ -95,7 +97,7 @@ function updatingCartDelete(?PDO $db, Cart $cart, array $response, Responses $re
 
         $result = checkIfPostValuesAreSetAndDeactivate($cart_Id, $db);
 
-        $sql = $cart->updateCart((int)$result['user_id'], (int)$result['product_id'], (string)$result['quantity'], (int)$result['active'], $cart_Id);
+        $sql = $cart->updateCart((int)$result['user_id'], (int)$result['product_id'], (float)$result['quantity'], (int)$result['active'], (int)$cart_Id);
 
         $database = new Database();
         $database->runQuery($sql, $db);
@@ -104,6 +106,8 @@ function updatingCartDelete(?PDO $db, Cart $cart, array $response, Responses $re
         $responses->errorInvalidRequest($response);
     }
 
+
+//    todo encrypt
     /* foreach ($result as $row) {
          $encrypted = encrypt($row['cart_id'],$ciphering,$encryption_iv,$options);
          $row["cart_id"] = $encrypted;

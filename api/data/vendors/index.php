@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] = 'GET')
         $row["0"] = $encrypted;
     }*/
 
-    $responses->successDataRetrieved($response, $result);
+    $responses->successDataRetrieved($response, $result, "Vendor");
 
 } else {
 

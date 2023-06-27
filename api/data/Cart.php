@@ -1,6 +1,13 @@
 <?php
 
-class Cart{
+class Cart
+{
+
+    public $user_id;
+    public $product_id;
+    public $quantity;
+    public $active;
+    public $cart_id;
 
     /**
      * @return string
@@ -29,14 +36,13 @@ class Cart{
     }
 
     /**
-     * @param int $vendor_id
+     * @param int $cart_id
      * @return string
      */
     public function deleteById(int $cart_id): string
     {
         return "DELETE FROM Cart WHERE vendor_id = $cart_id";
     }
-
 
 
     /**
@@ -61,15 +67,16 @@ class Cart{
 
     /**
      * @param int $user_id
-     * @param string $vendor_name
-     * @param string $vendor_email
+     * @param int $product_id
+     * @param float $quantity
      * @param int $active
-     * @param int $vendor_Id
+     * @param int $cart_id
      * @return string
      */
-    public function updateCart(int $user_id, int $product_id, double $quantity, int $active, int $cart_id): string
+    public function updateCart(int $user_id, int $product_id, float $quantity, int $active, int $cart_id): string
     {
-        return "UPDATE Vendors SET user_id=$user_id, product_id='" . $product_id . "', quantity='" . $quantity . "', active=$active WHERE cart_id=$cart_id";
+        return "UPDATE Cart SET user_id=$user_id, product_id='" . $product_id . "', quantity='" . $quantity . "', active=$active WHERE cart_id=$cart_id";
     }
+    
 
 }

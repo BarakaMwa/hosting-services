@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         $vendor = $database->vendor;
         updatingVendorDelete($db, $vendor, $response, $responses);
     } catch (JsonException $e) {
-        $responses->errorUpDating($response,$e);
+        $responses->errorUpDating($response,$e,"Vendor");
     }
 
 } else {
@@ -91,7 +91,8 @@ function updatingVendorDelete(?PDO $db, Vendor $vendor, array $response, Respons
 
         $sql = $vendor->updateVendor((int)$result['user_id'], (string)$result['vendor_name'], (string)$result['vendor_email'], (int)$result['active'], $vendor_Id);
 
-        $vendor->runInsertQuery($sql, $db);
+        $database = new Database();
+        $database->runQuery($sql, $db);
 
     } else {
         $responses->errorInvalidRequest($response);
@@ -103,6 +104,6 @@ function updatingVendorDelete(?PDO $db, Vendor $vendor, array $response, Respons
          $row["0"] = $encrypted;
      }*/
 
-    $responses->successDataDeactivated($response, $result);
+    $responses->successDataDeactivated($response, $result, "Vendor");
 }
 

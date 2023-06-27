@@ -6,67 +6,29 @@
 class Vendor
 {
 
-//    /**
-//     * @param $sql
-//     * @param $db
-//     * @return mixed
-//     */
-//    public function runSelectAllQuery($sql, $db)
-//    {
-//        $stmt = $db->prepare($sql);
-//        $stmt->execute();
-////    return $stmt->setFetchMode(PDO::FETCH_ASSOC);
-//        return $stmt->fetchAll();
-//    }
-//
-//    /**
-//     * @param $sql
-//     * @param $db
-//     * @return mixed
-//     */
-//    public function runSelectOneQuery($sql, $db)
-//    {
-//        $stmt = $db->prepare($sql);
-//        $stmt->execute();
-////    return $stmt-
-//        $result = $stmt->fetchAll();
-//        return $result[0];
-//    }
-//
-//    /**
-//     * @param $sql
-//     * @param $db
-//     * @return void
-//     */
-//    public function runUpdateQuery($sql, $db): void
-//    {
-//        $stmt = $db->prepare($sql);
-//        $stmt->execute();
-//    }
-//
-//    /**
-//     * @param $sql
-//     * @param $db
-//     * @return void
-//     */
-//    public function runDeleteQuery($sql, $db): void
-//    {
-//        $stmt = $db->prepare($sql);
-//        $stmt->execute();
-//    }
-//
-//    /**
-//     * @param $sql
-//     * @param $db
-//     * @return mixed
-//     */
-//    public function runQuery($sql, $db)
-//    {
-//        $stmt = $db->prepare($sql);
-//        $stmt->execute();
-//        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-//        return $stmt->fetchAll();
-//    }
+
+    public $vendor_id;
+    public $user_id;
+    public $vendor_name;
+    public $vendor_email;
+    public $active;
+
+    /**
+     *
+     * @param int|null $vendor_id
+     * @param int $user_id
+     * @param string $vendor_email
+     * @param string $vendor_name
+     * @param int $active
+     */
+   /* public function __construct(int $vendor_id, int $user_id, string $vendor_email, string $vendor_name, int $active)
+    {
+        $this->vendor_id = $vendor_id;
+        $this->user_id = $user_id;
+        $this->active = $active;
+        $this->vendor_name = $vendor_name;
+        $this->vendor_email = $vendor_email;
+    }*/
 
     /**
      * @return string

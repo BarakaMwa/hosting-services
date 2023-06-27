@@ -105,7 +105,7 @@ function updatingVendorEdit(?PDO $db, Vendor $vendor, array $response, Responses
          $row["0"] = $encrypted;
      }*/
 
-    $responses->successDataRetrieved($response, $result);
+    $responses->successDataRetrieved($response, $result,"Cart");
 }
 
 

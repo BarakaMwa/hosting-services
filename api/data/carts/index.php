@@ -16,19 +16,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] = 'GET')
 
     $database = new Database();
     $db = $database->dbConnection();
-    $vendor = $database->cart;
+    $cart = $database->cart;
 
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $sql = $vendor->getGetAll();
+    $sql = $cart->getGetAll();
 
-//    $_POST['active'] = 0;
+    $_POST['active'] = 0;
 
     if(isset($_POST["active"]) && !empty($_POST["active"])){
 
         (int)$active = $_POST["active"];
 
-        $sql = $vendor->getAllByActive($active);
+        $sql = $cart->getAllByActive($active);
     }
 
     $result = $database->runSelectAllQuery($sql, $db);
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] = 'GET')
         $row["0"] = $encrypted;
     }*/
 
-    $responses->successDataRetrieved($response, $result);
+    $responses->successDataRetrieved($response, $result, "Cart");
 
 } else {
 

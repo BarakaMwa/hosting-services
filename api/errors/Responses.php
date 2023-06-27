@@ -7,12 +7,13 @@ class Responses
     /**
      * @param array $response
      * @param array $result
+     * @param string $entity
      * @return void
      * @throws JsonException
      */
-    public function successDataRetrieved(array $response, array $result): void
+    public function successDataRetrieved(array $response, array $result, string $entity): void
     {
-        $response["message"] = "Data Retrieval Success";
+        $response["message"] = $entity."Data Retrieval Success";
         $response["success"] = true;
         $response["status"] = "success";
         $response["data"] = $result;
@@ -22,20 +23,20 @@ class Responses
 
     /**
      * @param array $response
+     * @param string $entity
      * @param Exception $e
      * @return void
      * @throws JsonException
      */
-    public function errorUpDating(array $response, Exception $e): void
+    public function errorUpDating(array $response, Exception $e, string $entity): void
     {
-        $response["message"] = "Error Updating Data";
+        $response["message"] = "Error Updating ".$entity." Data";
         $response["success"] = false;
         $response["status"] = "error";
         $response["data"] = $e->getMessage();
         echo json_encode($response, JSON_THROW_ON_ERROR);
         exit();
     }
-
 
     /**
      * @param array $response
@@ -54,12 +55,13 @@ class Responses
     /**
      * @param array $response
      * @param array $result
+     * @param string $entity
      * @return void
      * @throws JsonException
      */
-    public function successDataDeactivated(array $response, array $result): void
+    public function successDataDeactivated(array $response, array $result, string  $entity): void
     {
-        $response["message"] = "Data Removal Success";
+        $response["message"] = $entity." Data Removal Success";
         $response["success"] = true;
         $response["status"] = "success";
         $response["data"] = $result;
@@ -67,16 +69,16 @@ class Responses
         exit();
     }
 
-
     /**
      * @param array $response
      * @param Exception $e
+     * @param string $entity
      * @return void
      * @throws JsonException
      */
-    public function errorInsertingData(array $response, Exception $e): void
+    public function errorInsertingData(array $response, Exception $e, string  $entity): void
     {
-        $response["message"] = "Error Inserting Data";
+        $response["message"] = "Error Inserting ".$entity." Data";
         $response["success"] = false;
         $response["status"] = "error";
         $response["data"] = $e->getMessage();
@@ -84,7 +86,7 @@ class Responses
         exit();
     }
 
-    public function warningInput(string $string)
+    public function warningInput(string $string): void
     {
         $response["message"] = $string;
         $response["success"] = false;
@@ -94,9 +96,9 @@ class Responses
         exit();
     }
 
-    public function successDataInserted(array $response, array $result)
+    public function successDataInserted(array $response, array $result, string $entity): void
     {
-        $response["message"] = "Data Inserted Success";
+        $response["message"] = $entity." Data Inserted Success";
         $response["success"] = true;
         $response["status"] = "success";
         $response["data"] = $result;

@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         $responses->errorUpDating($response, $e);
     }
 
-    $responses->successDataInserted($response, $result);
+    $responses->successDataInserted($response, $result, "Vendor");
 
 } else {
     $responses->errorInvalidRequest($response);

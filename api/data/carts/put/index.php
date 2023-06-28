@@ -11,23 +11,25 @@ require_once '../../../errors/Responses.php';
 $response = array();
 $status = false;
 $responses = new Responses();
+const Entity = "Cart";
 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $result = array();
     $database = new Database();
     $db = $database->dbConnection();
-    $vendor = $database->vendor;
+    $cart = $database->cart;
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $data = $_POST;
 
     try {
-        $result = insertingVendorEdit($db, $vendor, $response, $responses);
+        $result = insertingCartEdit($db, $cart, $data);
     } catch (JsonException $e) {
-        $responses->errorUpDating($response, $e);
+        $responses->errorUpDating($response, $e, Entity);
     }
 
-    $responses->successDataInserted($response, $result);
+    $responses->successDataInsert($response, $result, Entity);
 
 } else {
     $responses->errorInvalidRequest($response);
@@ -35,20 +37,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 
 /**
  * @param PDO|null $db
- * @param Vendor $vendor
- * @param array $response
- * @param Responses $responses
+ * @param Cart $cart
+ * @param array $data
  * @return array
  * @throws JsonException
  */
-function insertingVendorEdit(?PDO $db, Vendor $vendor, array $response, Responses $responses): array
+function insertingCartEdit(?PDO $db, Cart $cart, array $data): array
 {
     $database = new Database();
-    $result = $_POST;
 
-    $result = checkIfPostValuesAreSetAndInsert($result, $db);
+    $result = checkIfPostValuesAreSetAndInsert($data);
 
-    $sql = $vendor->insertNewVendor($result);
+    $sql = $cart->insertNewCart($result);
 
     $database->runQuery($sql, $db);
 
@@ -56,49 +56,43 @@ function insertingVendorEdit(?PDO $db, Vendor $vendor, array $response, Response
 }
 
 /**
- * @param array $result
- * @param PDO|null $db
+ * @param $data
  * @return array
  * @throws JsonException
  */
-function checkIfPostValuesAreSetAndInsert(array $result, ?PDO $db): array
+function checkIfPostValuesAreSetAndInsert($data): array
 {
 //todo for testing
     $responses = new Responses();
     $utils = new Utils();
-    $vendor_name = "vendor name";
-    $active = 0;
-    $user_id = 1;
-    $vendor_email = 'vendor_email@example.com';
+    (float)$quantity = $data["quantity"];
+    $active = 1;
+    $user_id = $data["user_id"];
+    $product_id = $data["product_id"];
 
-//    todo for testing
-    $test = false;
-    if ($test === true) {
+    [$quantity, $active, $product_id, $user_id] = checkPostInputs((float)$quantity, $utils, $responses, $active, (int)$product_id, (int)$user_id);
 
-        [$vendor_name, $active, $vendor_email, $user_id] = checkPostInputs($vendor_name, $utils, $responses, $active, $vendor_email, $user_id);
-
-    }
-    return array("vendor_name" => $vendor_name, "active" => $active, "vendor_email" => $vendor_email, "user_id" => $user_id);
+    return array("quantity" => $quantity, "active" => $active, "product_id" => $product_id, "user_id" => $user_id);
 }
 
 /**
- * @param $vendor_name
+ * @param float $quantity
  * @param Utils $utils
  * @param Responses $responses
- * @param $active
- * @param $vendor_email
- * @param $user_id
+ * @param int $active
+ * @param int $product_id
+ * @param int $user_id
  * @return array
  * @throws JsonException
  */
-function checkPostInputs($vendor_name, Utils $utils, Responses $responses, $active, $vendor_email, $user_id): array
+function checkPostInputs(float $quantity, Utils $utils, Responses $responses, int $active, int $product_id, int $user_id): array
 {
-    if (isset($_POST['vendor_name']) && !empty($_POST['vendor_name'])) {
-        $vendor_name = $_POST['vendor_name'];
-//        check if valid string $vendor_name
-        $vendor_name = $utils->cleanString($vendor_name);
+    if (isset($_POST['product_id']) && !empty($_POST['product_id'])) {
+        (string)$product_id = $_POST['product_id'];
+//        check if valid string $cart_name
+        $product_id = $utils->cleanString($product_id);
     } else {
-        $responses->warningInput('Vendor Name is required');
+        $responses->warningInput('Product is required');
     }
 
     if (isset($_POST['active']) && !empty($_POST['active'])) {
@@ -106,19 +100,19 @@ function checkPostInputs($vendor_name, Utils $utils, Responses $responses, $acti
 //        class if number
     }
 
-    if (isset($_POST['vendor_email']) && !empty($_POST['vendor_email'])) {
-        $vendor_email = $_POST['vendor_email'];
+    if (isset($_POST['quantity']) && !empty($_POST['quantity'])) {
+        (string)$quantity = $_POST['quantity'];
 //        class if email address
-        $vendor_email = $utils->cleanString($vendor_email);
+        $quantity = $utils->cleanString($quantity);
     } else {
-        $responses->warningInput('Vendor Email is required');
+        $responses->warningInput('Quantity is required');
     }
 
     if (isset($_POST['user_id']) && !empty($_POST['user_id'])) {
         $user_id = $_POST['user_id'];
 //        check if number
     } else {
-        $responses->warningInput('Select User is required');
+        $responses->warningInput('User is required');
     }
-    return array($vendor_name, $active, $vendor_email, $user_id);
+    return array((float)$quantity, (int)$active, (int)$user_id, (int)$product_id);
 }

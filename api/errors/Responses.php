@@ -13,7 +13,7 @@ class Responses
      */
     public function successDataRetrieved(array $response, array $result, string $entity): void
     {
-        $response["message"] = $entity." Data Retrieval Success";
+        $response["message"] = $entity." Data Retrieved Successfully.";
         $response["success"] = true;
         $response["status"] = "success";
         $response["data"] = $result;
@@ -61,7 +61,7 @@ class Responses
      */
     public function successDataDeactivated(array $response, array $result, string  $entity): void
     {
-        $response["message"] = $entity." Data Removal Success";
+        $response["message"] = $entity." Data Removal/ Deactivation Successful";
         $response["success"] = true;
         $response["status"] = "success";
         $response["data"] = $result;
@@ -108,9 +108,9 @@ class Responses
      * @return void
      * @throws JsonException
      */
-    public function successDataInserted(array $response, array $result, string $entity): void
+    public function successDataInsert(array $response, array $result, string $entity): void
     {
-        $response["message"] = $entity." Data Inserted Success";
+        $response["message"] = $entity." Data Inserted Successfully";
         $response["success"] = true;
         $response["status"] = "success";
         $response["data"] = $result;
@@ -127,9 +127,26 @@ class Responses
      */
     public function warningAlreadyDeleted(array $response, array $result, string $entity): void
     {
-        $response["message"] = $entity." Data Already Deleted/Deactivated";
+        $response["message"] = $entity." Data Already Deleted/ Deactivated";
         $response["success"] = false;
-        $response["status"] = "error";
+        $response["status"] = "warning";
+        $response["data"] = $result;
+        echo json_encode($response, JSON_THROW_ON_ERROR);
+        exit();
+    }
+
+    /**
+     * @param array $response
+     * @param array $result
+     * @param string $entity
+     * @return void
+     * @throws JsonException
+     */
+    public function successDataUpdated(array $response, array $result, string $entity): void
+    {
+        $response["message"] = $entity." Data Updated Successfully";
+        $response["success"] = true;
+        $response["status"] = "success";
         $response["data"] = $result;
         echo json_encode($response, JSON_THROW_ON_ERROR);
         exit();

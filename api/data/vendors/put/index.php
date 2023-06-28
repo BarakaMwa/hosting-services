@@ -11,23 +11,25 @@ require_once '../../../errors/Responses.php';
 $response = array();
 $status = false;
 $responses = new Responses();
+const Entity = "Vendor";
 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $result = array();
     $database = new Database();
     $db = $database->dbConnection();
     $vendor = $database->vendor;
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $data = $_POST;
 
     try {
-        $result = insertingVendorEdit($db, $vendor, $response, $responses);
+        $result = insertingVendorEdit($db, $vendor, $data);
     } catch (JsonException $e) {
-        $responses->errorUpDating($response, $e);
+        $responses->errorUpDating($response, $e, ENTITY);
     }
 
-    $responses->successDataInserted($response, $result, "Vendor");
+    $responses->successDataInsert($response, $result, Entity);
 
 } else {
     $responses->errorInvalidRequest($response);
@@ -36,17 +38,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 /**
  * @param PDO|null $db
  * @param Vendor $vendor
- * @param array $response
- * @param Responses $responses
+ * @param array $data
  * @return array
  * @throws JsonException
  */
-function insertingVendorEdit(?PDO $db, Vendor $vendor, array $response, Responses $responses): array
+function insertingVendorEdit(?PDO $db, Vendor $vendor, array $data): array
 {
     $database = new Database();
-    $result = $_POST;
 
-    $result = checkIfPostValuesAreSetAndInsert($result, $db);
+    $result = checkIfPostValuesAreSetAndInsert($data);
 
     $sql = $vendor->insertNewVendor($result);
 
@@ -57,41 +57,37 @@ function insertingVendorEdit(?PDO $db, Vendor $vendor, array $response, Response
 
 /**
  * @param array $result
- * @param PDO|null $db
  * @return array
  * @throws JsonException
  */
-function checkIfPostValuesAreSetAndInsert(array $result, ?PDO $db): array
+function checkIfPostValuesAreSetAndInsert(array $result): array
 {
 //todo for testing
     $responses = new Responses();
     $utils = new Utils();
-    $vendor_name = "vendor name";
+    $vendor_name = $result['vendor_name'];
     $active = 0;
-    $user_id = 1;
-    $vendor_email = 'vendor_email@example.com';
+    $user_id = $result['user_id'];
+    $vendor_email = $result['vendor_email'];
 
 //    todo for testing
-    $test = false;
-    if ($test === true) {
 
-        [$vendor_name, $active, $vendor_email, $user_id] = checkPostInputs($vendor_name, $utils, $responses, $active, $vendor_email, $user_id);
+    [$vendor_name, $active, $vendor_email, $user_id] = checkPostInputs($vendor_name, $utils, $responses, $active, $vendor_email, $user_id);
 
-    }
     return array("vendor_name" => $vendor_name, "active" => $active, "vendor_email" => $vendor_email, "user_id" => $user_id);
 }
 
 /**
- * @param $vendor_name
+ * @param string $vendor_name
  * @param Utils $utils
  * @param Responses $responses
- * @param $active
- * @param $vendor_email
- * @param $user_id
+ * @param int $active
+ * @param string $vendor_email
+ * @param int $user_id
  * @return array
  * @throws JsonException
  */
-function checkPostInputs($vendor_name, Utils $utils, Responses $responses, $active, $vendor_email, $user_id): array
+function checkPostInputs(string $vendor_name, Utils $utils, Responses $responses, int $active, string $vendor_email, int $user_id): array
 {
     if (isset($_POST['vendor_name']) && !empty($_POST['vendor_name'])) {
         $vendor_name = $_POST['vendor_name'];

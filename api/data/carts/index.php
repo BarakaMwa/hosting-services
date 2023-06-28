@@ -10,6 +10,7 @@ require_once '../../errors/Responses.php';
 $response = array();
 $status = false;
 $responses = new Responses();
+const Entity = "Cart";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] = 'GET') {
 
@@ -41,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] = 'GET')
         $row["0"] = $encrypted;
     }*/
 
-    $responses->successDataRetrieved($response, $result, "Cart");
+    $responses->successDataRetrieved($response, $result, Entity);
 
 } else {
 

@@ -6,6 +6,7 @@ session_start();
 require_once '../../../connection-local.php';
 
 require_once '../../../errors/Responses.php';
+const Entity = "Vendor";
 
 $response = array();
 $status = false;
@@ -18,9 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
     $db = $database->dbConnection();
     $vendor = $database -> vendor;
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $vendor_id = 0;
 
     try {
+        $vendor_id = 0;
         if (isset($_POST['id']) && !empty($_POST['id'])) {
             $vendor_id = $_POST['id'];
         } else if (isset($_GET['id']) && !empty($_GET['id'])) {
@@ -31,13 +32,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
 
         $sql = $vendor->getById($vendor_id);
 
-//    $_POST['active'] = 1;
-
         if (isset($_POST["active"]) && !empty($_POST["active"])) {
 
             (int)$active = $_POST["active"];
 
-            $sql = $vendor->getByIdAndActive($active, $vendor_id);
+            $sql = $vendor->getByIdAndActive((int) $active, (int) $vendor_id);
         } else if (isset($_GET["active"]) && !empty($_GET["active"])) {
 
             (int)$active = $_GET["active"];
@@ -53,9 +52,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
              $row["0"] = $encrypted;
          }*/
 
-        $responses->successDataRetrieved($response, $result, "Vendor");
+        $responses->successDataRetrieved($response, $result, Entity);
     } catch (JsonException $e) {
-        $responses->errorInsertingData($response, $e, "Vendor");
+        $responses->errorInsertingData($response, $e, Entity);
     }
 
 } else {

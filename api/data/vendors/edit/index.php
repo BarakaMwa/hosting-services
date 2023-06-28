@@ -9,23 +9,30 @@ require_once '../../../errors/Responses.php';
 $response = array();
 $status = false;
 $responses = new Responses();
+const Entity = "Vendor";
 
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $result = array();
     $database = new Database();
     $db = $database->dbConnection();
     $vendor = $database->vendor;
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+    $data = $_POST;
 //    todo: for testing
-//    $_POST['id'] = 5;
 
     try {
-        updatingVendorEdit($db, $vendor, $response, $responses);
+        $vendor_id = 0;
+        if (isset($_POST['id']) && !empty($_POST['id'])) {
+            $vendor_id = $_POST['id'];
+        } else {
+            $responses->errorInvalidRequest($response);
+        }
+        $vendor->vendor_id = $vendor_id;
+
+        updatingVendorEdit($db, $vendor, $response, $responses, $data);
     } catch (JsonException $e) {
-        $responses->errorUpDating($response, $e);
+        $responses->errorUpDating($response, $e, Entity);
     }
 
 } else {
@@ -36,35 +43,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 /**
  * @param int $vendor_Id
  * @param PDO|null $db
+ * @param array $data
  * @return array
  */
-function checkIfPostValuesAreSetAndEdit(int $vendor_Id, ?PDO $db): array
+function checkIfPostValuesAreSetAndEdit(int $vendor_Id, ?PDO $db, array $data): array
 {
     $database = new Database();
     $vendor = $database->vendor;
+    $vendor->vendor_id = $vendor_Id;
     $sql = $vendor->getById($vendor_Id);
     $result = $database->runSelectOneQuery($sql, $db);
 
 //    todo for testing
-//    echo $result['active'];
+
     $vendor_name = $result['vendor_name'];
-    if (isset($_POST['vendor_name']) && !empty($_POST['vendor_name'])) {
-        $vendor_name = $_POST['vendor_name'];
+    if (isset($data['vendor_name']) && !empty($data['vendor_name'])) {
+        $vendor_name = $data['vendor_name'];
     }
 
     (int)$active = $result['active'];
-    if (isset($_POST['active']) && !empty($_POST['active'])) {
-        $active = $_POST['active'];
+    if (isset($data['active']) && !empty($data['active'])) {
+        $active = $data['active'];
     }
 
     $vendor_email = $result['vendor_email'];
-    if (isset($_POST['vendor_email']) && !empty($_POST['vendor_email'])) {
-        $vendor_email = $_POST['vendor_email'];
+    if (isset($data['vendor_email']) && !empty($data['vendor_email'])) {
+        $vendor_email = $data['vendor_email'];
     }
 
     $user_id = $result['user_id'];
-    if (isset($_POST['user_id']) && !empty($_POST['user_id'])) {
-        $user_id = $_POST['user_id'];
+    if (isset($data['user_id']) && !empty($data['user_id'])) {
+        $user_id = $data['user_id'];
     }
 
     return array("vendor_name" => $vendor_name, "active" => $active, "vendor_email" => $vendor_email, "user_id" => $user_id);
@@ -76,20 +85,20 @@ function checkIfPostValuesAreSetAndEdit(int $vendor_Id, ?PDO $db): array
  * @param Vendor $vendor
  * @param array $response
  * @param Responses $responses
+ * @param array $data
  * @return void
  * @throws JsonException
  */
-function updatingVendorEdit(?PDO $db, Vendor $vendor, array $response, Responses $responses): void
+function updatingVendorEdit(?PDO $db, Vendor $vendor, array $response, Responses $responses, array $data): void
 {
-    $database=new Database();
+    $database = new Database();
     $result = array();
-    if (isset($_POST['id']) && !empty($_POST['id'])) {
-        $vendor_Id = $_POST['id'];
+    if ($vendor->vendor_id != null && $vendor->vendor_id !== 0) {
+        $vendor_Id = $vendor->vendor_id;
 
-        $result = checkIfPostValuesAreSetAndEdit($vendor_Id, $db);
+        $result = checkIfPostValuesAreSetAndEdit($vendor_Id, $db, $data);
 
 //        todo for testing
-//        $result['vendor_name'] = "BArakar";
 
         $sql = $vendor->updateVendor((int)$result['user_id'], (string)$result['vendor_name'], (string)$result['vendor_email'], (int)$result['active'], $vendor_Id);
 
@@ -105,7 +114,7 @@ function updatingVendorEdit(?PDO $db, Vendor $vendor, array $response, Responses
          $row["0"] = $encrypted;
      }*/
 
-    $responses->successDataRetrieved($response, $result, "Vendor");
+    $responses->successDataUpdated($response, $result, Entity);
 }
 
 

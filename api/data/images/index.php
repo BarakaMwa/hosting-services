@@ -10,18 +10,18 @@ require_once '../../errors/Responses.php';
 $response = array();
 $status = false;
 $responses = new Responses();
-const Entity = "Cart";
+const Entity = "Image";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] = 'GET') {
 
 
     $database = new Database();
     $db = $database->dbConnection();
-    $cart = $database->cart;
+    $image = $database->image;
 
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $sql = $cart->getGetAll();
+    $sql = $image->getGetAll();
 
 //    $_POST['active'] = 0;
 
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] = 'GET')
 
         (int)$active = $_POST["active"];
 
-        $sql = $cart->getAllByActive($active);
+        $sql = $image->getAllByActive($active);
     }
 
     $result = $database->runSelectAllQuery($sql, $db);
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] = 'GET')
         $row["0"] = $encrypted;
     }*/
 
-    $responses->successDataRetrieved($response, $result, CART);
+    $responses->successDataRetrieved($response, $result, Entity);
 
 } else {
 

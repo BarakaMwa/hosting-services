@@ -4,8 +4,8 @@ class Image
 {
 
     public $image_id = 0;
-    public $vendor_id = null;
-    public $product_id = null;
+    public $vendor_id = 0;
+    public $product_id = 0;
     public $images_blob = null;
     public $image_link = null;
     public $image_type = null;
@@ -54,7 +54,7 @@ class Image
      */
     final public function getByIdAndActive(int $active, int $image_Id): string
     {
-        return "SELECT * FROM `Images` WHERE `active` = $active and `image_id` = $image_Id";
+        return "SELECT * FROM Images WHERE active = $active and image_id = $image_Id";
     }
 
     /**

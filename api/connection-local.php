@@ -8,7 +8,7 @@ require_once 'data/Invoice.php';
 require_once 'data/Payment.php';
 require_once 'data/QrCode.php';
 require_once 'data/Image.php';
-//require_once 'errors/responses.php';
+require_once 'errors/Responses.php';
 //$vendor = new Vendor();
 //$responses = new Responses();
 
@@ -28,6 +28,7 @@ class Database
     public $payment;
     public $qrCode;
     public $image;
+    public $responses;
 
     /**
      * @return void
@@ -41,6 +42,7 @@ class Database
         $this->payment = new Payment();
         $this->image = new Image();
         $this->cart = new Cart();
+        $this->responses = new Responses();
     }
 
     public function dbConnection(): ?PDO
@@ -62,6 +64,7 @@ class Database
      * @param $db
      * @return mixed
      * @throws PDOException
+     * @throws JsonException
      * @meta returns all SQL statement results
      */
     public function runSelectAllQuery($sql, $db)
@@ -69,6 +72,12 @@ class Database
         $stmt = $db->prepare($sql);
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+        $count = $this->getCount($stmt);
+        if ($count === 0) {
+            $this->responses->warningNoResults();
+        }
+
         return $stmt->fetchAll();
     }
 
@@ -77,11 +86,16 @@ class Database
      * @param $db
      * @return mixed
      * @meta returns one SQL statement result
+     * @throws JsonException
      */
     public function runSelectOneQuery($sql, $db)
     {
         $stmt = $db->prepare($sql);
         $stmt->execute();
+        $count = $this->getCount($stmt);
+        if ($count === 0) {
+            $this->responses->warningNoResults();
+        }
         $stmt->setFetchMode(PDO::FETCH_ASSOC);
         $result = $stmt->fetchAll();
         return $result[0];
@@ -112,12 +126,33 @@ class Database
     /**
      * @param $sql
      * @param $db
-     * @return mixed
+     * @return void
      */
-    public function runQuery($sql, $db)
+    public function runQuery($sql, $db): void
     {
         $stmt = $db->prepare($sql);
         $stmt->execute();
+    }
+
+    /**
+     * @param $stmt
+     * @return int
+     */
+    private function getCount($stmt): int
+    {
+        return $stmt->rowCount();
+    }
+
+    /**
+     * @param $sql
+     * @param $db
+     * @return int
+     */
+    public function getResultCount($sql, $db): int
+    {
+        $stmt = $db->prepare($sql);
+        $stmt->execute();
+        return $stmt->rowCount();
     }
 
 }

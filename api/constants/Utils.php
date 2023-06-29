@@ -2,12 +2,14 @@
 
 class Utils
 {
+    private $cipheringValue = "AES-128-CTR";
+    private $cipherKey = "qwertyQWERTY";
 
     /**
      * @param array $data
      * @return string
      */
-    public function cleanString($data): string
+    public function cleanString(array $data): string
     {
         $data = trim($data);
         $data = stripslashes($data);
@@ -29,5 +31,36 @@ class Utils
         }
         return str_shuffle($randomString);
     }
+
+    /**
+     * @param $original_string
+     * @return string
+     */
+    public function encryptString($original_string): string
+    {
+// Store the cipher method for encrypting
+        $ciphering_value = $this->cipheringValue;
+
+// Store the encryption key
+        $encryption_key = $this->cipherKey;
+// Use openssl_encrypt() function for encrypting the dat
+
+// Return the encrypted string
+        return openssl_encrypt($original_string, $ciphering_value, $encryption_key);
+    }
+
+    /**
+     * @param $encryption_value
+     * @return string
+     */
+    public function decryptString($encryption_value): string
+    {
+        $ciphering_value = $this->cipheringValue;
+        $decryption_key = $this->cipherKey;
+// Use openssl_decrypt() function to decrypt the data
+// Return the decrypted string as an original data
+        return openssl_decrypt($encryption_value, $ciphering_value, $decryption_key);
+    }
+
 
 }

@@ -9,6 +9,8 @@ class Image
     public $images_blob = null;
     public $image_link = null;
     public $image_type = null;
+    public $active = 1;
+    public $image_name = "image_name";
     public $image_size = 0;
 
     /**
@@ -68,19 +70,18 @@ class Image
     }
 
     /**
-     * @param int $vendor_id
-     * @param int $product_id
      * @param string $image_blob
      * @param int $image_size
      * @param string $image_link
      * @param string $image_type
+     * @param string $image_name
      * @param int $active
      * @param int $image_id
      * @return string
      */
-    final public function updateImage(int $vendor_id, int $product_id, string $image_blob, int $image_size, string $image_link, string $image_type, int $active, int $image_id): string
+    final public function updateImage(string $image_blob, int $image_size, string $image_link, string $image_type, string $image_name, int $active, int $image_id): string
     {
-        return "UPDATE Images SET vendor_id=$vendor_id, product_id='" . $product_id . "', image_blob='" . $image_blob . "', image_size='" . $image_size . "',image_link='" . $image_link . "',image_type='" . $image_type . "', active=$active WHERE image_id=$image_id";
+        return "UPDATE Images SET image_blob='" . $image_blob . "', image_size='" . $image_size . "',image_link='" . $image_link . "',image_type='" . $image_type . "',image_name='" . $image_name . "', active=$active WHERE image_id=$image_id";
     }
 
 }

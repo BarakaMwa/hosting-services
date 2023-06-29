@@ -152,4 +152,19 @@ class Responses
         exit();
     }
 
+    /**
+     * @return void
+     * @throws JsonException
+     */
+    public function warningNoResults(): void
+    {
+        $response = array();
+        $response["message"] = "Data Not Found";
+        $response["success"] = false;
+        $response["status"] = "warning";
+        $response["data"] = null;
+        echo json_encode($response, JSON_THROW_ON_ERROR);
+        exit();
+    }
+
 }

@@ -10,7 +10,8 @@ require_once '../../../errors/Responses.php';
 $response = array();
 $responses = new Responses();
 $status = false;
-const IMAGE = "Image";
+const Entity = "Image";
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -34,10 +35,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         $image->image_id = $imageId;
 
-        updatingCartDelete($db, $image, $response, $responses, $data);
+        updatingImageDelete($db, $image, $response, $responses, $data);
 
     } catch (JsonException $e) {
-        $responses->errorUpDating($response, $e, IMAGE);
+        $responses->errorUpDating($response, $e, Entity);
     }
 
 } else {
@@ -60,17 +61,19 @@ checkIfPostValuesAreSetAndDeactivate(int $imageId, ?PDO $db, array $data): array
     $sql = $image->getById($imageId);
     $result = $database->runSelectOneQuery($sql, $db);
 
+
 //    todo for testing
 
-    (int)$active = $result['active'];
-    if ($active === 0 || $active === false) {
+    $active = $result['active'];
+
+    if ($active === 0 or $active === "0") {
         $responses = new Responses();
         $response = array();
         $responses->warningAlreadyDeleted($response, $result, Entity);
     }
-    $active = 0;
+    $result["active"] = 0;
 
-    $user_id = $result['user_id'];
+    /*$user_id = $result['user_id'];
     if (isset($data['user_id']) && !empty($data['user_id'])) {
         $user_id = $data['user_id'];
     }
@@ -83,9 +86,11 @@ checkIfPostValuesAreSetAndDeactivate(int $imageId, ?PDO $db, array $data): array
     $quantity = $result['quantity'];
     if (isset($data['quantity']) && !empty($data['quantity'])) {
         $quantity = $data['quantity'];
-    }
+    }*/
 
-    return array("product_id" => (int)$product_id, "active" => (int)$active, "quantity" => (float)$quantity, "user_id" => (int)$user_id);
+    return $result;
+
+//    return array("product_id" => (int)$product_id, "active" => (int)$active, "quantity" => (float)$quantity, "user_id" => (int)$user_id);
 }
 
 
@@ -98,15 +103,15 @@ checkIfPostValuesAreSetAndDeactivate(int $imageId, ?PDO $db, array $data): array
  * @return void
  * @throws JsonException
  */
-function updatingCartDelete(?PDO $db, Image $image, array $response, Responses $responses, array $data): void
+function updatingImageDelete(?PDO $db, Image $image, array $response, Responses $responses, array $data): void
 {
     $result = array();
     if ($image->image_id !== null && $image->image_id !== 0) {
-        $cart_Id = $image->image_id;
+        $image_Id = $image->image_id;
 
-        $result = checkIfPostValuesAreSetAndDeactivate($cart_Id, $db, $data);
+        $result = checkIfPostValuesAreSetAndDeactivate($image_Id, $db, $data);
 
-        $sql = $image->updateCart((int)$result['user_id'], (int)$result['product_id'], (float)$result['quantity'], (int)$result['active'], (int)$cart_Id);
+        $sql = $image->updateImage((int)$result['vendor_id'], (int)$result['product_id'], (string)$result['image_blob'], (int)$result['image_size'], (string)$result['image_link'], (string)$result['image_type'], (int)$result['active'], (int)$image_Id);
 
         $database = new Database();
         $database->runQuery($sql, $db);

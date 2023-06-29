@@ -10,7 +10,7 @@ require_once '../../../errors/Responses.php';
 $response = array();
 $responses = new Responses();
 $status = false;
-const Entity = "Image";
+const Entity = "File";
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -19,23 +19,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = array();
     $database = new Database();
     $db = $database->dbConnection();
-    $image = $database->image;
+    $file = $database->file;
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $data = $_POST;
 
 //    todo: for testing
 
-    $imageId = 0;
+    $fileId = 0;
     try {
 
         if (isset($_POST['id']) && !empty($_POST['id'])) {
-            $imageId = $_POST['id'];
+            $fileId = $_POST['id'];
         } else {
             $responses->errorInvalidRequest($response);
         }
-        $image->image_id = $imageId;
+        $file->file_id = $fileId;
 
-        updatingImageDelete($db, $image, $response, $responses, $data);
+        updatingImageDelete($db, $file, $response, $responses, $data);
 
     } catch (JsonException $e) {
         $responses->errorUpDating($response, $e, Entity);
@@ -47,18 +47,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 /**
- * @param int $imageId
+ * @param int $fileId
  * @param PDO|null $db
  * @param array $data
  * @return array
  * @throws JsonException
  */
 function
-checkIfPostValuesAreSetAndDeactivate(int $imageId, ?PDO $db, array $data): array
+checkIfPostValuesAreSetAndDeactivate(int $fileId, ?PDO $db, array $data): array
 {
     $database = new Database();
-    $image = $database->image;
-    $sql = $image->getById($imageId);
+    $file = $database->file;
+    $sql = $file->getById($fileId);
     $result = $database->runSelectOneQuery($sql, $db);
 
 
@@ -96,18 +96,18 @@ checkIfPostValuesAreSetAndDeactivate(int $imageId, ?PDO $db, array $data): array
 
 /**
  * @param PDO|null $db
- * @param Image $image
+ * @param File $file
  * @param array $response
  * @param Responses $responses
  * @param array $data
  * @return void
  * @throws JsonException
  */
-function updatingImageDelete(?PDO $db, Image $image, array $response, Responses $responses, array $data): void
+function updatingImageDelete(?PDO $db, File $file, array $response, Responses $responses, array $data): void
 {
     $result = array();
-    if ($image->image_id !== null && $image->image_id !== 0) {
-        $image_Id = $image->image_id;
+    if ($file->file_id !== null && $file->file_id !== 0) {
+        $file_Id = $file->file_id;
 
         $result = checkIfPostValuesAreSetAndDeactivate($image_Id, $db, $data);
 

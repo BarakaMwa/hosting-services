@@ -6,10 +6,10 @@ class Utils
     private $cipherKey = "qwertyQWERTY";
 
     /**
-     * @param array $data
+     * @param string $data
      * @return string
      */
-    public function cleanString(array $data): string
+    public function cleanString(string $data): string
     {
         $data = trim($data);
         $data = stripslashes($data);

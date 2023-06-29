@@ -10,18 +10,18 @@ require_once '../../errors/Responses.php';
 $response = array();
 $status = false;
 $responses = new Responses();
-const Entity = "Image";
+const Entity = "File";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] = 'GET') {
 
 
     $database = new Database();
     $db = $database->dbConnection();
-    $image = $database->image;
+    $file = $database->file;
 
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $sql = $image->getGetAll();
+    $sql = $file->getGetAll();
 
 //    $_POST['active'] = 0;
 
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] = 'GET')
 
         (int)$active = $_POST["active"];
 
-        $sql = $image->getAllByActive($active);
+        $sql = $file->getAllByActive($active);
     }
 
     $result = $database->runSelectAllQuery($sql, $db);

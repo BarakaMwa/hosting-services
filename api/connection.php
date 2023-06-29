@@ -7,7 +7,7 @@ require_once 'data/Product.php';
 require_once 'data/Invoice.php';
 require_once 'data/Payment.php';
 require_once 'data/QrCode.php';
-require_once 'data/Image.php';
+require_once 'data/File.php';
 require_once 'errors/Responses.php';
 //$vendor = new Vendor();
 //$responses = new Responses();
@@ -27,7 +27,7 @@ class Database
     public $invoice;
     public $payment;
     public $qrCode;
-    public $image;
+    public $file;
     public $responses;
 
     /**
@@ -40,7 +40,7 @@ class Database
         $this->product = new Product();
         $this->invoice = new Invoice();
         $this->payment = new Payment();
-        $this->image = new Image();
+        $this->file = new File();
         $this->cart = new Cart();
         $this->responses = new Responses();
     }

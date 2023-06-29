@@ -56,11 +56,11 @@ create TABLE QR_code (
 );
 
 CREATE TABLE Images (
-  image_id INT PRIMARY KEY,
+  file_id INT PRIMARY KEY,
   vendor_id INT,
   product_id INT,
-  image_blob BLOB,
-  image_link VARCHAR(255),
+  file_blob BLOB,
+  file_link VARCHAR(255),
   FOREIGN KEY (vendor_id) REFERENCES Vendors(vendor_id),
   FOREIGN KEY (product_id) REFERENCES Products(product_id)
 );

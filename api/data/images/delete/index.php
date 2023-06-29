@@ -10,7 +10,7 @@ require_once '../../../errors/Responses.php';
 $response = array();
 $responses = new Responses();
 $status = false;
-const CART = "Cart";
+const IMAGE = "Image";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -18,26 +18,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = array();
     $database = new Database();
     $db = $database->dbConnection();
-    $cart = $database->cart;
+    $image = $database->image;
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $data = $_POST;
 
 //    todo: for testing
 
-    $cart_Id = 0;
+    $imageId = 0;
     try {
 
         if (isset($_POST['id']) && !empty($_POST['id'])) {
-            $cart_Id = $_POST['id'];
+            $imageId = $_POST['id'];
         } else {
             $responses->errorInvalidRequest($response);
         }
-        $cart->cart_id = $cart_Id;
+        $image->image_id = $imageId;
 
-        updatingCartDelete($db, $cart, $response, $responses, $data);
+        updatingCartDelete($db, $image, $response, $responses, $data);
 
     } catch (JsonException $e) {
-        $responses->errorUpDating($response, $e, CART);
+        $responses->errorUpDating($response, $e, IMAGE);
     }
 
 } else {
@@ -46,18 +46,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 /**
- * @param int $cart_Id
+ * @param int $imageId
  * @param PDO|null $db
  * @param array $data
  * @return array
  * @throws JsonException
  */
 function
-checkIfPostValuesAreSetAndDeactivate(int $cart_Id, ?PDO $db, array $data): array
+checkIfPostValuesAreSetAndDeactivate(int $imageId, ?PDO $db, array $data): array
 {
     $database = new Database();
-    $cart = $database->cart;
-    $sql = $cart->getById($cart_Id);
+    $image = $database->image;
+    $sql = $image->getById($imageId);
     $result = $database->runSelectOneQuery($sql, $db);
 
 //    todo for testing
@@ -66,7 +66,7 @@ checkIfPostValuesAreSetAndDeactivate(int $cart_Id, ?PDO $db, array $data): array
     if ($active === 0 || $active === false) {
         $responses = new Responses();
         $response = array();
-        $responses->warningAlreadyDeleted($response, $result, CART);
+        $responses->warningAlreadyDeleted($response, $result, Entity);
     }
     $active = 0;
 
@@ -85,28 +85,28 @@ checkIfPostValuesAreSetAndDeactivate(int $cart_Id, ?PDO $db, array $data): array
         $quantity = $data['quantity'];
     }
 
-    return array("product_id" => (int)$product_id, "active" => (int)$active, "quantity" => (float)$quantity, "user_id" => (int)$user_id, "cart_id" => $cart_Id);
+    return array("product_id" => (int)$product_id, "active" => (int)$active, "quantity" => (float)$quantity, "user_id" => (int)$user_id);
 }
 
 
 /**
  * @param PDO|null $db
- * @param Cart $cart
+ * @param Image $image
  * @param array $response
  * @param Responses $responses
  * @param array $data
  * @return void
  * @throws JsonException
  */
-function updatingCartDelete(?PDO $db, Cart $cart, array $response, Responses $responses, array $data): void
+function updatingCartDelete(?PDO $db, Image $image, array $response, Responses $responses, array $data): void
 {
     $result = array();
-    if ($cart->cart_id !== null && $cart->cart_id !== 0) {
-        $cart_Id = $cart->cart_id;
+    if ($image->image_id !== null && $image->image_id !== 0) {
+        $cart_Id = $image->image_id;
 
         $result = checkIfPostValuesAreSetAndDeactivate($cart_Id, $db, $data);
 
-        $sql = $cart->updateCart((int)$result['user_id'], (int)$result['product_id'], (float)$result['quantity'], (int)$result['active'], (int)$cart_Id);
+        $sql = $image->updateCart((int)$result['user_id'], (int)$result['product_id'], (float)$result['quantity'], (int)$result['active'], (int)$cart_Id);
 
         $database = new Database();
         $database->runQuery($sql, $db);
@@ -118,11 +118,11 @@ function updatingCartDelete(?PDO $db, Cart $cart, array $response, Responses $re
 
 //    todo encrypt
     /* foreach ($result as $row) {
-         $encrypted = encrypt($row['cart_id'],$ciphering,$encryption_iv,$options);
-         $row["cart_id"] = $encrypted;
+         $encrypted = encrypt($row['image_id'],$ciphering,$encryption_iv,$options);
+         $row["image_id"] = $encrypted;
          $row["0"] = $encrypted;
      }*/
 
-    $responses->successDataDeactivated($response, $result, CART);
+    $responses->successDataDeactivated($response, $result, Entity);
 }
 

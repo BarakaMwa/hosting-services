@@ -12,7 +12,7 @@ class Cart
     /**
      * @return string
      */
-    public function getGetAll(): string
+    final public function getGetAll(): string
     {
         return "SELECT * FROM Cart";
     }
@@ -21,7 +21,7 @@ class Cart
      * @param int $active
      * @return string
      */
-    public function getAllByActive(int $active): string
+    final public function getAllByActive(int $active): string
     {
         return "SELECT * FROM Cart WHERE active = $active";
     }
@@ -30,36 +30,36 @@ class Cart
      * @param int $cart_id
      * @return string
      */
-    public function getById(int $cart_id): string
+    final public function getById(int $cart_id): string
     {
         return "SELECT * FROM Cart WHERE cart_id = $cart_id";
     }
 
     /**
-     * @param int $cart_id
+     * @param int $cartId
      * @return string
      */
-    public function deleteById(int $cart_id): string
+    final public function deleteById(int $cartId): string
     {
-        return "DELETE FROM Cart WHERE vendor_id = $cart_id";
+        return "DELETE FROM Cart WHERE cart_id = $cartId";
     }
 
 
     /**
      * @param int $active
-     * @param int $vendor_Id
+     * @param int $cartId
      * @return string
      */
-    public function getByIdAndActive(int $active, int $vendor_Id): string
+    final public function getByIdAndActive(int $active, int $cartId): string
     {
-        return "SELECT * FROM `Cart` WHERE `active` = $active and `vendor_id` = $vendor_Id";
+        return "SELECT * FROM `Cart` WHERE `active` = $active and `cart_id` = $cartId";
     }
 
     /**
      * @param array $result
      * @return string
      */
-    public function insertNewCart(array $result): string
+    final public function insertNewCart(array $result): string
     {
         return "INSERT INTO Cart (user_id, product_id, quantity, active) 
                VALUES ( " . $result['user_id'] . ", '" . $result["product_id"] . "', '" . $result["quantity"] . "', " . $result['active'] . ")";
@@ -67,16 +67,16 @@ class Cart
 
     /**
      * @param int $user_id
-     * @param int $product_id
+     * @param int $productId
      * @param float $quantity
      * @param int $active
-     * @param int $cart_id
+     * @param int $cartId
      * @return string
      */
-    public function updateCart(int $user_id, int $product_id, float $quantity, int $active, int $cart_id): string
+    final public function updateCart(int $user_id, int $productId, float $quantity, int $active, int $cartId): string
     {
-        return "UPDATE Cart SET user_id=$user_id, product_id='" . $product_id . "', quantity='" . $quantity . "', active=$active WHERE cart_id=$cart_id";
+        return "UPDATE Cart SET user_id=$user_id, product_id='" . $productId . "', quantity='" . $quantity . "', active=$active WHERE cart_id=$cartId";
     }
-    
+
 
 }

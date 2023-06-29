@@ -51,9 +51,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
              $row["0"] = $encrypted;
          }*/
 
-        $responses->successDataRetrieved($response, $result, CART );
+        $responses->successDataRetrieved($response, $result, Entity );
     } catch (JsonException $e) {
-        $responses->errorInsertingData($response, $e, CART);
+        $responses->errorInsertingData($response, $e, Entity);
     }
 
 } else {

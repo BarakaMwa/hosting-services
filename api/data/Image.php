@@ -63,8 +63,8 @@ class Image
      */
     final public function insertNewImage(array $result): string
     {
-        return "INSERT INTO Images (user_id, product_id, quantity, active) 
-               VALUES ( " . $result['user_id'] . ", '" . $result["product_id"] . "', '" . $result["quantity"] . "', " . $result['active'] . ")";
+        return "INSERT INTO Images (vendor_id, product_id, image_blob, active,image_size, image_link, image_type) 
+               VALUES ( " . $result['vendor_id'] . ", '" . $result["product_id"] . "', '" . $result["image_blob"] . "', " . $result['active'] . ", '" . $result['image_size'] . "', '" . $result['image_link'] . "', '" . $result['image_type'] . "')";
     }
 
     /**

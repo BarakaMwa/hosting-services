@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         updatingCartDelete($db, $cart, $response, $responses, $data);
 
     } catch (JsonException $e) {
-        $responses->errorUpDating($response, $e, CART);
+        $responses->errorUpDating($response, $e, Entity);
     }
 
 } else {
@@ -66,7 +66,7 @@ checkIfPostValuesAreSetAndDeactivate(int $cart_Id, ?PDO $db, array $data): array
     if ($active === 0 || $active === false) {
         $responses = new Responses();
         $response = array();
-        $responses->warningAlreadyDeleted($response, $result, CART);
+        $responses->warningAlreadyDeleted($response, $result, Entity);
     }
     $active = 0;
 
@@ -123,6 +123,6 @@ function updatingCartDelete(?PDO $db, Cart $cart, array $response, Responses $re
          $row["0"] = $encrypted;
      }*/
 
-    $responses->successDataDeactivated($response, $result, CART);
+    $responses->successDataDeactivated($response, $result, Entity);
 }
 

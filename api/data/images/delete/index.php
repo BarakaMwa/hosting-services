@@ -109,9 +109,9 @@ function updatingImageDelete(?PDO $db, File $file, array $response, Responses $r
     if ($file->file_id !== null && $file->file_id !== 0) {
         $file_Id = $file->file_id;
 
-        $result = checkIfPostValuesAreSetAndDeactivate($image_Id, $db, $data);
+        $result = checkIfPostValuesAreSetAndDeactivate($file_Id, $db, $data);
 
-        $sql = $image->updateImage((int)$result['vendor_id'], (int)$result['product_id'], (string)$result['image_blob'], (int)$result['image_size'], (string)$result['image_link'], (string)$result['image_type'], (int)$result['active'], (int)$image_Id);
+        $sql = $file->updateImage((int)$result['vendor_id'], (int)$result['product_id'], (string)$result['file_blob'], (int)$result['file_size'], (string)$result['file_link'], (string)$result['file_type'], (int)$result['active'], (int)$file_Id);
 
         $database = new Database();
         $database->runQuery($sql, $db);
@@ -123,8 +123,8 @@ function updatingImageDelete(?PDO $db, File $file, array $response, Responses $r
 
 //    todo encrypt
     /* foreach ($result as $row) {
-         $encrypted = encrypt($row['image_id'],$ciphering,$encryption_iv,$options);
-         $row["image_id"] = $encrypted;
+         $encrypted = encrypt($row['file_id'],$ciphering,$encryption_iv,$options);
+         $row["file_id"] = $encrypted;
          $row["0"] = $encrypted;
      }*/
 

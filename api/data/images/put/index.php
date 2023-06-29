@@ -108,21 +108,21 @@ function checkPostInputs(array $data, Utils $utils, Responses $responses): array
     }
 
     $file_link = null;
-    if (isset($data['file_link']) && !empty($data['image_link'])) {
+    if (isset($data['file_link']) && !empty($data['file_link'])) {
 //        class if number
-        $image_link = $utils->cleanString($image_link);
+        $file_link = $utils->cleanString($file_link);
     }
 
-    if (isset($data['image_size']) && !empty($data['image_size'])) {
+    if (isset($data['file_size']) && !empty($data['file_size'])) {
 //        class if number
-        $image_size = $utils->cleanString($image_size);
+        $file_size = $utils->cleanString($file_size);
     } else {
         $responses->warningInput('Image Size is required');
     }
-    $image_blob = null;
-    if (isset($data['image_blob']) && !empty($data['image_blob'])) {
+    $file_blob = null;
+    if (isset($data['file_blob']) && !empty($data['file_blob'])) {
 //        class if number
-        $image_blob = $utils->cleanString($image_blob);
+        $file_blob = $utils->cleanString($file_blob);
     }
 
     if (isset($data['product_id']) && !empty($data['product_id'])) {
@@ -144,7 +144,7 @@ function checkPostInputs(array $data, Utils $utils, Responses $responses): array
 //        class if number
     }
 
-    return array("image_size" => $image_size, "image_name" => $image_name, "active" => $active,
-        "image_type" => $image_type, "image_blob" => $image_blob, "image_link" => $image_link,
+    return array("file_size" => $file_size, "file_name" => $file_name, "active" => $active,
+        "file_type" => $file_type, "file_blob" => $file_blob, "file_link" => $file_link,
         "product_id" => $product_id, "vendor_id" => $vendor_id);
 }

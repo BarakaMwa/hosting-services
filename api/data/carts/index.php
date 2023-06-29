@@ -10,41 +10,39 @@ require_once '../../errors/Responses.php';
 $response = array();
 $status = false;
 $responses = new Responses();
-const Entity = "Vendor";
+const Entity = "Cart";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] = 'GET') {
 
 
     $database = new Database();
     $db = $database->dbConnection();
-    $vendor = $database->vendor;
+    $cart = $database->cart;
 
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $sql = $vendor->getGetAll();
+    $sql = $cart->getGetAll();
 
+//    $_POST['active'] = 0;
 
     if(isset($_POST["active"]) && !empty($_POST["active"])){
 
         (int)$active = $_POST["active"];
 
-        $sql = $vendor->getAllByActive($active);
-    }elseif (isset($_GET["active"]) && !empty($_GET["active"])){
-
-        (int)$active = $_GET["active"];
-
-        $sql = $vendor->getAllByActive($active);
+        $sql = $cart->getAllByActive($active);
     }
 
     $result = $database->runSelectAllQuery($sql, $db);
 
+
+//    todo encrypt
    /* foreach ($result as $row) {
         $encrypted = encrypt($row['vendor_id'],$ciphering,$encryption_iv,$options);
         $row["vendor_id"] = $encrypted;
         $row["0"] = $encrypted;
     }*/
 
-    $responses->successDataRetrieved($response, $result, Entity);
+    $responses->successDataRetrieved($response, $result, CART);
 
 } else {
 

@@ -1,5 +1,6 @@
 <?php
 
+
 require_once 'data/Vendor.php';
 require_once 'data/Cart.php';
 require_once 'data/Product.php';
@@ -7,17 +8,17 @@ require_once 'data/Invoice.php';
 require_once 'data/Payment.php';
 require_once 'data/QrCode.php';
 require_once 'data/Image.php';
-require_once 'errors/Responses.php';
+//require_once 'errors/responses.php';
 //$vendor = new Vendor();
-$responses = new Responses();
+//$responses = new Responses();
 
 class Database
 {
 
-    private $host = "infyenterprise.com";
-    private $db_name = "u818699652_test_db";
-    private $username = "u818699652_admin";
-    private $password = "c23:aoE21rI+";
+    private $host = "localhost:3399";
+    private $db_name = "hosted_services";
+    private $username = "root";
+    private $password = "rootmysql";
     public $conn;
 
     public $vendor;
@@ -60,12 +61,14 @@ class Database
      * @param $sql
      * @param $db
      * @return mixed
+     * @throws PDOException
+     * @meta returns all SQL statement results
      */
     public function runSelectAllQuery($sql, $db)
     {
         $stmt = $db->prepare($sql);
         $stmt->execute();
-//    return $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
         return $stmt->fetchAll();
     }
 
@@ -73,6 +76,7 @@ class Database
      * @param $sql
      * @param $db
      * @return mixed
+     * @meta returns one SQL statement result
      */
     public function runSelectOneQuery($sql, $db)
     {

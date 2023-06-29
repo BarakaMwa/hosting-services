@@ -28,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
 //        $user_login->redirect('../home-page/index.php');
     }
+
     $response["success"] = false;
     $response["status"] = "error";
     $response["message"] = "Invalid logins";

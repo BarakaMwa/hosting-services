@@ -3,10 +3,10 @@
 class Database
 {
 
-    private $host = "infyenterprise.com";
-    private $db_name = "u818699652_test_db";
-    private $username = "u818699652_admin";
-    private $password = "c23:aoE21rI+";
+    private $host = "localhost:3399";
+    private $db_name = "hosted_services";
+    private $username = "root";
+    private $password = "rootmysql";
     public $conn;
 
     public function dbConnection(): ?PDO

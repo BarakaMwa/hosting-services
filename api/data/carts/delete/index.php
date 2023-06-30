@@ -10,7 +10,7 @@ require_once '../../../errors/Responses.php';
 $response = array();
 $responses = new Responses();
 $status = false;
-const CART = "Cart";
+const Entity = "Cart";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 

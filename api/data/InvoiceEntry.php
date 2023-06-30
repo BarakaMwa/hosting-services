@@ -16,7 +16,7 @@ class InvoiceEntry
      */
     final public function getGetAll(): string
     {
-        return "SELECT * FROM InvoiceEntries";
+        return "SELECT * FROM Invoice_Entries";
     }
 
     /**
@@ -25,7 +25,7 @@ class InvoiceEntry
      */
     final public function getAllByActive(int $active): string
     {
-        return "SELECT * FROM InvoiceEntries WHERE active = $active";
+        return "SELECT * FROM Invoice_Entries WHERE active = $active";
     }
 
     /**
@@ -34,7 +34,7 @@ class InvoiceEntry
      */
     final public function getById(int $entry_id): string
     {
-        return "SELECT * FROM InvoiceEntries WHERE entry_id = $entry_id";
+        return "SELECT * FROM Invoice_Entries WHERE entry_id = $entry_id";
     }
 
     /**
@@ -43,18 +43,18 @@ class InvoiceEntry
      */
     final public function deleteById(int $entry_id): string
     {
-        return "DELETE FROM InvoiceEntries WHERE entry_id = $entry_id";
+        return "DELETE FROM Invoice_Entries WHERE entry_id = $entry_id";
     }
 
 
     /**
      * @param int $active
-     * @param int $invoice_Id
+     * @param int $entry_id
      * @return string
      */
-    final public function getByIdAndActive(int $active, int $invoice_Id): string
+    final public function getByIdAndActive(int $active, int $entry_id): string
     {
-        return "SELECT * FROM InvoiceEntries WHERE active = $active and entry_id = $invoice_Id";
+        return "SELECT * FROM Invoice_Entries WHERE active = $active and entry_id = $entry_id";
     }
 
     /**
@@ -63,7 +63,7 @@ class InvoiceEntry
      */
     final public function insertNewInvoiceEntry(array $result): string
     {
-        return "INSERT INTO InvoiceEntries (vendor_id, product_id, 
+        return "INSERT INTO Invoice_Entries (vendor_id, product_id, 
                    invoice_blob, active,
                    invoice_size, invoice_link,
                    invoice_name,invoice_type) 
@@ -88,12 +88,21 @@ class InvoiceEntry
                                      string $invoice_name, int $active,
                                      int    $entry_id): string
     {
-        return "UPDATE InvoiceEntries 
+        return "UPDATE Invoice_Entries 
 SET 
     invoice_blob='" . $invoice_blob . "', invoice_size='" . $invoice_size . "',
     invoice_link='" . $invoice_link . "',invoice_type='" . $invoice_type . "',
     invoice_name='" . $invoice_name . "', active=$active 
     WHERE entry_id=$entry_id";
+    }
+
+    /**
+     * @param int $invoice_id
+     * @return string
+     */
+    public function getByInvoiceId(int $invoice_id): string
+    {
+        return "SELECT * FROM Invoice_Entries WHERE invoice_id = $invoice_id";
     }
 
 }

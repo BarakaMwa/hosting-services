@@ -1,6 +1,6 @@
 <?php
 //todo validation
-const CART = "Cart";
+const Entity = "Cart";
 require_once '../../../headers-api.php';
 session_start();
 //require_once '../../../connection.php';

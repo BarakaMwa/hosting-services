@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         $result = insertingVendorEdit($db, $vendor, $data);
     } catch (JsonException $e) {
-        $responses->errorUpDating($response, $e, ENTITY);
+        $responses->errorUpDating($response, $e, Entity);
     }
 
     $responses->successDataInsert($response, $result, Entity);

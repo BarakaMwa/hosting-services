@@ -30,7 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $filesData = checkFile($utils, $responses, $files);
 
         $result = insertingFileEdit($db, $file, $data, $filesData);
-
     } catch (JsonException $e) {
         $responses->errorUpDating($response, $e, Entity);
     }
@@ -115,10 +114,11 @@ function checkPostInputs(array $data, Utils $utils, Responses $responses, array 
         $responses->warningInput('File Type is required');
     }
 
-    $file_link = null;
     if (isset($filesData['file_link']) && !empty($filesData['file_link'])) {
 //        class if number
-        $file_link = $utils->cleanString($filesData['file_link']);
+        $file_link = $utils->cleanString($file_link);
+    }else{
+        $file_link = null;
     }
 
     if (isset($filesData['file_size']) && !empty($filesData['file_size'])) {
@@ -131,7 +131,7 @@ function checkPostInputs(array $data, Utils $utils, Responses $responses, array 
     $file_blob = null;
     if (isset($filesData['file_blob']) && !empty($filesData['file_blob'])) {
 //        class if number
-        $file_blob = $utils->cleanString($filesData['file_blob']);
+        $file_blob = $utils->cleanString($file_blob);
     }
 
     if (isset($data['product_id']) && !empty($data['product_id'])) {
@@ -186,15 +186,14 @@ function checkFile(Utils $utils, Responses $responses, array $files): array
 
 // Allow certain file formats
     if ($fileType != "jpg" && $fileType != "png" && $fileType != "jpeg"
-         && $fileType != "pdf") {
+        && $fileType != "pdf") {
         $responses->warningFileInput("Sorry, only pdf, jpeg, jpg and png files are supported");
     }
 
     $temp = explode(".", $fileName);
     $newFile = $newFileName . '.' . end($temp);
     $target_file =TARGET_DIR.$newFile;
-    $file_content = file_get_contents($tempDir);
-    $file_blob = base64_encode($file_content);
+    $file_blob = file_get_contents($tempDir);
 
     uploadFIle($tempDir, $target_file, $responses);
 

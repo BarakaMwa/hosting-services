@@ -52,7 +52,7 @@ class Cart
      */
     final public function getByIdAndActive(int $active, int $cartId): string
     {
-        return "SELECT * FROM `Cart` WHERE `active` = $active and `cart_id` = $cartId";
+        return "SELECT * FROM Cart WHERE active = $active and cart_id = $cartId";
     }
 
     /**

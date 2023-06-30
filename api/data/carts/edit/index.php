@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         updatingCartEdit($db, $cart, $response, $responses, $data);
     } catch (JsonException $e) {
-        $responses->errorUpDating($response, $e, CART );
+        $responses->errorUpDating($response, $e, Entity );
     }
 
 } else {
@@ -109,7 +109,7 @@ function updatingCartEdit(?PDO $db, Cart $cart, array $response, Responses $resp
          $row["0"] = $encrypted;
      }*/
 
-    $responses->successDataUpdated($response, $result, CART);
+    $responses->successDataUpdated($response, $result, Entity);
 }
 
 

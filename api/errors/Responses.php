@@ -167,4 +167,17 @@ class Responses
         exit();
     }
 
+    /**
+     * @throws JsonException
+     */
+    public function warningFileInput(string $string): void
+    {
+        $response["message"] = $string;
+        $response["success"] = false;
+        $response["status"] = "warning";
+        $response["data"] = null;
+        echo json_encode($response, JSON_THROW_ON_ERROR);
+        exit();
+    }
+
 }

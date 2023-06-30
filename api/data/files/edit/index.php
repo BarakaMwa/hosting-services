@@ -70,13 +70,13 @@ function checkIfPostValuesAreSetAndEdit(int $file_Id, ?PDO $db, array $data): ar
         $file_size = $data['file_size'];
     }
 
-    $file_blob = null;
+    $file_blob = $result['file_blob'];
     if (isset($data['file_blob']) && !empty($data['file_blob'])) {
         $file_blob = $data['file_blob'];
     }
 
-    $file_link = null;
-    if (isset($data['file_link']) && !empty($data['file_link'])) {
+    $file_link = $result['file_link'];
+    if (isset($data['file_link ']) && !empty($data['file_link'])) {
         $file_link = $data['file_link'];
     }
 
@@ -90,11 +90,7 @@ function checkIfPostValuesAreSetAndEdit(int $file_Id, ?PDO $db, array $data): ar
         $file_name = $data['file_name'];
     }
 
-    return array("file_id" => $file_Id, "file_name" => $file_name,
-        "file_type" => $file_type, "file_size" => $file_size,
-        "file_blob" => $file_blob, "active" => $active,
-        "file_link" => $file_link, "product_id" => $product_id,
-        "vendor_id" => $vendor_id);
+    return array("file_name" => $file_name, "file_type" => $file_type, "file_size" => $file_size, "file_blob" => $file_blob, "active" => $active, 'file_link' => $file_link, "product_id" => $product_id, "vendor_id" => $vendor_id);
 }
 
 
@@ -120,8 +116,7 @@ function updatingImageEdit(?PDO $db, File $file, array $response, Responses $res
 
         $sql = $file->updateFile((string)$result['file_blob'], (int)$result['file_size'],
             (string)$result['file_link'], (string)$result['file_type'],
-            (string)$result['file_name'], (int)$result['active'],
-            (int)$file_Id);
+            (string)$result['file_name'], (int)$result['active'], (int)$file_Id);
 
 
         $database->runQuery($sql, $db);

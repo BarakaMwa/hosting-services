@@ -30,7 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $filesData = checkFile($utils, $responses, $files);
 
         $result = insertingFileEdit($db, $file, $data, $filesData);
-
     } catch (JsonException $e) {
         $responses->errorUpDating($response, $e, Entity);
     }
@@ -129,12 +128,10 @@ function checkPostInputs(array $data, Utils $utils, Responses $responses, array 
         $responses->warningInput('File Size is required');
     }
 
-
+    $file_blob = null;
     if (isset($filesData['file_blob']) && !empty($filesData['file_blob'])) {
 //        class if number
-//        $file_blob = $utils->cleanString($file_blob);
-    }else{
-        $file_blob = null;
+        $file_blob = $utils->cleanString($file_blob);
     }
 
     if (isset($data['product_id']) && !empty($data['product_id'])) {
@@ -189,7 +186,7 @@ function checkFile(Utils $utils, Responses $responses, array $files): array
 
 // Allow certain file formats
     if ($fileType != "jpg" && $fileType != "png" && $fileType != "jpeg"
-         && $fileType != "pdf") {
+        && $fileType != "pdf") {
         $responses->warningFileInput("Sorry, only pdf, jpeg, jpg and png files are supported");
     }
 

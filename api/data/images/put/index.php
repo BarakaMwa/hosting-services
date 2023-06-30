@@ -115,7 +115,7 @@ function checkPostInputs(array $data, Utils $utils, Responses $responses, array 
         $responses->warningInput('File Type is required');
     }
 
-    $file_blob = null;
+    $file_link = null;
     if (isset($filesData['file_link']) && !empty($filesData['file_link'])) {
 //        class if number
         $file_link = $utils->cleanString($filesData['file_link']);

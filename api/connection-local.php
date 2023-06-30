@@ -5,6 +5,7 @@ require_once 'data/Vendor.php';
 require_once 'data/Cart.php';
 require_once 'data/Product.php';
 require_once 'data/Invoice.php';
+require_once 'data/InvoiceEntry.php';
 require_once 'data/Payment.php';
 require_once 'data/QrCode.php';
 require_once 'data/File.php';
@@ -25,6 +26,7 @@ class Database
     public $cart;
     public $product;
     public $invoice;
+    public $invoice_entries;
     public $payment;
     public $qrCode;
     public $file;
@@ -39,6 +41,7 @@ class Database
         $this->qrCode = new QrCode();
         $this->product = new Product();
         $this->invoice = new Invoice();
+        $this->invoice_entries = new InvoiceEntry();
         $this->payment = new Payment();
         $this->file = new File();
         $this->cart = new Cart();

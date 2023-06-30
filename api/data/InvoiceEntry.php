@@ -1,12 +1,22 @@
 <?php
 
-class Invoice{
+class InvoiceEntry
+{
+
+
+    public $entry_id;
+    public $invoice_id;
+    public $product_id;
+    public $quantity;
+    public $price;
+    public $total_price;
+
     /**
      * @return string
      */
     final public function getGetAll(): string
     {
-        return "SELECT * FROM Invoices";
+        return "SELECT * FROM InvoiceEntries";
     }
 
     /**
@@ -15,25 +25,25 @@ class Invoice{
      */
     final public function getAllByActive(int $active): string
     {
-        return "SELECT * FROM Invoices WHERE active = $active";
+        return "SELECT * FROM InvoiceEntries WHERE active = $active";
     }
 
     /**
-     * @param int $invoice_id
+     * @param int $entry_id
      * @return string
      */
-    final public function getById(int $invoice_id): string
+    final public function getById(int $entry_id): string
     {
-        return "SELECT * FROM Invoices WHERE invoice_id = $invoice_id";
+        return "SELECT * FROM InvoiceEntries WHERE entry_id = $entry_id";
     }
 
     /**
-     * @param int $invoice_id
+     * @param int $entry_id
      * @return string
      */
-    final public function deleteById(int $invoice_id): string
+    final public function deleteById(int $entry_id): string
     {
-        return "DELETE FROM Invoices WHERE invoice_id = $invoice_id";
+        return "DELETE FROM InvoiceEntries WHERE entry_id = $entry_id";
     }
 
 
@@ -44,16 +54,16 @@ class Invoice{
      */
     final public function getByIdAndActive(int $active, int $invoice_Id): string
     {
-        return "SELECT * FROM Invoices WHERE active = $active and invoice_id = $invoice_Id";
+        return "SELECT * FROM InvoiceEntries WHERE active = $active and entry_id = $invoice_Id";
     }
 
     /**
      * @param array $result
      * @return string
      */
-    final public function insertNewImage(array $result): string
+    final public function insertNewInvoiceEntry(array $result): string
     {
-        return "INSERT INTO Invoices (vendor_id, product_id, 
+        return "INSERT INTO InvoiceEntries (vendor_id, product_id, 
                    invoice_blob, active,
                    invoice_size, invoice_link,
                    invoice_name,invoice_type) 
@@ -70,36 +80,20 @@ class Invoice{
      * @param string $invoice_type
      * @param string $invoice_name
      * @param int $active
-     * @param int $invoice_id
+     * @param int $entry_id
      * @return string
      */
-    final public function updateFile(string $invoice_blob, int $invoice_size,
+    final public function updateInvoiceEntry(string $invoice_blob, int $invoice_size,
                                      string $invoice_link, string $invoice_type,
                                      string $invoice_name, int $active,
-                                     int    $invoice_id): string
+                                     int    $entry_id): string
     {
-        return "UPDATE Invoices 
+        return "UPDATE InvoiceEntries 
 SET 
     invoice_blob='" . $invoice_blob . "', invoice_size='" . $invoice_size . "',
     invoice_link='" . $invoice_link . "',invoice_type='" . $invoice_type . "',
     invoice_name='" . $invoice_name . "', active=$active 
-    WHERE invoice_id=$invoice_id";
-    }
-
-    /**
-     * @param array $result
-     * @return string
-     */
-    public function insertNewFile(array $result): string
-    {
-        return "INSERT INTO Invoices (vendor_id, product_id, 
-                   invoice_blob, active,
-                   invoice_size, invoice_link,
-                   invoice_name,invoice_type) 
-               VALUES ( " . $result['vendor_id'] . ", '" . $result["product_id"] . "', 
-               '" . $result["invoice_blob"] . "', " . $result['active'] . ",
-                '" . $result['invoice_size'] . "', '" . $result['invoice_link'] . "',
-                 '" . $result['invoice_name'] . "','" . $result['invoice_type'] . "')";
+    WHERE entry_id=$entry_id";
     }
 
 }

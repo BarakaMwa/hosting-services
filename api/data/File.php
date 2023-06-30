@@ -104,14 +104,14 @@ SET
      */
     public function insertNewFile(array $result): string
     {
-        return "INSERT INTO Files (vendor_id, product_id, 
+        return 'INSERT INTO Files (vendor_id, product_id, 
                    file_blob, active,
                    file_size, file_link,
                    file_name,file_type) 
-               VALUES ( " . $result['vendor_id'] . ", '" . $result["product_id"] . "', 
-               '" . $result["file_blob"] . "', " . $result['active'] . ",
-                '" . $result['file_size'] . "', '" . $result['file_link'] . "',
-                 '" . $result['file_name'] . "','" . $result['file_type'] . "')";
+               VALUES ( ' . $result['vendor_id'] . ',' . $result["product_id"] . ',
+               "'. $result["file_blob"] . '", ' . $result['active'] . ',
+                "' . $result['file_size'] . '", "' . $result['file_link'] . '",
+                 "'. $result['file_name'] . '","' . $result['file_type'] .'")';
     }
 
 }

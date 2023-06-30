@@ -115,11 +115,10 @@ function checkPostInputs(array $data, Utils $utils, Responses $responses, array 
         $responses->warningInput('File Type is required');
     }
 
+    $file_blob = null;
     if (isset($filesData['file_link']) && !empty($filesData['file_link'])) {
 //        class if number
-        $file_link = $utils->cleanString($file_link);
-    }else{
-        $file_link = null;
+        $file_link = $utils->cleanString($filesData['file_link']);
     }
 
     if (isset($filesData['file_size']) && !empty($filesData['file_size'])) {
@@ -129,12 +128,10 @@ function checkPostInputs(array $data, Utils $utils, Responses $responses, array 
         $responses->warningInput('File Size is required');
     }
 
-
+    $file_blob = null;
     if (isset($filesData['file_blob']) && !empty($filesData['file_blob'])) {
 //        class if number
-//        $file_blob = $utils->cleanString($file_blob);
-    }else{
-        $file_blob = null;
+        $file_blob = $utils->cleanString($filesData['file_blob']);
     }
 
     if (isset($data['product_id']) && !empty($data['product_id'])) {
@@ -196,7 +193,8 @@ function checkFile(Utils $utils, Responses $responses, array $files): array
     $temp = explode(".", $fileName);
     $newFile = $newFileName . '.' . end($temp);
     $target_file =TARGET_DIR.$newFile;
-    $file_blob = file_get_contents($tempDir);
+    $file_content = file_get_contents($tempDir);
+    $file_blob = base64_encode($file_content);
 
     uploadFIle($tempDir, $target_file, $responses);
 

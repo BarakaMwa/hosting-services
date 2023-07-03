@@ -48,6 +48,25 @@ class USER
         }
     }
 
+    public function registerUserDetails($userId, $firstName, $lastName, $nrc, $gender, $phone)
+    {
+        try {
+
+            $stmt = $this->conn->prepare("INSERT INTO user_details(userId,firstName,lastName,nrc,gender,phone) 
+                                                VALUES(:userId, :firstName, :lastName, :nrc, :gender, :phone)");
+            $stmt->bindparam(":userId", $userId);
+            $stmt->bindparam(":firstName", $firstName);
+            $stmt->bindparam(":lastName", $lastName);
+            $stmt->bindparam(":nrc", $nrc);
+            $stmt->bindparam(":gender", $gender);
+            $stmt->bindparam(":phone", $phone);
+            $stmt->execute();
+            return $stmt;
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
     public function login($email, $upass): bool
     {
         try {

@@ -10,18 +10,19 @@ require_once '../../errors/Responses.php';
 $response = array();
 $status = false;
 $responses = new Responses();
-const Entity = "Cart";
+const Entity = "Invoice";
+const Entity_Entry = "Invoice Entry";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] = 'GET') {
 
 
     $database = new Database();
     $db = $database->dbConnection();
-    $cart = $database->cart;
+    $invoice = $database->invoice;
 
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $sql = $cart->getGetAll();
+    $sql = $invoice->getGetAll();
 
 //    $_POST['active'] = 0;
 
@@ -29,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] = 'GET')
 
         (int)$active = $_POST["active"];
 
-        $sql = $cart->getAllByActive($active);
+        $sql = $invoice->getAllByActive($active);
     }
 
     $result = $database->runSelectAllQuery($sql, $db);

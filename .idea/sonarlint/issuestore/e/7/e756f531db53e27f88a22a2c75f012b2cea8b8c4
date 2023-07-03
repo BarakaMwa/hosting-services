@@ -1,0 +1,26 @@
+
+P	php:S1135"4Complete the task associated to this "TODO" comment.(¡ ê8Í°±ç1
+O	php:S1135H"4Complete the task associated to this "TODO" comment.(Ÿ¢òH8Í°±ç1
+lphp:S103É"KSplit this 151 characters long line (which is greater than 120 authorized).(ûñùÁşÿÿÿÿ8Í°±ç1
+|php:S115"\Rename this constant "Entity" to match the regular expression ^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$.(ãá¸ñùÿÿÿÿ8Í°±ç1
+|php:S117`"\Rename this local variable "$vendor_id" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(Ğ™„ıÿÿÿÿ8Í°±ç1
+xphp:S117a"]Rename this local variable "$product_id" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(íå¶8Í°±ç1
+wphp:S117b"\Rename this local variable "$file_name" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(úÑÊÁ8Í°±ç1
+wphp:S117c"\Rename this local variable "$file_type" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(–Ã¼”8Í°±ç1
+|php:S117d"\Rename this local variable "$file_link" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(”«Š‡üÿÿÿÿ8Í°±ç1
+|php:S117e"\Rename this local variable "$file_blob" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(¤á±øÿÿÿÿ8Í°±ç1
+wphp:S117f"\Rename this local variable "$file_size" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(–Ä×»8Í°±ç1
+wphp:S117²"\Rename this local variable "$mime_type" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(êÎÎ8Í°±ç1
+zphp:S117Ã"^Rename this local variable "$target_file" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(¶ñÿÚ8Í°±ç1
+{php:S117Ä"_Rename this local variable "$file_content" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(’ğâÉ8Í°±ç1
+wphp:S117Å"\Rename this local variable "$file_blob" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(¹¬«A8Í°±ç1
+zphp:S117Ó"YRename this parameter "$target_file" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(¦ùÅŒúÿÿÿÿ8Í°±ç1
+d	php:S1779"PReplace all non line feed end of line characters in this file "index.php" by LF.8Í°±ç1
+p	php:S3776\"TRefactor this function to reduce its Cognitive Complexity from 21 to the 15 allowed.(¼³Å8Í°±ç1
+_	php:S1854e">Remove this useless assignment to local variable '$file_blob'.(¤á±øÿÿÿÿ8Í°±ç1
+_	php:S1854d">Remove this useless assignment to local variable '$file_link'.(”«Š‡üÿÿÿÿ8µøç1
+9php:S125"Remove this commented out code.(æ¬ıi8Í°±ç1
+m	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(§í³8Í°±ç1
+r	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(¤›²×şÿÿÿÿ8Í°±ç1
+r	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(§¤›õÿÿÿÿÿ8Í°±ç1
+r	php:S4833	"QReplace "require_once" with namespace import mechanism through the "use" keyword.(®¢Ëúÿÿÿÿ8Í°±ç1

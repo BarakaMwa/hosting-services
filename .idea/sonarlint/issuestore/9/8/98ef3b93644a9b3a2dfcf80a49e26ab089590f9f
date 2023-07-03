@@ -1,0 +1,31 @@
+
+a	php:S1131D"@Remove the useless trailing whitespaces at the end of this line.(»Ğ¶ßşÿÿÿÿ8º·”ç1
+\	php:S1131G"@Remove the useless trailing whitespaces at the end of this line.(‡ùú·8º·”ç1
+a	php:S1131H"@Remove the useless trailing whitespaces at the end of this line.(Ä€©Ôøÿÿÿÿ8º·”ç1
+a	php:S1131]"@Remove the useless trailing whitespaces at the end of this line.(­Ê¯Ûøÿÿÿÿ8º·”ç1
+a	php:S1131^"@Remove the useless trailing whitespaces at the end of this line.(‰ÀÃÖşÿÿÿÿ8º·”ç1
+a	php:S1131a"@Remove the useless trailing whitespaces at the end of this line.(»Œä¹ûÿÿÿÿ8º·”ç1
+a	php:S1131k"@Remove the useless trailing whitespaces at the end of this line.(»Ğ¶ßşÿÿÿÿ8‚ßõç1
+\	php:S1131n"@Remove the useless trailing whitespaces at the end of this line.(‡ùú·8ƒßõç1
+a	php:S1131o"@Remove the useless trailing whitespaces at the end of this line.(Ä€©Ôøÿÿÿÿ8ƒßõç1
+…	php:S1808X"dEither split this list into multiple lines, aligned at column "8" or put all arguments on line "88".(İ¥¼´øÿÿÿÿ8º·”ç1
+f	php:S1808["EMove the closing parenthesis with the opening brace on the next line.(Ï²¸ùÿÿÿÿ8º·”ç1
+qphp:S116"QRename this field "$file_id" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ŞßÎ¹úÿÿÿÿ8º·”ç1
+sphp:S116"SRename this field "$vendor_id" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(õÒ÷Äøÿÿÿÿ8º·”ç1
+tphp:S116"TRename this field "$product_id" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ğ‘®ïùÿÿÿÿ8º·”ç1
+sphp:S116	"SRename this field "$file_blob" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(èµ­şÿÿÿÿ8º·”ç1
+nphp:S116
+"SRename this field "$file_link" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(‡¸²8º·”ç1
+nphp:S116"SRename this field "$file_type" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(¬Ï¨8º·”ç1
+nphp:S116"SRename this field "$file_name" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ãŒÀö8º·”ç1
+nphp:S116"SRename this field "$file_size" to match the regular expression ^[a-z][a-zA-Z0-9]*$.( ôà©8º·”ç1
+:php:S113"'Add a new line at the end of this file.8º·”ç1
+uphp:S117%"URename this parameter "$file_id" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ëğãšûÿÿÿÿ8º·”ç1
+pphp:S117."URename this parameter "$file_id" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(Ú…´8º·”ç1
+pphp:S1179"URename this parameter "$file_Id" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ê¢¼8º·”ç1
+wphp:S117X"WRename this parameter "$file_blob" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(İ¥¼´øÿÿÿÿ8º·”ç1
+wphp:S117X"WRename this parameter "$file_size" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(İ¥¼´øÿÿÿÿ8º·”ç1
+wphp:S117Y"WRename this parameter "$file_link" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(¿…ƒûÿÿÿÿ8º·”ç1
+wphp:S117Y"WRename this parameter "$file_type" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(¿…ƒûÿÿÿÿ8º·”ç1
+rphp:S117Z"WRename this parameter "$file_name" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ûõâ8º·”ç1
+uphp:S117["URename this parameter "$file_id" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(Ï²¸ùÿÿÿÿ8º·”ç1

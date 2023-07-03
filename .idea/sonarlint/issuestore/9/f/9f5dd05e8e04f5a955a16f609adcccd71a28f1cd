@@ -1,0 +1,9 @@
+
+:php:S113"'Add a new line at the end of this file.8„×Ú¸1
+xphp:S117'"]Rename this parameter "$original_string" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ŠŠÄ8„×Ú¸1
+‚php:S117*"bRename this local variable "$ciphering_value" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(àÆ„ªıÿÿÿÿ8„×Ú¸1
+php:S117-"aRename this local variable "$encryption_key" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(÷Çìªøÿÿÿÿ8„×Ú¸1
+yphp:S1178"^Rename this parameter "$encryption_value" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(Öª®³8Å—ß¸1
+‚php:S117:"bRename this local variable "$ciphering_value" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(àÆ„ªıÿÿÿÿ8Å—ß¸1
+|php:S117;"aRename this local variable "$decryption_key" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(àÆÕì8Å—ß¸1
+d	php:S1779"PReplace all non line feed end of line characters in this file "Utils.php" by LF.8‘ÌË¾1

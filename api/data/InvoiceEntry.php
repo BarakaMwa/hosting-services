@@ -105,4 +105,13 @@ SET
         return "SELECT * FROM Invoice_Entries WHERE invoice_id = $invoice_id";
     }
 
+    /**
+     * @param int $product_id
+     * @return string
+     */
+    public function getByProductId(int $product_id): string
+    {
+        return "SELECT * FROM Invoice_Entries WHERE product_id = $product_id";
+    }
+
 }

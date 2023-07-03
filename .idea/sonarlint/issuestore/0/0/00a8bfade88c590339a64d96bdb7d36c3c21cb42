@@ -1,0 +1,11 @@
+
+I	php:S1135"4Complete the task associated to this "TODO" comment.(¡ ê
+uphp:S115"\Rename this constant "Entity" to match the regular expression ^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$.(•éØŠşÿÿÿÿ
+]	php:S1779"PReplace all non line feed end of line characters in this file "index.php" by LF.
+X	php:S1793"<Replace this "else if" keyword sequence by "elseif" keyword.(ê«Çé8ÄƒÛ¶1
+]	php:S1793'"<Replace this "else if" keyword sequence by "elseif" keyword.(âı¤œüÿÿÿÿ8ÄƒÛ¶1
+3php:S1250"Remove this commented out code.(Ñµˆø
+2php:S125"Remove this commented out code.(æ¬ıi
+f	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(§í³
+k	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(¤›²×şÿÿÿÿ
+k	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(®¢Ëúÿÿÿÿ

@@ -48,13 +48,13 @@ class USER
         }
     }
 
-    public function registerUserDetails($userId, $firstName, $lastName, $nrc, $gender, $phone)
+    public function registerUserDetails($userEmail, $firstName, $lastName, $nrc, $gender, $phone)
     {
         try {
 
-            $stmt = $this->conn->prepare("INSERT INTO user_details(userId,firstName,lastName,nrc,gender,phone) 
-                                                VALUES(:userId, :firstName, :lastName, :nrc, :gender, :phone)");
-            $stmt->bindparam(":userId", $userId);
+            $stmt = $this->conn->prepare("INSERT INTO user_details(userEmail,firstName,lastName,nrc,gender,phone) 
+                                                VALUES(:userEmail, :firstName, :lastName, :nrc, :gender, :phone)");
+            $stmt->bindparam(":userEmail", $userEmail);
             $stmt->bindparam(":firstName", $firstName);
             $stmt->bindparam(":lastName", $lastName);
             $stmt->bindparam(":nrc", $nrc);
@@ -139,4 +139,34 @@ class USER
         $mail->MsgHTML($message);
         $mail->Send();
     }
+
+
+    public function get_user_Details($email): array
+    {
+        $userRow = array();
+        try {
+            $stmt = $this->conn->prepare("SELECT * FROM user_details WHERE userEmail=:email_id");
+            $stmt->execute(array(":email_id" => $email));
+            $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+        return $userRow;
+    }
+
+
+    public function get_user_Logins($email): array
+    {
+        $userRow = array();
+        try {
+            $stmt = $this->conn->prepare("SELECT * FROM tbl_users WHERE userEmail=:email_id");
+            $stmt->execute(array(":email_id" => $email));
+            $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+        return $userRow;
+    }
+
+
 }

@@ -46,7 +46,7 @@ class Utils
 // Use openssl_encrypt() function for encrypting the dat
 
 // Return the encrypted string
-        return openssl_encrypt($original_string, $ciphering_value, $encryption_key);
+        return openssl_encrypt($original_string, $ciphering_value, $encryption_key, 0,);
     }
 
     /**

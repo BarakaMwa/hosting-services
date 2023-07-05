@@ -29,44 +29,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $response["success"] = false;
         $response["status"] = "error";
-        $response["message"] = $msg;
-        echo json_encode($response, JSON_THROW_ON_ERROR);
-        exit();
+    } else if ($reg_user->register($username, $email, $password, $code)) {
+        $id = $reg_user->lasdID();
+        $key = base64_encode($id);
+        $id = $key;
+
+        $message = "     
+  Hello $username,
+  <br /><br />
+  Welcome to Infy Enterprise!<br/>
+  To complete your registration  please , just click following link<br/>
+  <br /><br />
+  <a href='https://www.infyenterprise.com/hosting-services/users/verify/index.php?id=$id&code=$code'>Click HERE to Activate :)</a>
+  <br/><br />
+  Thanks,";
+
+        $subject = "Confirm Registration";
+
+        $reg_user->send_mail($email, $message, $subject);
+
+        $msg = "Success! We've sent an email to $email. Please click on the confirmation link in the email to create your account.";
+        $response["success"] = true;
+        $response["status"] = "success";
+
     } else {
-        if ($reg_user->register($username, $email, $password, $code)) {
-            $id = $reg_user->lasdID();
-            $key = base64_encode($id);
-            $id = $key;
-
-            $message = "     
-      Hello $username,
-      <br /><br />
-      Welcome to Infy Enterprise!<br/>
-      To complete your registration  please , just click following link<br/>
-      <br /><br />
-      <a href='https://www.infyenterprise.com/hosting-services/users/verify/index.php?id=$id&code=$code'>Click HERE to Activate :)</a>
-      <br/><br />
-      Thanks,";
-
-            $subject = "Confirm Registration";
-
-            $reg_user->send_mail($email, $message, $subject);
-
-            $msg = "Success! We've sent an email to $email. Please click on the confirmation link in the email to create your account.";
-            $response["success"] = true;
-            $response["status"] = "success";
-            $response["message"] = $msg;
-            echo json_encode($response, JSON_THROW_ON_ERROR);
-            exit();
-
-        } else {
-            $msg = "sorry , Query could no execute...";
-            $response["success"] = false;
-            $response["status"] = "error";
-            $response["message"] = $msg;
-            echo json_encode($response, JSON_THROW_ON_ERROR);
-            exit();
-        }
+        $msg = "sorry , Query could no execute...";
+        $response["success"] = false;
+        $response["status"] = "error";
     }
+    $response["message"] = $msg;
+    echo json_encode($response, JSON_THROW_ON_ERROR);
+    exit();
 }
 ?>

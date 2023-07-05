@@ -1,0 +1,26 @@
+
+a	php:S1131B"@Remove the useless trailing whitespaces at the end of this line.(èö›úÿÿÿÿ8¯Ó·ê1
+\	php:S1131E"@Remove the useless trailing whitespaces at the end of this line.(¨‚Üà8¯Ó·ê1
+a	php:S1131F"@Remove the useless trailing whitespaces at the end of this line.(Ä€©Ôøÿÿÿÿ8¯Ó·ê1
+\	php:S1131["@Remove the useless trailing whitespaces at the end of this line.(à‡Ò…8¯Ó·ê1
+a	php:S1131\"@Remove the useless trailing whitespaces at the end of this line.(‰ÀÃÖşÿÿÿÿ8¯Ó·ê1
+\	php:S1131_"@Remove the useless trailing whitespaces at the end of this line.(´ıı8¯Ó·ê1
+€	php:S1808V"dEither split this list into multiple lines, aligned at column "8" or put all arguments on line "86".(ôşÚË8¯Ó·ê1
+f	php:S1808Y"EMove the closing parenthesis with the opening brace on the next line.(‡ÄÎÃÿÿÿÿÿ8°Ó·ê1
+rphp:S116"RRename this field "$entry_id" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ğ–îüúÿÿÿÿ8©ÆËé1
+ophp:S116"TRename this field "$invoice_id" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ô¢æç8ªÆËé1
+tphp:S116	"TRename this field "$product_id" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(¤ÑòÈûÿÿÿÿ8ªÆËé1
+uphp:S116"URename this field "$total_price" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(áß‘íÿÿÿÿÿ8ªÆËé1
+:php:S113"'Add a new line at the end of this file.8ªÆËé1
+vphp:S117#"VRename this parameter "$entry_id" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(¿Ç„šûÿÿÿÿ8°Ó·ê1
+vphp:S117,"VRename this parameter "$entry_id" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(¬¿À¡ÿÿÿÿÿ8°Ó·ê1
+vphp:S1177"VRename this parameter "$entry_id" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(Ú¿ƒØşÿÿÿÿ8°Ó·ê1
+uphp:S117V"ZRename this parameter "$invoice_blob" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ôşÚË8°Ó·ê1
+uphp:S117V"ZRename this parameter "$invoice_size" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ôşÚË8°Ó·ê1
+zphp:S117W"ZRename this parameter "$invoice_link" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(Á©È¶ÿÿÿÿÿ8°Ó·ê1
+zphp:S117W"ZRename this parameter "$invoice_type" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(Á©È¶ÿÿÿÿÿ8°Ó·ê1
+uphp:S117X"ZRename this parameter "$invoice_name" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(¸™Äæ8°Ó·ê1
+vphp:S117Y"VRename this parameter "$entry_id" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(‡ÄÎÃÿÿÿÿÿ8°Ó·ê1
+sphp:S117g"XRename this parameter "$invoice_id" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(‹‡Õú8°Ó·ê1
+xphp:S117p"XRename this parameter "$product_id" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ğü¿şÿÿÿÿÿ8›ÅËì1
+k	php:S1779"WReplace all non line feed end of line characters in this file "InvoiceEntry.php" by LF.8É“Ìì1

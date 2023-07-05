@@ -1,0 +1,11 @@
+
+U	php:S1131@"@Remove the useless trailing whitespaces at the end of this line.(¾æä­
+_php:S103A"KSplit this 144 characters long line (which is greater than 120 authorized).(ˆË§Á
+dphp:S103N"KSplit this 151 characters long line (which is greater than 120 authorized).(çÜó¹ùÿÿÿÿ
+ephp:S116"QRename this field "$user_id" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ÓÑèí
+mphp:S116"TRename this field "$product_id" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(¤ÑòÈûÿÿÿÿ
+jphp:S116
+"QRename this field "$cart_id" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(œ£ö÷úÿÿÿÿ
+nphp:S117!"URename this parameter "$cart_id" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(Ì¶·†ûÿÿÿÿ
+nphp:S117L"URename this parameter "$user_id" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(æ¢õûÿÿÿÿ
+c	php:S1779"OReplace all non line feed end of line characters in this file "Cart.php" by LF.8â‰ñÙ‘1

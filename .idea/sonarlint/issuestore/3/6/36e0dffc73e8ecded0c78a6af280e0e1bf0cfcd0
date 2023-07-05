@@ -1,0 +1,11 @@
+
+P	php:S1135"4Complete the task associated to this "TODO" comment.(¡ ê8ß«Èê1
+L	php:S1808?"0Remove all space before the closing parenthesis.(şÔÕÉ8ß«Èê1
+d	php:S1779"PReplace all non line feed end of line characters in this file "index.php" by LF.8ß«Èê1
+X	php:S1793"<Replace this "else if" keyword sequence by "elseif" keyword.(ê«Çé8ß«Èê1
+]	php:S1793-"<Replace this "else if" keyword sequence by "elseif" keyword.(âı¤œüÿÿÿÿ8ß«Èê1
+:php:S1259"Remove this commented out code.(Ñµˆø8ß«Èê1
+9php:S125"Remove this commented out code.(æ¬ıi8ß«Èê1
+m	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(§í³8ß«Èê1
+r	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(¤›²×şÿÿÿÿ8ß«Èê1
+r	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(®¢Ëúÿÿÿÿ8ß«Èê1

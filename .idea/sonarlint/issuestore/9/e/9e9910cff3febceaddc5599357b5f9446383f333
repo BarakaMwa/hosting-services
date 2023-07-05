@@ -1,0 +1,14 @@
+
+I	php:S1135"4Complete the task associated to this "TODO" comment.(¡ ê
+N	php:S1135'"4Complete the task associated to this "TODO" comment.(÷­Ìâùÿÿÿÿ
+k	php:S1808"JPut one space between the closing parenthesis and the opening curly brace.(¼ìáÚøÿÿÿÿ8ßÏÑì1
+e	php:S1808"DPut one space between this "if" keyword and the opening parenthesis.(¼ìáÚøÿÿÿÿ8ßÏÑì1
+pphp:S115"\Rename this constant "Entity" to match the regular expression ^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$.(¹™°
+}php:S115"bRename this constant "Entity_Entry" to match the regular expression ^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$.(Á³Î§8§ÖÕì1
+d	php:S1779"PReplace all non line feed end of line characters in this file "index.php" by LF.8åŠñÙ‘1
+3php:S125"Remove this commented out code.(àÂû
+:php:S125"Remove this commented out code.(ë‹ğù8ßÏÑì1
+3php:S125("Remove this commented out code.(Ñµˆø
+k	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(Áª­¼úÿÿÿÿ
+k	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(„‚¾üÿÿÿÿ
+k	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(ëÁèÛşÿÿÿÿ

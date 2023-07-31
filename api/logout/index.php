@@ -5,7 +5,7 @@ $user = new USER();
 
 if(!$user->is_logged_in())
 {
-    $user->redirect('../home-page/index.php');
+    $user->redirect('../home/index.php');
 }
 
 if($user->is_logged_in()!="")

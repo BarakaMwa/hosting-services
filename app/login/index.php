@@ -4,7 +4,7 @@ require_once '../class.user.php';
 $user_login = new USER();
 
 if ($user_login->is_logged_in() != "") {
-    $user_login->redirect('../home-page/index.php');
+    $user_login->redirect('../home/index.php');
 }
 
 if (isset($_POST['btn-login'])) {
@@ -12,7 +12,7 @@ if (isset($_POST['btn-login'])) {
     $upass = trim($_POST['txtupass']);
 
     if ($user_login->login($email, $upass)) {
-        $user_login->redirect('../home-page/index.php');
+        $user_login->redirect('../home/index.php');
     }
 }
 ?>

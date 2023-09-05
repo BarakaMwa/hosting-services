@@ -2,10 +2,10 @@
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
     <data-source source="LOCAL" name="MySQL for 5.1 - u818699652_test_db@infyenterprise.com" uuid="a084f0f4-6efc-4cd9-8701-7441f2bb2d83">
-      <driver-ref>mysql</driver-ref>
+      <driver-ref>mariadb</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://infyenterprise.com:3306/u818699652_test_db</jdbc-url>
+      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mariadb://infyenterprise.com:3306/u818699652_test_db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
     <data-source source="LOCAL" name="@localhost" uuid="a4848dd5-5e35-4045-b64d-8608a91610c4">

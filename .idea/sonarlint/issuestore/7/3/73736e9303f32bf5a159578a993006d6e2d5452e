@@ -1,8 +1,0 @@
-
-cWeb:DoctypePresenceCheck4":Insert a <!DOCTYPE> declaration to before this <html> tag.(œ÷Ãûÿÿÿÿ
-Z	Web:S52544"@Add "lang" and/or "xml:lang" attributes to this "<html>" element(œ÷Ãûÿÿÿÿ
-IWeb:PageWithoutTitleCheck4"Add a <title> tag to this page.(œ÷Ãûÿÿÿÿ
-;	php:S2003N"&Replace "require" with "require_once".(µœéò
-2php:S125m"Remove this commented out code.(ÏªøI
-a	php:S4833N"LReplace "require" with namespace import mechanism through the "use" keyword.(µœéò
-Pphp:S131y"7Add a "case default" clause to this "switch" statement.(‘‹‚Àıÿÿÿÿ

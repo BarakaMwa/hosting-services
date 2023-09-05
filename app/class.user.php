@@ -59,6 +59,7 @@ class USER
                 if ($userRow['userStatus'] == "Y") {
                     if ($userRow['userPass'] == md5($upass)) {
                         $_SESSION['userSession'] = $userRow['userID'];
+//                        $_SESSION['userType'] = $userRow['userID'];
                         return true;
                     } else {
                         header("Location: ../login/index.php?error");

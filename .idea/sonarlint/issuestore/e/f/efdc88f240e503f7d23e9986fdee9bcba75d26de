@@ -1,9 +1,0 @@
-
-R	php:S1142ô"<This method has 4 returns, which is more than the 3 allowed.(¹ŸƒÖ
-kphp:S116K"RRename this field "$do_debug" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ûþ™–þÿÿÿÿ
-ephp:S116u"RRename this field "$pop_conn" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ýäòL
-nphp:S117²"YRename this parameter "$debug_level" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(àÔÞŸ
-sphp:S117Ç"YRename this parameter "$debug_level" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(úó½Êýÿÿÿÿ
-yphp:S117Þ"_Rename this local variable "$login_result" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(Šú¬ªùÿÿÿÿ
-uphp:S117ž"`Rename this local variable "$pop3_response" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(Ë—¬‡
-uphp:S117Â"`Rename this local variable "$pop3_response" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(Ë—¬‡

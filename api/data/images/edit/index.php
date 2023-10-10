@@ -118,7 +118,7 @@ function updatingImageEdit(?PDO $db, File $file, array $response, Responses $res
 
 //        todo for testing
 
-        $sql = $file->updateFile((string)$result['file_blob'], (int)$result['file_size'],
+        $sql = $file->update((string)$result['file_blob'], (int)$result['file_size'],
             (string)$result['file_link'], (string)$result['file_type'],
             (string)$result['file_name'], (int)$result['active'],
             (int)$file_Id);

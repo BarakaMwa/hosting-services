@@ -106,7 +106,7 @@ function updatingCartDelete(?PDO $db, Cart $cart, array $response, Responses $re
 
         $result = checkIfPostValuesAreSetAndDeactivate($cart_Id, $db, $data);
 
-        $sql = $cart->updateCart((int)$result['user_id'], (int)$result['product_id'], (float)$result['quantity'], (int)$result['active'], (int)$cart_Id);
+        $sql = $cart->update((int)$result['user_id'], (int)$result['product_id'], (float)$result['quantity'], (int)$result['active'], (int)$cart_Id);
 
         $database = new Database();
         $database->runQuery($sql, $db);

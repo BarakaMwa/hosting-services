@@ -113,7 +113,7 @@ function updatingVendorDelete(?PDO $db, Vendor $vendor, array $response, Respons
 //        $vendor_Id = $vendor_id;
         $result = checkIfPostValuesAreSetAndDeactivate($vendor_Id, $db);
 
-        $sql = $vendor->updateVendor((int)$result['user_id'], (string)$result['vendor_name'], (string)$result['vendor_email'], (int)$result['active'], (int)$vendor_Id);
+        $sql = $vendor->update((int)$result['user_id'], (string)$result['vendor_name'], (string)$result['vendor_email'], (int)$result['active'], (int)$vendor_Id);
 
         $database = new Database();
         $database->runQuery($sql, $db);

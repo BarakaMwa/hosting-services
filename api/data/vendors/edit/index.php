@@ -100,7 +100,7 @@ function updatingVendorEdit(?PDO $db, Vendor $vendor, array $response, Responses
 
 //        todo for testing
 
-        $sql = $vendor->updateVendor((int)$result['user_id'], (string)$result['vendor_name'], (string)$result['vendor_email'], (int)$result['active'], $vendor_Id);
+        $sql = $vendor->update((int)$result['user_id'], (string)$result['vendor_name'], (string)$result['vendor_email'], (int)$result['active'], $vendor_Id);
 
         $database->runQuery($sql, $db);
 

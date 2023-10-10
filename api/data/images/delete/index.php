@@ -111,7 +111,7 @@ function updatingImageDelete(?PDO $db, File $file, array $response, Responses $r
 
         $result = checkIfPostValuesAreSetAndDeactivate($file_Id, $db, $data);
 
-        $sql = $file->updateFile((string)$result['file_blob'], (int)$result['file_size'],
+        $sql = $file->update((string)$result['file_blob'], (int)$result['file_size'],
             (string)$result['file_link'], (string)$result['file_type'],
             (string)$result['file_name'], (int)$result['active'], (int)$file_Id);
 

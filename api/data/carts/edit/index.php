@@ -93,7 +93,7 @@ function updatingCartEdit(?PDO $db, Cart $cart, array $response, Responses $resp
 
 //        todo for testing
 
-        $sql = $cart->updateCart((int)$result['user_id'], (int)$result['product_id'], (float)$result['quantity'], (int)$result['active'], (int)$cart_Id);
+        $sql = $cart->update((int)$result['user_id'], (int)$result['product_id'], (float)$result['quantity'], (int)$result['active'], (int)$cart_Id);
 
 
         $database->runQuery($sql, $db);

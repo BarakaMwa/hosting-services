@@ -54,7 +54,7 @@ function insertingFileEdit(?PDO $db, File $file, array $data, array $filesData):
 
     $result = checkIfPostValuesAreSetAndInsert($data, $filesData);
 
-    $sql = $file->insertNewFile($result);
+    $sql = $file->insertFile($result);
 
     $database->runQuery($sql, $db);
 

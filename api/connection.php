@@ -15,10 +15,10 @@ require_once 'errors/Responses.php';
 class Database
 {
 
-    private $host = "localhost:3399";
-    private $db_name = "hosted_services";
-    private $username = "root";
-    private $password = "rootmysql";
+    private $host = "infyenterprise.com";
+    private $db_name = "u818699652_test_db";
+    private $username = "u818699652_admin";
+    private $password = "bDPPQuJ1UoKfl3f9SzIvSXOT8uNRE0Vy";
     public $conn;
 
     public $vendor;

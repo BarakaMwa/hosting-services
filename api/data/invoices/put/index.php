@@ -48,7 +48,7 @@ function insertingCartEdit(?PDO $db, Cart $cart, array $data): array
 
     $result = checkIfPostValuesAreSetAndInsert($data);
 
-    $sql = $cart->insertNewCart($result);
+    $sql = $cart->insert($result);
 
     $database->runQuery($sql, $db);
 

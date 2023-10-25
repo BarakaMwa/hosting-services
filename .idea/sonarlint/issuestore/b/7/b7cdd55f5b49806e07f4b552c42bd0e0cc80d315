@@ -1,18 +1,0 @@
-
-I	php:S1135"4Complete the task associated to this "TODO" comment.(¡ ê
-I	php:S1135"4Complete the task associated to this "TODO" comment.(”ù¨
-O	php:S1135?"4Complete the task associated to this "TODO" comment.(Ÿ¢òH8öá“ì1
-U	php:S1135w"4Complete the task associated to this "TODO" comment.(÷­Ìâùÿÿÿÿ8öá“ì1
-kphp:S103X"KSplit this 160 characters long line (which is greater than 120 authorized).(»Šœøıÿÿÿÿ8öá“ì1
-fphp:S103m"KSplit this 153 characters long line (which is greater than 120 authorized).(·âà•8öá“ì1
-|php:S115"\Rename this constant "Entity" to match the regular expression ^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$.(‰Ã¬úúÿÿÿÿ8öá“ì1
-pphp:S1178"URename this parameter "$cart_Id" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(œ­¬Ä8öá“ì1
-uphp:S117I"ZRename this local variable "$user_id" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(¤º‹´8öá“ì1
-}php:S117N"]Rename this local variable "$product_id" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(êÖıµúÿÿÿÿ8öá“ì1
-zphp:S117i"ZRename this local variable "$cart_Id" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ü‹“İşÿÿÿÿ8öá“ì1
-d	php:S1779"PReplace all non line feed end of line characters in this file "index.php" by LF.8¨÷£ê1
-2php:S125"Remove this commented out code.(æ¬ıi
-:php:S125x"Remove this commented out code.(Ñµˆø8öá“ì1
-f	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(§í³
-k	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(¤›²×şÿÿÿÿ
-k	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(®¢Ëúÿÿÿÿ

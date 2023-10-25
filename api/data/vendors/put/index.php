@@ -48,7 +48,7 @@ function insertingVendorEdit(?PDO $db, Vendor $vendor, array $data): array
 
     $result = checkIfPostValuesAreSetAndInsert($data);
 
-    $sql = $vendor->insertNewVendor($result);
+    $sql = $vendor->insert($result);
 
     $database->runQuery($sql, $db);
 

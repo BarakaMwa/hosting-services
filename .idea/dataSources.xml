@@ -8,11 +8,18 @@
       <jdbc-url>jdbc:mariadb://infyenterprise.com:3306/u818699652_test_db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="@localhost" uuid="a4848dd5-5e35-4045-b64d-8608a91610c4">
+    <data-source source="LOCAL" name="@localhost:3309" uuid="89631978-6d41-415e-bde4-5a887ab775ae">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3399</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3309</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="test_db@localhost" uuid="924f9b68-ead9-4215-a653-7899ace05b34">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/test_db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

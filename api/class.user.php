@@ -10,6 +10,8 @@ require_once 'connection-local.php';
 class USER
 {
 
+    private const EMAIL_ID = ":email_id";
+    private const INFO_INFY_ENTERPRISE_COM = "info@infyenterprise.com";
     private $conn;
 
     public function __construct()
@@ -71,13 +73,13 @@ class USER
     {
         try {
             $stmt = $this->conn->prepare("SELECT * FROM tbl_users WHERE userEmail=:email_id");
-            $stmt->execute(array(":email_id" => $email));
+            $stmt->execute(array(self::EMAIL_ID => $email));
             $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($stmt->rowCount() == 1) {
                 if ($userRow['userStatus'] == "Y") {
                     if ($userRow['userPass'] == md5($upass)) {
-                        $_SESSION['userSession'] = $userRow['userID'];
+                        $_SESSION['userSessionId'] = $userRow['userID'];
                         return true;
                     } else {
 //                        header("Location: ../login/index.php?error");
@@ -99,7 +101,7 @@ class USER
 
     public function is_logged_in(): bool
     {
-        if (isset($_SESSION['userSession'])) {
+        if (isset($_SESSION['userSessionId'])) {
             return true;
         }
         return false;
@@ -113,7 +115,7 @@ class USER
     public function logout(): void
     {
         session_destroy();
-        $_SESSION['userSession'] = false;
+        $_SESSION['userSessionId'] = false;
     }
 
     public function send_mail($email, $message, $subject): void
@@ -131,10 +133,10 @@ class USER
         $mail->Host = "smtp.titan.email";
         $mail->Port = 465;
         $mail->AddAddress($email);
-        $mail->Username = "info@infyenterprise.com";
+        $mail->Username = self::INFO_INFY_ENTERPRISE_COM;
         $mail->Password = "2SU!cwD@j!3.hTX";
-        $mail->SetFrom('info@infyenterprise.com', 'Infy Enterprise');
-        $mail->AddReplyTo("info@infyenterprise.com", "Infy Enterprise");
+        $mail->SetFrom(self::INFO_INFY_ENTERPRISE_COM, 'Infy Enterprise');
+        $mail->AddReplyTo(self::INFO_INFY_ENTERPRISE_COM, "Infy Enterprise");
         $mail->Subject = $subject;
         $mail->MsgHTML($message);
         $mail->Send();
@@ -146,7 +148,7 @@ class USER
         $userRow = array();
         try {
             $stmt = $this->conn->prepare("SELECT * FROM user_details WHERE userEmail=:email_id");
-            $stmt->execute(array(":email_id" => $email));
+            $stmt->execute(array(self::EMAIL_ID => $email));
             $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $ex) {
             echo $ex->getMessage();
@@ -160,7 +162,7 @@ class USER
         $userRow = array();
         try {
             $stmt = $this->conn->prepare("SELECT * FROM tbl_users WHERE userEmail=:email_id");
-            $stmt->execute(array(":email_id" => $email));
+            $stmt->execute(array(self::EMAIL_ID => $email));
             $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $ex) {
             echo $ex->getMessage();

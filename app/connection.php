@@ -6,7 +6,7 @@ class Database
     private $host = "infyenterprise.com";
     private $db_name = "u818699652_test_db";
     private $username = "u818699652_admin";
-    private $password = "c23:aoE21rI+";
+    private $password = "bDPPQuJ1UoKfl3f9SzIvSXOT8uNRE0Vy";
     public $conn;
 
     public function dbConnection(): ?PDO

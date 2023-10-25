@@ -1,5 +1,4 @@
-
-<li class="nav-item dropdown noti-dropdown">
+<!--<li class="nav-item dropdown noti-dropdown">
     <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
         <i class="far fa-bell"></i> <span class="badge badge-pill"></span>
     </a>
@@ -135,15 +134,16 @@
             <a href="admin-notification.html">View all Notifications</a>
         </div>
     </div>
-</li>
+</li>-->
+
 <li class="nav-item dropdown">
     <a href="javascript:void(0)" class="dropdown-toggle user-link  nav-link" data-bs-toggle="dropdown">
 <span class="user-img">
-<img class="rounded-circle" src="assets/img/user.jpg" width="40" alt="Admin">
+<img class="rounded-circle" src="assets/img/8380015.jpg" width="40" alt="Admin">
 </span>
     </a>
     <div class="dropdown-menu dropdown-menu-right">
-        <a class="dropdown-item" href="admin-profile.html">Profile</a>
-        <a class="dropdown-item" href="login.html">Logout</a>
+        <a class="dropdown-item" href="./profile.php">Profile</a>
+        <a class="dropdown-item" href="../logout/">Logout</a>
     </div>
 </li>

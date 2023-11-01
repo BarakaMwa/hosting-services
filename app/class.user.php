@@ -4,8 +4,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
-//require_once 'connection.php';
-require_once 'connection-local.php';
+require_once 'connection.php';
+//require_once 'connection-local.php';
 
 class USER
 {
@@ -58,7 +58,7 @@ class USER
             if ($stmt->rowCount() == 1) {
                 if ($userRow['userStatus'] == "Y") {
                     if ($userRow['userPass'] == md5($upass)) {
-                        $_SESSION['userSession'] = $userRow['userID'];
+                        $_SESSION['userSessionId'] = $userRow['userID'];
 //                        $_SESSION['userType'] = $userRow['userID'];
                         return true;
                     } else {
@@ -81,7 +81,7 @@ class USER
 
     public function is_logged_in()
     {
-        if (isset($_SESSION['userSession'])) {
+        if (isset($_SESSION['userSessionId'])) {
             return true;
         }
     }
@@ -94,7 +94,7 @@ class USER
     public function logout()
     {
         session_destroy();
-        $_SESSION['userSession'] = false;
+        $_SESSION['userSessionId'] = false;
     }
 
     function send_mail($email, $message, $subject)

@@ -3,7 +3,7 @@
 class Database
 {
 
-    private $host = "localhost:3399";
+    private $host = "localhost:3306";
     private $db_name = "hosted_services";
     private $username = "root";
     private $password = "rootmysql";

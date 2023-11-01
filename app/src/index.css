@@ -1,0 +1,40 @@
+.container{
+    margin-left: 20px;
+    text-align: left;
+    color: deeppink;
+    font-weight: bolder;
+    font-size: 48px;
+}
+.intro{
+    margin-left: 20px;
+    text-align: left;
+    font-weight: bolder;
+    font-size: 24px;
+}
+.counter{
+    margin-left: 20px;
+    text-align: left;
+    color: blue;
+    font-weight: bolder;
+    font-size: 24px;
+}
+
+.button-add{
+    margin-left: 20px;
+    color: white;
+    font-weight: bold;
+    background-color: darkgreen;
+    padding: 5px 20px;
+    border: darkgreen 1px solid;
+    border-radius: 10px;
+}
+
+.button-minus{
+    margin-left: 20px;
+    color: white;
+    font-weight: bold;
+    background-color: darkred;
+    padding: 5px 20px;
+    border: darkred 1px solid;
+    border-radius: 10px;
+}

@@ -3,8 +3,8 @@
 const Entity = "File";
 require_once '../../../headers-api.php';
 session_start();
-//require_once '../../../connection.php';
-require_once '../../../connection-local.php';
+require_once '../../../connection.php';
+//require_once '../../../connection-local.php';
 require_once '../../../errors/Responses.php';
 
 $response = array();

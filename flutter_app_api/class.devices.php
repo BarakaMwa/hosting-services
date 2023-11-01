@@ -1,6 +1,7 @@
 <?php
 
-require_once 'connection-local.php';
+//require_once 'connection-local.php';
+require_once 'connection.php';
 
 class Devices
 {

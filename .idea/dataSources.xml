@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="MySQL for 5.1 - u818699652_test_db@infyenterprise.com" uuid="a084f0f4-6efc-4cd9-8701-7441f2bb2d83">
+    <data-source source="LOCAL" name="u818699652_test_db@infyenterprise.com" uuid="a084f0f4-6efc-4cd9-8701-7441f2bb2d83">
       <driver-ref>mariadb</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
@@ -20,6 +20,20 @@
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/test_db</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="infyenterprise.com" uuid="c94fdf5e-634e-4dd9-aeb5-9d2510dbc3fa">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://infyenterprise.com</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="u818699652_online_store@infyenterprise.com" uuid="5082e474-0420-463d-b594-6588a4126094">
+      <driver-ref>mariadb</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mariadb://infyenterprise.com/u818699652_online_store</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

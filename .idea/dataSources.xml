@@ -5,7 +5,7 @@
       <driver-ref>mariadb</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mariadb://infyenterprise.com:3306/u818699652_test_db</jdbc-url>
+      <jdbc-url>jdbc:mariadb://infyenterprise.com/u818699652_test_db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
     <data-source source="LOCAL" name="@localhost:3309" uuid="89631978-6d41-415e-bde4-5a887ab775ae">
@@ -22,18 +22,18 @@
       <jdbc-url>jdbc:mysql://localhost:3306/test_db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="infyenterprise.com" uuid="c94fdf5e-634e-4dd9-aeb5-9d2510dbc3fa">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://infyenterprise.com</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
     <data-source source="LOCAL" name="u818699652_online_store@infyenterprise.com" uuid="5082e474-0420-463d-b594-6588a4126094">
       <driver-ref>mariadb</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mariadb://infyenterprise.com/u818699652_online_store</jdbc-url>
+      <jdbc-url>jdbc:mariadb://infyenterprise.com:3306/u818699652_online_store</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="u818699652_my_store@u818699652_my_store" uuid="c95b6e8a-7aee-412a-ad35-77fbfcc2e693">
+      <driver-ref>mariadb</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mariadb://infyenterprise.com:3306/u818699652_my_store</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

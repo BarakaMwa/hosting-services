@@ -15,7 +15,7 @@ require_once 'errors/Responses.php';
 class Database
 {
 
-    private $host = "u818699652_test_db";
+    private $host = "infyenterprise.com";
     private $db_name = "u818699652_test_db";
     private $username = "u818699652_test_db";
     private $password = "bDPPQuJ1UoKfl3f9SzIvSXOT8uNRE0Vy";

@@ -15,19 +15,19 @@ $stmt = $user_home->runQuery("SELECT COUNT(userID) as Total FROM tbl_users");
 $stmt->execute();
 $user_count = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$stmt = $user_home->runQuery("SELECT COUNT(product_id) as Total FROM products");
+$stmt = $user_home->runQuery("SELECT COUNT(product_id) as Total FROM Products");
 $stmt->execute();
 $product_count = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$stmt = $user_home->runQuery("SELECT COUNT(invoice_id) as Total FROM invoices");
+$stmt = $user_home->runQuery("SELECT COUNT(invoice_id) as Total FROM Invoices");
 $stmt->execute();
 $invoice_count = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$stmt = $user_home->runQuery("SELECT SUM(amount) as Total FROM payments");
+$stmt = $user_home->runQuery("SELECT SUM(amount) as Total FROM Payments");
 $stmt->execute();
 $total_payments = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$stmt = $user_home->runQuery("SELECT SUM(amount) as Total FROM payments");
+$stmt = $user_home->runQuery("SELECT SUM(amount) as Total FROM Payments");
 $stmt->execute();
 $total_payments = $stmt->fetch(PDO::FETCH_ASSOC);
 

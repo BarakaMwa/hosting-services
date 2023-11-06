@@ -28,8 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $userDetails = $user_login->get_user_Details($email);
         $userLogins = $user_login->get_user_Logins($email);
-        $userDevices = $devices->getAllDevicesByUserId((int)$userLogins['userID']);
-        $userTopDevices = $devices->getTopFiveDevicesByUserId((int)$userLogins['userID']);
+//        $userDevices = $devices->getAllDevicesByUserId((int)$userLogins['userID']);
+//        $userTopDevices = $devices->getTopFiveDevicesByUserId((int)$userLogins['userID']);
 
         $response["success"] = true;
         $response["status"] = "success";
@@ -38,8 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $response["userId"] = $userLogins['userID'];
         $response["userDetails"] = $userDetails;
         $response["userLogins"] = $userLogins;
-        $response["userDevices"] = $userDevices;
-        $response["userTopDevices"] = $userTopDevices;
+//        $response["userDevices"] = $userDevices;
+//        $response["userTopDevices"] = $userTopDevices;
         echo json_encode($response, JSON_THROW_ON_ERROR);
         exit();
 //        $user_login->redirect('../home/index.php');

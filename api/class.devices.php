@@ -50,7 +50,7 @@ class Devices
     {
         $data = array();
         try {
-            $stmt = $this->conn->prepare("SELECT * FROM Devices WHERE device_id=:device_id");
+            $stmt = $this->conn->prepare("SELECT * FROM Devices WHERE DeviceID=:device_id");
             $stmt->execute(array(":device_id" => $Id));
             $data = $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $ex) {

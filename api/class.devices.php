@@ -33,7 +33,7 @@ class Devices
     {
         $data = array();
         try {
-            $stmt = $this->conn->query("SELECT * FROM devices");
+            $stmt = $this->conn->query("SELECT * FROM Devices");
             $data = $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $ex) {
             echo $ex->getMessage();
@@ -50,8 +50,8 @@ class Devices
     {
         $data = array();
         try {
-            $stmt = $this->conn->prepare("SELECT * FROM devices WHERE device_id=:device_id");
-            $stmt->execute(array(":device_id" => $Id));
+            $stmt = $this->conn->prepare("SELECT * FROM Devices WHERE DeviceID=:DeviceId");
+            $stmt->execute(array(":DeviceId" => $Id));
             $data = $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $ex) {
             echo $ex->getMessage();
@@ -67,8 +67,8 @@ class Devices
     {
         $data = array();
         try {
-            $stmt = $this->conn->prepare("SELECT * FROM devices WHERE user_id=:user_id");
-            $stmt->execute(array(":user_id" => $Id));
+            $stmt = $this->conn->prepare("SELECT * FROM Devices WHERE userId=:UserId");
+            $stmt->execute(array(":UserId" => $Id));
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $data = $stmt->fetchAll();
         } catch (PDOException $ex) {
@@ -87,11 +87,11 @@ class Devices
         try {
             $stmt = $this->conn->prepare("SELECT *
                                                     FROM Devices
-                                                    WHERE user_id IS NOT NULL and user_id=:user_id
-                                                    ORDER BY device_id DESC
+                                                    WHERE UserId IS NOT NULL and UserId=:UserId
+                                                    ORDER BY DeviceId DESC
                                                     LIMIT 5;
                                             ");
-            $stmt->execute(array(":user_id" => $Id));
+            $stmt->execute(array(":UserId" => $Id));
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $data = $stmt->fetchAll();
         } catch (PDOException $ex) {

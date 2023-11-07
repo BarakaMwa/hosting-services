@@ -79,6 +79,24 @@ class Devices
 
     /**
      * @param int $Id
+     * @return int
+     */
+    public function getTotalByUserId(int $Id): int
+    {
+        $data = array();
+        try {
+            $stmt = $this->conn->prepare("SELECT * FROM Devices WHERE userId=:UserId");
+            $stmt->execute(array(":UserId" => $Id));
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $data = $stmt->fetchAll();
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+        return count($data);
+    }
+
+    /**
+     * @param int $Id
      * @param int $Size
      * @return array
      */

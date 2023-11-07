@@ -31,8 +31,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $userDetails = $user_login->getUserDetailsByEmail($email);
         $userLogins = $user_login->getUserLogins($email);
         $userDevices = $devices->getAllByUserId((int)$userLogins['userID']);
+        $userDevicesSize = $devices->getTotalByUserId((int)$userLogins['userID']);
         $userTopDevices = $devices->getTopByUserId((int)$userLogins['userID'],5);
-        $userTrustees = $trustees->getByUserId((int)$userLogins['userID']);
+        $userTrustees = $trustees->getAllByUserId((int)$userLogins['userID']);
+        $userTrusteesSize = $trustees->getAllByUserId((int)$userLogins['userID']);
         $userTopTrustees = $trustees->getTopByUserId((int)$userLogins['userID'],5);
 
         $response["success"] = true;
@@ -43,8 +45,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $response["userDetails"] = $userDetails;
         $response["userLogins"] = $userLogins;
         $response["userDevices"] = $userDevices;
+        $response["userDevicesSize"] = $userDevicesSize;
         $response["userTopDevices"] = $userTopDevices;
         $response["userTrustees"] = $userTrustees;
+        $response["userTrusteesSize"] = $userTrusteesSize;
         $response["userTopTrustees"] = $userTopTrustees;
         echo json_encode($response, JSON_THROW_ON_ERROR);
         exit();

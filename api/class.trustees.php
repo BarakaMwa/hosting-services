@@ -57,7 +57,7 @@ class Trustees
      * @param int $Id
      * @return array
      */
-    public function getByUserId(int $Id): array
+    public function getAllByUserId(int $Id): array
     {
         $data = array();
         try {
@@ -68,6 +68,24 @@ class Trustees
             echo $ex->getMessage();
         }
         return $data;
+    }
+
+
+    /**
+     * @param int $Id
+     * @return int
+     */
+    public function getTotalByUserId(int $Id): int
+    {
+        $data = array();
+        try {
+            $stmt = $this->conn->prepare("SELECT * FROM Trustees WHERE userId=:userId");
+            $stmt->execute(array(":userId" => $Id));
+            $data = $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+        return count($data);
     }
 
 

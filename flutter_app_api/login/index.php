@@ -26,9 +26,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($user_login->login($email, $password)) {
 
-        $userDetails = $user_login->get_user_Details($email);
-        $userLogins = $user_login->get_user_Logins($email);
-        $userDevices = $devices->getAllDevicesByUserId((int)$userLogins['userID']);
+        $userDetails = $user_login->getUserDetailsByEmail($email);
+        $userLogins = $user_login->getUserLogins($email);
+        $userDevices = $devices->getAllByUserId((int)$userLogins['userID']);
         $userTopDevices = $devices->getTopFiveDevicesByUserId((int)$userLogins['userID']);
 
         $response["success"] = true;

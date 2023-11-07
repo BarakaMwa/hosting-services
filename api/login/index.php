@@ -5,11 +5,13 @@ session_start();
 require_once '../class.user.php';
 require_once '../constants/Utils.php';
 require_once '../class.devices.php';
+require_once '../class.trustees.php';
 $user_login = new USER();
 $response = array();
 $status = false;
 $utils = new Utils();
 $devices = new Devices();
+$trustees = new Trustees();
 
 if ($user_login->is_logged_in() != "") {
     $response['status'] = "success";
@@ -26,10 +28,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($user_login->login($email, $password)) {
 
-        $userDetails = $user_login->get_user_Details($email);
-        $userLogins = $user_login->get_user_Logins($email);
-//        $userDevices = $devices->getAllDevicesByUserId((int)$userLogins['userID']);
-//        $userTopDevices = $devices->getTopFiveDevicesByUserId((int)$userLogins['userID']);
+        $userDetails = $user_login->getUserDetailsByEmail($email);
+        $userLogins = $user_login->getUserLogins($email);
+        $userDevices = $devices->getAllByUserId((int)$userLogins['userID']);
+        $userTopDevices = $devices->getTopByUserId((int)$userLogins['userID'],5);
+        $userTrustees = $trustees->getByUserId((int)$userLogins['userID']);
+        $userTopTrustees = $trustees->getTopByUserId((int)$userLogins['userID'],5);
 
         $response["success"] = true;
         $response["status"] = "success";
@@ -38,8 +42,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $response["userId"] = $userLogins['userID'];
         $response["userDetails"] = $userDetails;
         $response["userLogins"] = $userLogins;
-//        $response["userDevices"] = $userDevices;
-//        $response["userTopDevices"] = $userTopDevices;
+        $response["userDevices"] = $userDevices;
+        $response["userTopDevices"] = $userTopDevices;
+        $response["userTrustees"] = $userTrustees;
+        $response["userTopTrustees"] = $userTopTrustees;
         echo json_encode($response, JSON_THROW_ON_ERROR);
         exit();
 //        $user_login->redirect('../home/index.php');

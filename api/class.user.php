@@ -143,7 +143,7 @@ class USER
     }
 
 
-    public function get_user_Details($email): array
+    public function getUserDetailsByEmail(string $email): array
     {
         $userRow = array();
         try {
@@ -157,7 +157,7 @@ class USER
     }
 
 
-    public function get_user_Logins($email): array
+    public function getUserLogins(string $email): array
     {
         $userRow = array();
         try {

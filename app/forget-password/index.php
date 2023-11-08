@@ -4,7 +4,7 @@ require_once '../class.user.php';
 $user = new User();
 
 if ($user->is_logged_in() != "") {
-    $user->redirect('../home/index.php');
+    $user->redirect('../home-page/index.php');
 }
 
 if (isset($_POST['btn-submit'])) {

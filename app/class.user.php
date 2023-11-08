@@ -7,7 +7,7 @@ use PHPMailer\PHPMailer\SMTP;
 require_once 'connection.php';
 //require_once 'connection-local.php';
 
-class USER
+class User
 {
 
     private $conn;

@@ -8,8 +8,6 @@ require_once 'data/Payment.php';
 require_once 'data/QrCode.php';
 require_once 'data/File.php';
 require_once 'errors/Responses.php';
-//$vendor = new Vendor();
-//$responses = new Responses();
 
 class Database
 {

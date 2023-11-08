@@ -5,7 +5,7 @@ class InvoiceEntry
 
 
     public $entry_id;
-    public $invoice_id;
+    public $invoiceId;
     public $product_id;
     public $quantity;
     public $price;
@@ -97,12 +97,12 @@ SET
     }
 
     /**
-     * @param int $invoice_id
+     * @param int $invoiceId
      * @return string
      */
-    public function getByInvoiceId(int $invoice_id): string
+    public function getByInvoiceId(int $invoiceId): string
     {
-        return "SELECT * FROM Invoice_Entries WHERE invoice_id = $invoice_id";
+        return "SELECT * FROM Invoice_Entries WHERE invoiceId = $invoiceId";
     }
 
     /**

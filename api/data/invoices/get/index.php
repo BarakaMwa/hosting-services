@@ -20,34 +20,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
     $invoice = $database -> invoice;
     $invoice_entries = $database -> invoice_entries;
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $invoice_id = 0;
+    $invoiceId = 0;
     $data= array();
 
     try {
         if (isset($_POST['id']) && !empty($_POST['id'])) {
-            $invoice_id = $_POST['id'];
+            $invoiceId = $_POST['id'];
         } else if (isset($_GET['id']) && !empty($_GET['id'])) {
-            $invoice_id = $_GET['id'];
+            $invoiceId = $_GET['id'];
         } else {
             $responses->errorInvalidRequest($response);
         }
 
-        $sql_invoice = $invoice->getById($invoice_id);
-        $sql_entries = $invoice_entries->getByInvoiceId($invoice_id);
+        $sql_invoice = $invoice->getById($invoiceId);
+        $sql_entries = $invoice_entries->getByInvoiceId($invoiceId);
 
         if (isset($_POST["active"]) && !empty($_POST["active"])) {
 
             (int)$active = $_POST["active"];
 
-            $sql_invoice = $invoice->getByIdAndActive($active, $invoice_id);
-            $sql_entries = $invoice_entries->getByInvoiceId($invoice_id);
+            $sql_invoice = $invoice->getByIdAndActive($active, $invoiceId);
+            $sql_entries = $invoice_entries->getByInvoiceId($invoiceId);
 
         } else if (isset($_GET["active"]) && !empty($_GET["active"])) {
 
             (int)$active = $_GET["active"];
 
-            $sql_invoice = $invoice->getByIdAndActive($active, $invoice_id);
-            $sql_entries = $invoice_entries->getByInvoiceId($invoice_id);
+            $sql_invoice = $invoice->getByIdAndActive($active, $invoiceId);
+            $sql_entries = $invoice_entries->getByInvoiceId($invoiceId);
 
         }
 
@@ -55,8 +55,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
         $result['entries'] = $database->runSelectAllQuery($sql_entries, $db);
 
         /* foreach ($result as $row) {
-             $encrypted = encrypt($row['invoice_id'],$ciphering,$encryption_iv,$options);
-             $row["invoice_id"] = $encrypted;
+             $encrypted = encrypt($row['invoiceId'],$ciphering,$encryption_iv,$options);
+             $row["invoiceId"] = $encrypted;
              $row["0"] = $encrypted;
          }*/
 

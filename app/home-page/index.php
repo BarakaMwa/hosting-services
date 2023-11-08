@@ -7,19 +7,19 @@ if (!$user_home->is_logged_in()) {
     $user_home->redirect('../logout/index.php');
 }
 
-$stmt = $user_home->runQuery("SELECT * FROM Users WHERE userID=:uid");
+$stmt = $user_home->runQuery("SELECT * FROM Users WHERE userId=:uid");
 $stmt->execute(array(":uid" => $_SESSION['userSessionId']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$stmt = $user_home->runQuery("SELECT COUNT(userID) as Total FROM Users");
+$stmt = $user_home->runQuery("SELECT COUNT(userId) as Total FROM Users");
 $stmt->execute();
 $user_count = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$stmt = $user_home->runQuery("SELECT COUNT(product_id) as Total FROM Products");
+$stmt = $user_home->runQuery("SELECT COUNT(productId) as Total FROM Products");
 $stmt->execute();
 $product_count = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$stmt = $user_home->runQuery("SELECT COUNT(invoice_id) as Total FROM Invoices");
+$stmt = $user_home->runQuery("SELECT COUNT(invoiceId) as Total FROM Invoices");
 $stmt->execute();
 $invoice_count = $stmt->fetch(PDO::FETCH_ASSOC);
 

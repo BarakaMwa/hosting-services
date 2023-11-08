@@ -15,7 +15,7 @@ if ($user_login->is_logged_in() != "") {
     $response['status'] = "success";
     $response['success'] = true;
     $response['message'] = "Logged In";
-//    $user_login->redirect('../home/index.php');
+
     echo json_encode($response, JSON_THROW_ON_ERROR);
     exit();
 }
@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $response["userTopDevices"] = $userTopDevices;
         echo json_encode($response, JSON_THROW_ON_ERROR);
         exit();
-//        $user_login->redirect('../home/index.php');
+
     }
 
     $response["success"] = false;

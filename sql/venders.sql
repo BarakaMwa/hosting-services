@@ -29,7 +29,7 @@ create TABLE Payments (
 );
 
 create TABLE Invoices (
-  invoice_id INT PRIMARY KEY,
+  invoiceId INT PRIMARY KEY,
   vendor_id INT,
   invoice_date DATE,
   total_amount DECIMAL(10, 2),
@@ -102,7 +102,7 @@ values
   (5, 5, 90.00, '2023-06-05');
 
 -- Sample data for Invoices
-insert into Invoices (invoice_id, vendor_id, invoice_date, total_amount)
+insert into Invoices (invoiceId, vendor_id, invoice_date, total_amount)
 values
   (1, 1, '2023-06-01', 150.00),
   (2, 2, '2023-06-02', 200.00),

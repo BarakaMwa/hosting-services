@@ -8,7 +8,7 @@ if ($reg_user->is_logged_in() != "") {
     $response['status'] = "success";
     $response['success'] = true;
     $response['message'] = "Logged In";
-//    $user_login->redirect('../home/index.php');
+
     echo json_encode($response, JSON_THROW_ON_ERROR);
     exit();
 }

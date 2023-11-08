@@ -6,6 +6,8 @@ require_once 'data/Cart.php';
 require_once 'data/Product.php';
 require_once 'data/Invoice.php';
 require_once 'data/Payment.php';
+require_once 'data/Devices.php';
+require_once 'data/Trustees.php';
 require_once 'data/QrCode.php';
 require_once 'data/File.php';
 require_once 'errors/Responses.php';
@@ -25,6 +27,8 @@ class Database
     public $cart;
     public $product;
     public $invoice;
+    public $devices;
+    public $trustees;
     public $payment;
     public $qrCode;
     public $file;
@@ -40,6 +44,8 @@ class Database
         $this->product = new Product();
         $this->invoice = new Invoice();
         $this->payment = new Payment();
+        $this->trustees = new Trustees();
+        $this->devices = new Devices();
         $this->file = new File();
         $this->cart = new Cart();
         $this->responses = new Responses();

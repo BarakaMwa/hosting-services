@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $userDevicesSize = $devices->getTotalByUserId((int)$userLogins['userID']);
         $userTopDevices = $devices->getTopByUserId((int)$userLogins['userID'],5);
         $userTrustees = $trustees->getAllByUserId((int)$userLogins['userID']);
-        $userTrusteesSize = $trustees->getAllByUserId((int)$userLogins['userID']);
+        $userTrusteesSize = $trustees->getTotalByUserId((int)$userLogins['userID']);
         $userTopTrustees = $trustees->getTopByUserId((int)$userLogins['userID'],5);
 
         $response["success"] = true;

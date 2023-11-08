@@ -16,6 +16,9 @@ class Devices
     public $PurchaseDate;
     public $Price;
     public $Location;
+    public $UserId;
+    public $DateCreated;
+    public $Status;
 
     /**
      * @return string

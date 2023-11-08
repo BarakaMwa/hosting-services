@@ -11,7 +11,7 @@ require_once '../../../errors/Responses.php';
 $response = array();
 $status = false;
 $responses = new Responses();
-const Entity = "Vendor";
+const Entity = "Vendors";
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -37,12 +37,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 /**
  * @param PDO|null $db
- * @param Vendor $vendor
+ * @param Vendors $vendor
  * @param array $data
  * @return array
  * @throws JsonException
  */
-function insertingVendorEdit(?PDO $db, Vendor $vendor, array $data): array
+function insertingVendorEdit(?PDO $db, Vendors $vendor, array $data): array
 {
     $database = new Database();
 
@@ -94,7 +94,7 @@ function checkPostInputs(string $vendor_name, Utils $utils, Responses $responses
 //        check if valid string $vendor_name
         $vendor_name = $utils->cleanString($vendor_name);
     } else {
-        $responses->warningInput('Vendor Name is required');
+        $responses->warningInput('Vendors Name is required');
     }
 
     if (isset($_POST['active']) && !empty($_POST['active'])) {
@@ -107,7 +107,7 @@ function checkPostInputs(string $vendor_name, Utils $utils, Responses $responses
 //        class if email address
         $vendor_email = $utils->cleanString($vendor_email);
     } else {
-        $responses->warningInput('Vendor Email is required');
+        $responses->warningInput('Vendors Email is required');
     }
 
     if (isset($_POST['user_id']) && !empty($_POST['user_id'])) {

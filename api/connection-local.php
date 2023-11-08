@@ -1,16 +1,16 @@
 <?php
 
 
-require_once 'data/Vendor.php';
-require_once 'data/Cart.php';
-require_once 'data/Product.php';
-require_once 'data/Invoice.php';
-require_once 'data/InvoiceEntry.php';
-require_once 'data/Payment.php';
-require_once 'data/QrCode.php';
-require_once 'data/File.php';
+require_once 'data/Vendors.php';
+require_once 'data/Carts.php';
+require_once 'data/Products.php';
+require_once 'data/Invoices.php';
+require_once 'data/InvoiceEntries.php';
+require_once 'data/Payments.php';
+require_once 'data/QrCodes.php';
+require_once 'data/Files.php';
 require_once 'errors/Responses.php';
-//$vendor = new Vendor();
+//$vendor = new Vendors();
 //$responses = new Responses();
 
 class Database
@@ -37,14 +37,14 @@ class Database
      */
     public function __construct()
     {
-        $this->vendor = new Vendor();
-        $this->qrCode = new QrCode();
-        $this->product = new Product();
-        $this->invoice = new Invoice();
-        $this->invoice_entries = new InvoiceEntry();
-        $this->payment = new Payment();
-        $this->file = new File();
-        $this->cart = new Cart();
+        $this->vendor = new Vendors();
+        $this->qrCode = new QrCodes();
+        $this->product = new Products();
+        $this->invoice = new Invoices();
+        $this->invoice_entries = new InvoiceEntries();
+        $this->payment = new Payments();
+        $this->file = new Files();
+        $this->cart = new Carts();
         $this->responses = new Responses();
     }
 

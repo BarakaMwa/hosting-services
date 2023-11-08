@@ -1,6 +1,6 @@
 <?php
 
-class File
+class Files
 {
 
     public $file_id = 0;

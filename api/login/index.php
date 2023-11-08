@@ -4,6 +4,8 @@ require_once '../headers-api.php';
 session_start();
 require_once '../class.user.php';
 require_once '../constants/Utils.php';
+//require_once '../../api/data/Devices.php';
+//require_once '../../api/data/Trustees.php';
 require_once '../class.devices.php';
 require_once '../class.trustees.php';
 $user_login = new USER();

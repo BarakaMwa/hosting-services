@@ -1,6 +1,6 @@
 <?php
 //todo validation
-const Entity = "File";
+const Entity = "Files";
 require_once '../../../headers-api.php';
 session_start();
 require_once '../../../connection.php';
@@ -100,14 +100,14 @@ function checkIfPostValuesAreSetAndEdit(int $file_Id, ?PDO $db, array $data): ar
 
 /**
  * @param PDO|null $db
- * @param File $file
+ * @param Files $file
  * @param array $response
  * @param Responses $responses
  * @param array $data
  * @return void
  * @throws JsonException
  */
-function updatingImageEdit(?PDO $db, File $file, array $response, Responses $responses, array $data): void
+function updatingImageEdit(?PDO $db, Files $file, array $response, Responses $responses, array $data): void
 {
     $database = new Database();
     $result = array();

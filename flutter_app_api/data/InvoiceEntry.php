@@ -16,7 +16,7 @@ class InvoiceEntry
      */
     final public function getGetAll(): string
     {
-        return "SELECT * FROM Invoice_Entries";
+        return "SELECT * FROM InvoiceEntries";
     }
 
     /**
@@ -25,7 +25,7 @@ class InvoiceEntry
      */
     final public function getAllByActive(int $active): string
     {
-        return "SELECT * FROM Invoice_Entries WHERE active = $active";
+        return "SELECT * FROM InvoiceEntries WHERE active = $active";
     }
 
     /**
@@ -34,7 +34,7 @@ class InvoiceEntry
      */
     final public function getById(int $entry_id): string
     {
-        return "SELECT * FROM Invoice_Entries WHERE entry_id = $entry_id";
+        return "SELECT * FROM InvoiceEntries WHERE entry_id = $entry_id";
     }
 
     /**
@@ -43,7 +43,7 @@ class InvoiceEntry
      */
     final public function deleteById(int $entry_id): string
     {
-        return "DELETE FROM Invoice_Entries WHERE entry_id = $entry_id";
+        return "DELETE FROM InvoiceEntries WHERE entry_id = $entry_id";
     }
 
 
@@ -54,7 +54,7 @@ class InvoiceEntry
      */
     final public function getByIdAndActive(int $active, int $entry_id): string
     {
-        return "SELECT * FROM Invoice_Entries WHERE active = $active and entry_id = $entry_id";
+        return "SELECT * FROM InvoiceEntries WHERE active = $active and entry_id = $entry_id";
     }
 
     /**
@@ -63,7 +63,7 @@ class InvoiceEntry
      */
     final public function insertInvoiceEntry(array $result): string
     {
-        return "INSERT INTO Invoice_Entries (vendor_id, product_id, 
+        return "INSERT INTO InvoiceEntries (vendor_id, product_id, 
                    invoice_blob, active,
                    invoice_size, invoice_link,
                    invoice_name,invoice_type) 
@@ -88,7 +88,7 @@ class InvoiceEntry
                                  string $invoice_name, int $active,
                                  int    $entry_id): string
     {
-        return "UPDATE Invoice_Entries 
+        return "UPDATE InvoiceEntries 
 SET 
     invoice_blob='" . $invoice_blob . "', invoice_size='" . $invoice_size . "',
     invoice_link='" . $invoice_link . "',invoice_type='" . $invoice_type . "',
@@ -102,7 +102,7 @@ SET
      */
     public function getByInvoiceId(int $invoice_id): string
     {
-        return "SELECT * FROM Invoice_Entries WHERE invoice_id = $invoice_id";
+        return "SELECT * FROM InvoiceEntries WHERE invoice_id = $invoice_id";
     }
 
     /**
@@ -111,7 +111,7 @@ SET
      */
     public function getByProductId(int $product_id): string
     {
-        return "SELECT * FROM Invoice_Entries WHERE product_id = $product_id";
+        return "SELECT * FROM InvoiceEntries WHERE product_id = $product_id";
     }
 
 }

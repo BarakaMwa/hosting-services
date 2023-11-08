@@ -3,6 +3,7 @@
 class Devices
 {
 
+    private $Table = __CLASS__;
     public $DeviceID;
     public $Manufacturer;
     public $Model;
@@ -25,7 +26,7 @@ class Devices
      */
     final public function getGetAll(): string
     {
-        return "SELECT * FROM Devices";
+        return "SELECT * FROM ".$this->Table;
     }
 
     /**
@@ -34,7 +35,7 @@ class Devices
      */
     final public function getAllByActive(int $active): string
     {
-        return "SELECT * FROM Devices WHERE active = $active";
+        return "SELECT * FROM ".$this->Table." WHERE active = $active";
     }
 
     /**

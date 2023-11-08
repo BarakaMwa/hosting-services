@@ -10,7 +10,7 @@ require_once '../../../errors/Responses.php';
 $response = array();
 $responses = new Responses();
 $status = false;
-const Entity = "File";
+const Entity = "Files";
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -96,14 +96,14 @@ checkIfPostValuesAreSetAndDeactivate(int $fileId, ?PDO $db, array $data): array
 
 /**
  * @param PDO|null $db
- * @param File $file
+ * @param Files $file
  * @param array $response
  * @param Responses $responses
  * @param array $data
  * @return void
  * @throws JsonException
  */
-function updatingImageDelete(?PDO $db, File $file, array $response, Responses $responses, array $data): void
+function updatingImageDelete(?PDO $db, Files $file, array $response, Responses $responses, array $data): void
 {
     $result = array();
     if ($file->file_id !== null && $file->file_id !== 0) {

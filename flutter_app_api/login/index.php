@@ -5,7 +5,7 @@ session_start();
 require_once '../class.user.php';
 require_once '../constants/Utils.php';
 require_once '../class.devices.php';
-$user_login = new USER();
+$user_login = new User();
 $response = array();
 $status = false;
 $utils = new Utils();

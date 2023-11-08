@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../class.user.php';
-$user_home = new USER();
+$user_home = new User();
 
 if (!$user_home->is_logged_in()) {
     $user_home->redirect('../logout/index.php');

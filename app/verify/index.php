@@ -1,6 +1,6 @@
 <?php
 require_once '../class.user.php';
-$user = new USER();
+$user = new User();
 
 if (empty($_GET['id']) && empty($_GET['code'])) {
     $user->redirect('index.php');

@@ -2,7 +2,7 @@
 session_start();
 require_once '../class.user.php';
 
-$reg_user = new USER();
+$reg_user = new User();
 
 if ($reg_user->is_logged_in() != "") {
     $response['status'] = "success";

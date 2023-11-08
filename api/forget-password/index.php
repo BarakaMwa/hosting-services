@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../class.user.php';
-$user = new USER();
+$user = new User();
 $response = array();
 $status = false;
 

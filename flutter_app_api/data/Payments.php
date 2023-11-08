@@ -1,6 +1,6 @@
 <?php
 
-class Payment
+class Payments
 {
     public $payment_id;
     public $vendor_id;

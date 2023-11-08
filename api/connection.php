@@ -39,7 +39,7 @@ class Database
         $this->qrCode = new QrCode();
         $this->product = new Product();
         $this->invoice = new Invoice();
-        $this->payment = new Payment();
+        $this->payment = new Payments();
         $this->file = new File();
         $this->cart = new Cart();
         $this->responses = new Responses();

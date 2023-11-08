@@ -42,7 +42,7 @@ class Database
         $this->product = new Product();
         $this->invoice = new Invoice();
         $this->invoice_entries = new InvoiceEntry();
-        $this->payment = new Payment();
+        $this->payment = new Payments();
         $this->file = new File();
         $this->cart = new Cart();
         $this->responses = new Responses();

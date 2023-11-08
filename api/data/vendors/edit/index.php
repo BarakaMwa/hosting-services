@@ -22,13 +22,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 //    todo: for testing
 
     try {
-        $vendor_id = 0;
+        $vendorId = 0;
         if (isset($_POST['id']) && !empty($_POST['id'])) {
-            $vendor_id = $_POST['id'];
+            $vendorId = $_POST['id'];
         } else {
             $responses->errorInvalidRequest($response);
         }
-        $vendor->vendor_id = $vendor_id;
+        $vendor->vendorId = $vendorId;
 
         updatingVendorEdit($db, $vendor, $response, $responses, $data);
     } catch (JsonException $e) {
@@ -50,7 +50,7 @@ function checkIfPostValuesAreSetAndEdit(int $vendor_Id, ?PDO $db, array $data): 
 {
     $database = new Database();
     $vendor = $database->vendor;
-    $vendor->vendor_id = $vendor_Id;
+    $vendor->vendorId = $vendor_Id;
     $sql = $vendor->getById($vendor_Id);
     $result = $database->runSelectOneQuery($sql, $db);
 
@@ -93,8 +93,8 @@ function updatingVendorEdit(?PDO $db, Vendors $vendor, array $response, Response
 {
     $database = new Database();
     $result = array();
-    if ($vendor->vendor_id != null && $vendor->vendor_id !== 0) {
-        $vendor_Id = $vendor->vendor_id;
+    if ($vendor->vendorId != null && $vendor->vendorId !== 0) {
+        $vendor_Id = $vendor->vendorId;
 
         $result = checkIfPostValuesAreSetAndEdit($vendor_Id, $db, $data);
 
@@ -109,8 +109,8 @@ function updatingVendorEdit(?PDO $db, Vendors $vendor, array $response, Response
     }
 
     /* foreach ($result as $row) {
-         $encrypted = encrypt($row['vendor_id'],$ciphering,$encryption_iv,$options);
-         $row["vendor_id"] = $encrypted;
+         $encrypted = encrypt($row['vendorId'],$ciphering,$encryption_iv,$options);
+         $row["vendorId"] = $encrypted;
          $row["0"] = $encrypted;
      }*/
 

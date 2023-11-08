@@ -4,8 +4,8 @@ class File
 {
 
     public $file_id = 0;
-    public $vendor_id = 0;
-    public $product_id = 0;
+    public $vendorId = 0;
+    public $productId = 0;
     public $file_blob = null;
     public $file_link = null;
     public $file_type = null;
@@ -65,11 +65,11 @@ class File
      */
     final public function insert(array $result): string
     {
-        return "INSERT INTO Files (vendor_id, product_id, 
+        return "INSERT INTO Files (vendorId, productId, 
                    file_blob, active,
                    file_size, file_link,
                    file_name,file_type) 
-               VALUES ( " . $result['vendor_id'] . ", '" . $result["product_id"] . "', 
+               VALUES ( " . $result['vendorId'] . ", '" . $result["productId"] . "', 
                '" . $result["file_blob"] . "', " . $result['active'] . ",
                 '" . $result['file_size'] . "', '" . $result['file_link'] . "',
                  '" . $result['file_name'] . "','" . $result['file_type'] . "')";
@@ -104,11 +104,11 @@ SET
      */
     public function insertFile(array $result): string
     {
-        return "INSERT INTO Files (vendor_id, product_id, 
+        return "INSERT INTO Files (vendorId, productId, 
                    file_blob, active,
                    file_size, file_link,
                    file_name,file_type) 
-               VALUES ( " . $result['vendor_id'] . ", '" . $result["product_id"] . "', 
+               VALUES ( " . $result['vendorId'] . ", '" . $result["productId"] . "', 
                '" . $result["file_blob"] . "', " . $result['active'] . ",
                 '" . $result['file_size'] . "', '" . $result['file_link'] . "',
                  '" . $result['file_name'] . "','" . $result['file_type'] . "')";

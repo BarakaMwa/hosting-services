@@ -55,9 +55,9 @@ function checkIfPostValuesAreSetAndEdit(int $file_Id, ?PDO $db, array $data): ar
         $active = $data['active'];
     }
 
-    (int)$vendor_id = $result['vendor_id'];
-    if (isset($data['vendor_id']) && !empty($data['vendor_id'])) {
-        $vendor_id = $data['vendor_id'];
+    (int)$vendorId = $result['vendorId'];
+    if (isset($data['vendorId']) && !empty($data['vendorId'])) {
+        $vendorId = $data['vendorId'];
     }
 
     $file_type = $result['file_type'];
@@ -80,9 +80,9 @@ function checkIfPostValuesAreSetAndEdit(int $file_Id, ?PDO $db, array $data): ar
         $file_link = $data['file_link'];
     }
 
-    (int)$product_id = $result['product_id'];
-    if (isset($data['product_id']) && !empty($data['product_id'])) {
-        $product_id = $data['product_id'];
+    (int)$productId = $result['productId'];
+    if (isset($data['productId']) && !empty($data['productId'])) {
+        $productId = $data['productId'];
     }
 
     $file_name = $result['file_name'];
@@ -93,8 +93,8 @@ function checkIfPostValuesAreSetAndEdit(int $file_Id, ?PDO $db, array $data): ar
     return array("file_id" => $file_Id, "file_name" => $file_name,
         "file_type" => $file_type, "file_size" => $file_size,
         "file_blob" => $file_blob, "active" => $active,
-        "file_link" => $file_link, "product_id" => $product_id,
-        "vendor_id" => $vendor_id);
+        "file_link" => $file_link, "productId" => $productId,
+        "vendorId" => $vendorId);
 }
 
 

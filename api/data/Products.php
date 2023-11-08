@@ -3,8 +3,8 @@
 class Products{
 
 
-    public $product_id;
-    public $vendor_id;
+    public $productId;
+    public $vendorId;
     public $price;
     public $product_name;
     public $product_description;
@@ -27,21 +27,21 @@ class Products{
     }
 
     /**
-     * @param int $product_id
+     * @param int $productId
      * @return string
      */
-    public function getById(int $product_id): string
+    public function getById(int $productId): string
     {
-        return "SELECT * FROM Products WHERE product_id = $product_id";
+        return "SELECT * FROM Products WHERE productId = $productId";
     }
 
     /**
-     * @param int $product_id
+     * @param int $productId
      * @return string
      */
-    public function deleteById(int $product_id): string
+    public function deleteById(int $productId): string
     {
-        return "DELETE FROM Products WHERE product_id = $product_id";
+        return "DELETE FROM Products WHERE productId = $productId";
     }
     /**
      * @param int $active
@@ -50,21 +50,21 @@ class Products{
      */
     public function getByIdAndActive(int $active, int $product_Id): string
     {
-        return "SELECT * FROM `Products` WHERE `active` = $active and `product_id` = $product_Id";
+        return "SELECT * FROM `Products` WHERE `active` = $active and `productId` = $product_Id";
     }
 
 
     /**
-     * @param int $vendor_id
+     * @param int $vendorId
      * @param string $product_name
      * @param string $product_description
      * @param int $active
      * @param int $product_Id
      * @return string
      */
-    public function updateProduct(int $vendor_id, string $product_name, string $product_description, int $active, int $product_Id): string
+    public function updateProduct(int $vendorId, string $product_name, string $product_description, int $active, int $product_Id): string
     {
-        return "UPDATE Products SET vendor_id=$vendor_id, product_name='" . $product_name . "', product_description='" . $product_description . "', active, price=$active WHERE product_id=$product_Id";
+        return "UPDATE Products SET vendorId=$vendorId, product_name='" . $product_name . "', product_description='" . $product_description . "', active, price=$active WHERE productId=$product_Id";
     }
 
     /**
@@ -73,8 +73,8 @@ class Products{
      */
     public function insert(array $result): string
     {
-        return "INSERT INTO Vendors (vendor_id, product_name, product_description, active, price) 
-               VALUES ( " . $result['vendor_id'] . ", '" . $result["product_name"] . "', '" . $result["product_description"] . "', " . $result['active'] . ", " . $result['price'] . ")";
+        return "INSERT INTO Vendors (vendorId, product_name, product_description, active, price) 
+               VALUES ( " . $result['vendorId'] . ", '" . $result["product_name"] . "', '" . $result["product_description"] . "', " . $result['active'] . ", " . $result['price'] . ")";
     }
     
 }

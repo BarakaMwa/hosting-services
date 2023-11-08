@@ -4,7 +4,7 @@ class Carts
 {
 
     public $user_id;
-    public $product_id;
+    public $productId;
     public $quantity;
     public $active;
     public $cart_id;
@@ -61,8 +61,8 @@ class Carts
      */
     final public function insert(array $result): string
     {
-        return "INSERT INTO Carts (user_id, product_id, quantity, active) 
-               VALUES ( " . $result['user_id'] . ", '" . $result["product_id"] . "', '" . $result["quantity"] . "', " . $result['active'] . ")";
+        return "INSERT INTO Carts (user_id, productId, quantity, active) 
+               VALUES ( " . $result['user_id'] . ", '" . $result["productId"] . "', '" . $result["quantity"] . "', " . $result['active'] . ")";
     }
 
     /**
@@ -75,7 +75,7 @@ class Carts
      */
     final public function update(int $user_id, int $productId, float $quantity, int $active, int $cartId): string
     {
-        return "UPDATE Carts SET user_id=$user_id, product_id='" . $productId . "', quantity='" . $quantity . "', active=$active WHERE cart_id=$cartId";
+        return "UPDATE Carts SET user_id=$user_id, productId='" . $productId . "', quantity='" . $quantity . "', active=$active WHERE cart_id=$cartId";
     }
 
 

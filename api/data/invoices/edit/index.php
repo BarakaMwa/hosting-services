@@ -59,9 +59,9 @@ function checkIfPostValuesAreSetAndEdit(int $cart_Id, ?PDO $db, array $data): ar
         $user_id = $data['user_id'];
     }
 
-    $product_id = $result['product_id'];
-    if (isset($data['product_id']) && !empty($data['product_id'])) {
-        $product_id = $data['product_id'];
+    $productId = $result['productId'];
+    if (isset($data['productId']) && !empty($data['productId'])) {
+        $productId = $data['productId'];
     }
 
     $quantity = $result['quantity'];
@@ -69,7 +69,7 @@ function checkIfPostValuesAreSetAndEdit(int $cart_Id, ?PDO $db, array $data): ar
         $quantity = $data['quantity'];
     }
 
-    return array("product_id" => (int)$product_id, "active" => (int)$active, "quantity" => (double) $quantity, "user_id" => (int)$user_id);
+    return array("productId" => (int)$productId, "active" => (int)$active, "quantity" => (double) $quantity, "user_id" => (int)$user_id);
 }
 
 
@@ -93,7 +93,7 @@ function updatingCartEdit(?PDO $db, Carts $cart, array $response, Responses $res
 
 //        todo for testing
 
-        $sql = $cart->update((int)$result['user_id'], (int)$result['product_id'], (float)$result['quantity'], (int)$result['active'], (int)$cart_Id);
+        $sql = $cart->update((int)$result['user_id'], (int)$result['productId'], (float)$result['quantity'], (int)$result['active'], (int)$cart_Id);
 
 
         $database->runQuery($sql, $db);

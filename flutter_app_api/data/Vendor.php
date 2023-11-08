@@ -7,7 +7,7 @@ class Vendor
 {
 
 
-    public $vendor_id;
+    public $vendorId;
     public $user_id;
     public $vendor_name;
     public $vendor_email;
@@ -15,15 +15,15 @@ class Vendor
 
     /**
      *
-     * @param int|null $vendor_id
+     * @param int|null $vendorId
      * @param int $user_id
      * @param string $vendor_email
      * @param string $vendor_name
      * @param int $active
      */
-   /* public function __construct(int $vendor_id, int $user_id, string $vendor_email, string $vendor_name, int $active)
+   /* public function __construct(int $vendorId, int $user_id, string $vendor_email, string $vendor_name, int $active)
     {
-        $this->vendor_id = $vendor_id;
+        $this->vendorId = $vendorId;
         $this->user_id = $user_id;
         $this->active = $active;
         $this->vendor_name = $vendor_name;
@@ -48,21 +48,21 @@ class Vendor
     }
 
     /**
-     * @param int $vendor_id
+     * @param int $vendorId
      * @return string
      */
-    public function getById(int $vendor_id): string
+    public function getById(int $vendorId): string
     {
-        return "SELECT * FROM Vendors WHERE vendor_id = $vendor_id";
+        return "SELECT * FROM Vendors WHERE vendorId = $vendorId";
     }
 
     /**
-     * @param int $vendor_id
+     * @param int $vendorId
      * @return string
      */
-    public function deleteById(int $vendor_id): string
+    public function deleteById(int $vendorId): string
     {
-        return "DELETE FROM Vendors WHERE vendor_id = $vendor_id";
+        return "DELETE FROM Vendors WHERE vendorId = $vendorId";
     }
 
     /**
@@ -72,7 +72,7 @@ class Vendor
      */
     public function getByIdAndActive(int $active, int $vendor_Id): string
     {
-        return "SELECT * FROM `Vendors` WHERE `active` = $active and `vendor_id` = $vendor_Id";
+        return "SELECT * FROM `Vendors` WHERE `active` = $active and `vendorId` = $vendor_Id";
     }
 
 
@@ -86,7 +86,7 @@ class Vendor
      */
     public function update(int $user_id, string $vendor_name, string $vendor_email, int $active, int $vendor_Id): string
     {
-        return "UPDATE Vendors SET user_id=$user_id, vendor_name='" . $vendor_name . "', vendor_email='" . $vendor_email . "', active=$active WHERE vendor_id=$vendor_Id";
+        return "UPDATE Vendors SET user_id=$user_id, vendor_name='" . $vendor_name . "', vendor_email='" . $vendor_email . "', active=$active WHERE vendorId=$vendor_Id";
     }
 
 //    /**

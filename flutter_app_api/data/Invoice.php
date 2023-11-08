@@ -53,11 +53,11 @@ class Invoice{
      */
     final public function insert(array $result): string
     {
-        return "INSERT INTO Invoices (vendor_id, product_id, 
+        return "INSERT INTO Invoices (vendorId, productId, 
                    invoice_blob, active,
                    invoice_size, invoice_link,
                    invoice_name,invoice_type) 
-               VALUES ( " . $result['vendor_id'] . ", '" . $result["product_id"] . "', 
+               VALUES ( " . $result['vendorId'] . ", '" . $result["productId"] . "', 
                '" . $result["invoice_blob"] . "', " . $result['active'] . ",
                 '" . $result['invoice_size'] . "', '" . $result['invoice_link'] . "',
                  '" . $result['invoice_name'] . "','" . $result['invoice_type'] . "')";
@@ -92,11 +92,11 @@ SET
      */
     public function insertInvoice(array $result): string
     {
-        return "INSERT INTO Invoices (vendor_id, product_id, 
+        return "INSERT INTO Invoices (vendorId, productId, 
                    invoice_blob, active,
                    invoice_size, invoice_link,
                    invoice_name,invoice_type) 
-               VALUES ( " . $result['vendor_id'] . ", '" . $result["product_id"] . "', 
+               VALUES ( " . $result['vendorId'] . ", '" . $result["productId"] . "', 
                '" . $result["invoice_blob"] . "', " . $result['active'] . ",
                 '" . $result['invoice_size'] . "', '" . $result['invoice_link'] . "',
                  '" . $result['invoice_name'] . "','" . $result['invoice_type'] . "')";

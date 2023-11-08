@@ -77,8 +77,8 @@ function checkIfPostValuesAreSetAndInsert(array $data, array $filesData): array
 
     return array("file_size" => $result["file_size"], "file_name" => $result["file_name"],
         "file_type" => $result["file_type"], "file_blob" => $result["file_blob"],
-        "active" => $result["active"], "product_id" => $result["product_id"],
-        "file_link" => $result["file_link"], "vendor_id" => $result["vendor_id"]);
+        "active" => $result["active"], "productId" => $result["productId"],
+        "file_link" => $result["file_link"], "vendorId" => $result["vendorId"]);
 }
 
 /**
@@ -93,8 +93,8 @@ function checkPostInputs(array $data, Utils $utils, Responses $responses, array 
 {
 
     $active = 1;
-    (int)$vendor_id = $data["vendor_id"];
-    (int)$product_id = $data["product_id"];
+    (int)$vendorId = $data["vendorId"];
+    (int)$productId = $data["productId"];
     (string)$file_name = $filesData["file_name"];
     (string)$file_type = $filesData["file_type"];
     (string)$file_link = $filesData["file_link"];
@@ -134,16 +134,16 @@ function checkPostInputs(array $data, Utils $utils, Responses $responses, array 
         $file_blob = $utils->cleanString($filesData['file_blob']);
     }
 
-    if (isset($data['product_id']) && !empty($data['product_id'])) {
+    if (isset($data['productId']) && !empty($data['productId'])) {
 //        class if number
-        $product_id = $utils->cleanString($product_id);
+        $productId = $utils->cleanString($productId);
     } else {
         $responses->warningInput('Products is required');
     }
 
-    if (isset($data['vendor_id']) && !empty($data['vendor_id'])) {
+    if (isset($data['vendorId']) && !empty($data['vendorId'])) {
 //        class if number
-        $vendor_id = $utils->cleanString($vendor_id);
+        $vendorId = $utils->cleanString($vendorId);
     } else {
         $responses->warningInput('Vendors is required');
     }
@@ -156,7 +156,7 @@ function checkPostInputs(array $data, Utils $utils, Responses $responses, array 
     return array("file_size" => $file_size, "file_name" => $file_name,
         "active" => $active, "file_type" => $file_type,
         "file_blob" => $file_blob, "file_link" => $file_link,
-        "product_id" => $product_id, "vendor_id" => $vendor_id);
+        "productId" => $productId, "vendorId" => $vendorId);
 }
 
 

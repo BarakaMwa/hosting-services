@@ -75,9 +75,9 @@ checkIfPostValuesAreSetAndDeactivate(int $cart_Id, ?PDO $db, array $data): array
         $user_id = $data['user_id'];
     }
 
-    $product_id = $result['product_id'];
-    if (isset($data['product_id']) && !empty($data['product_id'])) {
-        $product_id = $data['product_id'];
+    $productId = $result['productId'];
+    if (isset($data['productId']) && !empty($data['productId'])) {
+        $productId = $data['productId'];
     }
 
     $quantity = $result['quantity'];
@@ -85,7 +85,7 @@ checkIfPostValuesAreSetAndDeactivate(int $cart_Id, ?PDO $db, array $data): array
         $quantity = $data['quantity'];
     }
 
-    return array("product_id" => (int)$product_id, "active" => (int)$active, "quantity" => (float)$quantity, "user_id" => (int)$user_id, "cart_id" => $cart_Id);
+    return array("productId" => (int)$productId, "active" => (int)$active, "quantity" => (float)$quantity, "user_id" => (int)$user_id, "cart_id" => $cart_Id);
 }
 
 
@@ -106,7 +106,7 @@ function updatingCartDelete(?PDO $db, Carts $cart, array $response, Responses $r
 
         $result = checkIfPostValuesAreSetAndDeactivate($cart_Id, $db, $data);
 
-        $sql = $cart->update((int)$result['user_id'], (int)$result['product_id'], (float)$result['quantity'], (int)$result['active'], (int)$cart_Id);
+        $sql = $cart->update((int)$result['user_id'], (int)$result['productId'], (float)$result['quantity'], (int)$result['active'], (int)$cart_Id);
 
         $database = new Database();
         $database->runQuery($sql, $db);

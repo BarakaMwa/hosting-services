@@ -68,11 +68,11 @@ function checkIfPostValuesAreSetAndInsert($data): array
     (float)$quantity = $data["quantity"];
     $active = 1;
     $user_id = $data["user_id"];
-    $product_id = $data["product_id"];
+    $productId = $data["productId"];
 
-    [$quantity, $active, $product_id, $user_id] = checkPostInputs((float)$quantity, $utils, $responses, $active, (int)$product_id, (int)$user_id);
+    [$quantity, $active, $productId, $user_id] = checkPostInputs((float)$quantity, $utils, $responses, $active, (int)$productId, (int)$user_id);
 
-    return array("quantity" => $quantity, "active" => $active, "product_id" => $product_id, "user_id" => $user_id);
+    return array("quantity" => $quantity, "active" => $active, "productId" => $productId, "user_id" => $user_id);
 }
 
 /**
@@ -80,17 +80,17 @@ function checkIfPostValuesAreSetAndInsert($data): array
  * @param Utils $utils
  * @param Responses $responses
  * @param int $active
- * @param int $product_id
+ * @param int $productId
  * @param int $user_id
  * @return array
  * @throws JsonException
  */
-function checkPostInputs(float $quantity, Utils $utils, Responses $responses, int $active, int $product_id, int $user_id): array
+function checkPostInputs(float $quantity, Utils $utils, Responses $responses, int $active, int $productId, int $user_id): array
 {
-    if (isset($_POST['product_id']) && !empty($_POST['product_id'])) {
-        (string)$product_id = $_POST['product_id'];
+    if (isset($_POST['productId']) && !empty($_POST['productId'])) {
+        (string)$productId = $_POST['productId'];
 //        check if valid string $cart_name
-        $product_id = $utils->cleanString($product_id);
+        $productId = $utils->cleanString($productId);
     } else {
         $responses->warningInput('Products is required');
     }
@@ -114,5 +114,5 @@ function checkPostInputs(float $quantity, Utils $utils, Responses $responses, in
     } else {
         $responses->warningInput('User is required');
     }
-    return array((float)$quantity, (int)$active, (int)$user_id, (int)$product_id);
+    return array((float)$quantity, (int)$active, (int)$user_id, (int)$productId);
 }

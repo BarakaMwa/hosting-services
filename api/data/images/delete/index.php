@@ -78,9 +78,9 @@ checkIfPostValuesAreSetAndDeactivate(int $fileId, ?PDO $db, array $data): array
         $user_id = $data['user_id'];
     }
 
-    $product_id = $result['product_id'];
-    if (isset($data['product_id']) && !empty($data['product_id'])) {
-        $product_id = $data['product_id'];
+    $productId = $result['productId'];
+    if (isset($data['productId']) && !empty($data['productId'])) {
+        $productId = $data['productId'];
     }
 
     $quantity = $result['quantity'];
@@ -90,7 +90,7 @@ checkIfPostValuesAreSetAndDeactivate(int $fileId, ?PDO $db, array $data): array
 
     return $result;
 
-//    return array("product_id" => (int)$product_id, "active" => (int)$active, "quantity" => (float)$quantity, "user_id" => (int)$user_id);
+//    return array("productId" => (int)$productId, "active" => (int)$active, "quantity" => (float)$quantity, "user_id" => (int)$user_id);
 }
 
 

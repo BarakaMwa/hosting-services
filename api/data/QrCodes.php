@@ -3,8 +3,8 @@
 class QrCodes
 {
 
-    public $vendor_id;
-    public $product_id;
+    public $vendorId;
+    public $productId;
     public $image_blob;
     public $image_link;
     public $active;
@@ -62,12 +62,12 @@ class QrCodes
      */
     final public function insert(array $result): string
     {
-        return "INSERT INTO QrCode (vendor_id, product_id, image_blob, image_link, active) 
-               VALUES ( " . $result['vendor_id'] . ", '" . $result["product_id"] . "', '" . $result["image_blob"] . "', '" . $result["image_link"] . "', " . $result['active'] . ")";
+        return "INSERT INTO QrCode (vendorId, productId, image_blob, image_link, active) 
+               VALUES ( " . $result['vendorId'] . ", '" . $result["productId"] . "', '" . $result["image_blob"] . "', '" . $result["image_link"] . "', " . $result['active'] . ")";
     }
 
     /**
-     * @param int $vendor_id
+     * @param int $vendorId
      * @param int $productId
      * @param string $image_blob
      * @param string $image_link
@@ -75,9 +75,9 @@ class QrCodes
      * @param int $qr_id
      * @return string
      */
-    final public function update(int $vendor_id, int $productId, string $image_blob, string $image_link, int $active, int $qr_id): string
+    final public function update(int $vendorId, int $productId, string $image_blob, string $image_link, int $active, int $qr_id): string
     {
-        return "UPDATE QrCode SET vendor_id=$vendor_id, product_id='" . $productId . "', image_blob='" . $image_blob . "', image_link='" . $image_link . "', active=$active WHERE qr_id=$qr_id";
+        return "UPDATE QrCode SET vendorId=$vendorId, productId='" . $productId . "', image_blob='" . $image_blob . "', image_link='" . $image_link . "', active=$active WHERE qr_id=$qr_id";
     }
 
 

@@ -37,7 +37,7 @@ class USER
     {
         try {
             $password = md5($upass);
-            $stmt = $this->conn->prepare("INSERT INTO tbl_users(userName,userEmail,userPass,tokenCode) 
+            $stmt = $this->conn->prepare("INSERT INTO Users(userName,userEmail,userPass,tokenCode) 
                                                 VALUES(:user_name, :user_mail, :user_pass, :active_code)");
             $stmt->bindparam(":user_name", $uname);
             $stmt->bindparam(":user_mail", $email);
@@ -72,7 +72,7 @@ class USER
     public function login($email, $upass): bool
     {
         try {
-            $stmt = $this->conn->prepare("SELECT * FROM tbl_users WHERE userEmail=:email_id");
+            $stmt = $this->conn->prepare("SELECT * FROM Users WHERE userEmail=:email_id");
             $stmt->execute(array(self::EMAIL_ID => $email));
             $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -161,7 +161,7 @@ class USER
     {
         $userRow = array();
         try {
-            $stmt = $this->conn->prepare("SELECT * FROM tbl_users WHERE userEmail=:email_id");
+            $stmt = $this->conn->prepare("SELECT * FROM Users WHERE userEmail=:email_id");
             $stmt->execute(array(self::EMAIL_ID => $email));
             $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $ex) {

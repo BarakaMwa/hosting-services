@@ -7,11 +7,11 @@ if (!$user_home->is_logged_in()) {
     $user_home->redirect('../logout/index.php');
 }
 
-$stmt = $user_home->runQuery("SELECT * FROM tbl_users WHERE userID=:uid");
+$stmt = $user_home->runQuery("SELECT * FROM Users WHERE userID=:uid");
 $stmt->execute(array(":uid" => $_SESSION['userSessionId']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$stmt = $user_home->runQuery("SELECT COUNT(userID) as Total FROM tbl_users");
+$stmt = $user_home->runQuery("SELECT COUNT(userID) as Total FROM Users");
 $stmt->execute();
 $user_count = $stmt->fetch(PDO::FETCH_ASSOC);
 

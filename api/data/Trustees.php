@@ -12,6 +12,8 @@ class Trustees
     public $phoneNumber;
     public $nrc;
     public $trusteeTo;
+    public $dateCreated;
+    public $status;
 
     /**
      * @return string

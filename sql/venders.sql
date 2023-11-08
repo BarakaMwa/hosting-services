@@ -45,7 +45,7 @@ create TABLE Cart (
   FOREIGN KEY (product_id) REFERENCES Products(product_id)
 );
 
-create TABLE QR_code (
+create TABLE QrCode (
   qr_id INT PRIMARY KEY,
   vendor_id INT,
   product_id INT,
@@ -77,20 +77,20 @@ values
 -- Sample data for Vendors
 insert into Vendors (vendor_id, user_id, vendor_name, vendor_email)
 values
-  (1, 1, 'Vendor 1', 'vendor1@example.com'),
-  (2, 2, 'Vendor 2', 'vendor2@example.com'),
-  (3, 3, 'Vendor 3', 'vendor3@example.com'),
-  (4, 4, 'Vendor 4', 'vendor4@example.com'),
-  (5, 5, 'Vendor 5', 'vendor5@example.com');
+  (1, 1, 'Vendors 1', 'vendor1@example.com'),
+  (2, 2, 'Vendors 2', 'vendor2@example.com'),
+  (3, 3, 'Vendors 3', 'vendor3@example.com'),
+  (4, 4, 'Vendors 4', 'vendor4@example.com'),
+  (5, 5, 'Vendors 5', 'vendor5@example.com');
 
 -- Sample data for Products
 insert into Products (product_id, vendor_id, product_name, price)
 values
-  (1, 1, 'Product 1', 9.99),
-  (2, 1, 'Product 2', 19.99),
-  (3, 2, 'Product 3', 14.99),
-  (4, 3, 'Product 4', 24.99),
-  (5, 4, 'Product 5', 29.99);
+  (1, 1, 'Products 1', 9.99),
+  (2, 1, 'Products 2', 19.99),
+  (3, 2, 'Products 3', 14.99),
+  (4, 3, 'Products 4', 24.99),
+  (5, 4, 'Products 5', 29.99);
 
 -- Sample data for Payments
 insert into Payments (payment_id, vendor_id, amount, payment_date)
@@ -110,7 +110,7 @@ values
   (4, 4, '2023-06-04', 220.00),
   (5, 5, '2023-06-05', 190.00);
 
--- Sample data for Cart
+-- Sample data for Carts
 insert into Cart (cart_id, user_id, product_id, quantity)
 values
   (1, 1, 1, 2),
@@ -119,7 +119,7 @@ values
   (4, 3, 4, 1),
   (5, 4, 5, 2);
 
-insert into QR_code (qr_id, vendor_id, product_id, image_blob, image_link)
+insert into QrCode (qr_id, vendor_id, product_id, image_blob, image_link)
 values
     (1, 1, 1, null, 'https://example.com/image1.png'),
     (2, 2, 2, NULL, 'https://example.com/image2.png'),
@@ -131,7 +131,7 @@ values
 alter table Users
     add active bool default true not null;
 
-alter table QR_code
+alter table QrCode
     add active bool default true not null;
 
 alter table Cart

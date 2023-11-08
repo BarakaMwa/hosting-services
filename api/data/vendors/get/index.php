@@ -6,7 +6,7 @@ require_once '../../../connection.php';
 //require_once '../../../connection-local.php';
 
 require_once '../../../errors/Responses.php';
-const Entity = "Vendor";
+const Entity = "Vendors";
 
 $response = array();
 $status = false;

@@ -1,6 +1,6 @@
 <?php
 
-class Invoice{
+class Invoices{
     /**
      * @return string
      */

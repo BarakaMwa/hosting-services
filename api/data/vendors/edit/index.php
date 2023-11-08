@@ -9,7 +9,7 @@ require_once '../../../errors/Responses.php';
 $response = array();
 $status = false;
 $responses = new Responses();
-const Entity = "Vendor";
+const Entity = "Vendors";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -82,14 +82,14 @@ function checkIfPostValuesAreSetAndEdit(int $vendor_Id, ?PDO $db, array $data): 
 
 /**
  * @param PDO|null $db
- * @param Vendor $vendor
+ * @param Vendors $vendor
  * @param array $response
  * @param Responses $responses
  * @param array $data
  * @return void
  * @throws JsonException
  */
-function updatingVendorEdit(?PDO $db, Vendor $vendor, array $response, Responses $responses, array $data): void
+function updatingVendorEdit(?PDO $db, Vendors $vendor, array $response, Responses $responses, array $data): void
 {
     $database = new Database();
     $result = array();

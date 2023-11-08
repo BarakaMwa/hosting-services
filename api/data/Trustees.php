@@ -1,25 +1,19 @@
 <?php
 
-class Devices
+class Trustees
 {
-
     private $Table = __CLASS__;
-    public $DeviceID;
-    public $Manufacturer;
-    public $Model;
-    public $OS;
-    public $OSVersion;
-    public $ScreenSize;
-    public $StorageCapacity;
-    public $RAM;
-    public $IMEI;
-    public $SerialNumber;
-    public $PurchaseDate;
-    public $Price;
-    public $Location;
-    public $UserId;
-    public $DateCreated;
-    public $Status;
+    public $trusteeId;
+    public $userId;
+    public $firstName;
+    public $lastName;
+    public $email;
+    public $address;
+    public $phoneNumber;
+    public $nrc;
+    public $trusteeTo;
+    public $dateCreated;
+    public $status;
 
     /**
      * @return string
@@ -44,7 +38,7 @@ class Devices
      */
     final public function getById(int $device_id): string
     {
-        return "SELECT * FROM Device WHERE DeviceID = $device_id";
+        return "SELECT * FROM ".$this->Table." WHERE trusteeId = $device_id";
     }
 
 }

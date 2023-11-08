@@ -10,7 +10,7 @@ require_once '../../../errors/Responses.php';
 $response = array();
 $responses = new Responses();
 $status = false;
-const ENTITY = "Vendor";
+const ENTITY = "Vendors";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET') {
 
@@ -98,13 +98,13 @@ function checkIfPostValuesAreSetAndDeactivate(int $vendor_Id, ?PDO $db): array
 
 /**
  * @param PDO|null $db
- * @param Vendor $vendor
+ * @param Vendors $vendor
  * @param array $response
  * @param Responses $responses
  * @return void
  * @throws JsonException
  */
-function updatingVendorDelete(?PDO $db, Vendor $vendor, array $response, Responses $responses): void
+function updatingVendorDelete(?PDO $db, Vendors $vendor, array $response, Responses $responses): void
 {
     $result = array();
     if ($vendor->vendor_id !== 0) {

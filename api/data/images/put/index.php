@@ -13,7 +13,7 @@ $response = array();
 $status = false;
 $utils = new Utils();
 $responses = new Responses();
-const Entity = "File";
+const Entity = "Files";
 const TARGET_DIR = "../uploads/";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -43,12 +43,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 /**
  * @param PDO|null $db
- * @param File $file
+ * @param Files $file
  * @param array $data
  * @return array
  * @throws JsonException
  */
-function insertingFileEdit(?PDO $db, File $file, array $data, array $filesData): array
+function insertingFileEdit(?PDO $db, Files $file, array $data, array $filesData): array
 {
     $database = new Database();
 
@@ -105,14 +105,14 @@ function checkPostInputs(array $data, Utils $utils, Responses $responses, array 
 //        class if number
         $file_name = $utils->cleanString($file_name);
     } else {
-        $responses->warningInput('File Name is required');
+        $responses->warningInput('Files Name is required');
     }
 
     if (isset($filesData['file_type']) && !empty($filesData['file_type'])) {
 //        class if number
         $file_type = $utils->cleanString($file_type);
     } else {
-        $responses->warningInput('File Type is required');
+        $responses->warningInput('Files Type is required');
     }
 
     $file_link = null;
@@ -125,7 +125,7 @@ function checkPostInputs(array $data, Utils $utils, Responses $responses, array 
 //        class if number
         $file_size = $utils->cleanString($file_size);
     } else {
-        $responses->warningInput('File Size is required');
+        $responses->warningInput('Files Size is required');
     }
 
     $file_blob = null;
@@ -138,14 +138,14 @@ function checkPostInputs(array $data, Utils $utils, Responses $responses, array 
 //        class if number
         $product_id = $utils->cleanString($product_id);
     } else {
-        $responses->warningInput('Product is required');
+        $responses->warningInput('Products is required');
     }
 
     if (isset($data['vendor_id']) && !empty($data['vendor_id'])) {
 //        class if number
         $vendor_id = $utils->cleanString($vendor_id);
     } else {
-        $responses->warningInput('Vendor is required');
+        $responses->warningInput('Vendors is required');
     }
 
     if (isset($data['active']) && !empty($data['active'])) {

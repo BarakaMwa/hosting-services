@@ -11,7 +11,7 @@ require_once '../../../errors/Responses.php';
 $response = array();
 $status = false;
 $responses = new Responses();
-const Entity = "Cart";
+const Entity = "Carts";
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -37,12 +37,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 /**
  * @param PDO|null $db
- * @param Cart $cart
+ * @param Carts $cart
  * @param array $data
  * @return array
  * @throws JsonException
  */
-function insertingCartEdit(?PDO $db, Cart $cart, array $data): array
+function insertingCartEdit(?PDO $db, Carts $cart, array $data): array
 {
     $database = new Database();
 
@@ -92,7 +92,7 @@ function checkPostInputs(float $quantity, Utils $utils, Responses $responses, in
 //        check if valid string $cart_name
         $product_id = $utils->cleanString($product_id);
     } else {
-        $responses->warningInput('Product is required');
+        $responses->warningInput('Products is required');
     }
 
     if (isset($_POST['active']) && !empty($_POST['active'])) {

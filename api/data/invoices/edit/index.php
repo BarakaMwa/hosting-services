@@ -1,6 +1,6 @@
 <?php
 //todo validation
-const CART = "Cart";
+const CART = "Carts";
 require_once '../../../headers-api.php';
 session_start();
 require_once '../../../connection.php';
@@ -75,14 +75,14 @@ function checkIfPostValuesAreSetAndEdit(int $cart_Id, ?PDO $db, array $data): ar
 
 /**
  * @param PDO|null $db
- * @param Cart $cart
+ * @param Carts $cart
  * @param array $response
  * @param Responses $responses
  * @param array $data
  * @return void
  * @throws JsonException
  */
-function updatingCartEdit(?PDO $db, Cart $cart, array $response, Responses $responses, array $data): void
+function updatingCartEdit(?PDO $db, Carts $cart, array $response, Responses $responses, array $data): void
 {
     $database = new Database();
     $result = array();

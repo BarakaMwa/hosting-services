@@ -5,7 +5,6 @@ use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
 require_once '../connection.php';
-
 //require_once '../connection-local.php';
 
 class UserService
@@ -37,11 +36,11 @@ class UserService
         try {
             $password = md5($upass);
             $stmt = $this->conn->prepare("INSERT INTO Users(userName,userEmail,userPass,tokenCode) 
-                                                VALUES(:user_name, :user_mail, :user_pass, :active_code)");
-            $stmt->bindparam(":user_name", $uname);
-            $stmt->bindparam(":user_mail", $email);
-            $stmt->bindparam(":user_pass", $password);
-            $stmt->bindparam(":active_code", $code);
+                                                VALUES(:userName, :userEmail, :userPassword, :activeCode)");
+            $stmt->bindparam(":userName", $uname);
+            $stmt->bindparam(":userEmail", $email);
+            $stmt->bindparam(":userPassword", $password);
+            $stmt->bindparam(":activeCode", $code);
             $stmt->execute();
             return $stmt;
         } catch (PDOException $ex) {

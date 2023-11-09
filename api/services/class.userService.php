@@ -38,11 +38,11 @@ class UserService
         try {
             $password = md5($upass);
             $stmt = $this->conn->prepare("INSERT INTO Users(userName,userEmail,userPass,tokenCode) 
-                                                VALUES(:user_name, :user_mail, :user_pass, :active_code)");
-            $stmt->bindparam(":user_name", $uname);
-            $stmt->bindparam(":user_mail", $email);
-            $stmt->bindparam(":user_pass", $password);
-            $stmt->bindparam(":active_code", $code);
+                                                VALUES(:userName, :userEmail, :userPassword, :activeCode)");
+            $stmt->bindparam(":userName", $uname);
+            $stmt->bindparam(":userEmail", $email);
+            $stmt->bindparam(":userPassword", $password);
+            $stmt->bindparam(":activeCode", $code);
             $stmt->execute();
             return $stmt;
         } catch (PDOException $ex) {
@@ -80,6 +80,7 @@ class UserService
                 if ($userRow['userStatus'] == "Y") {
                     if ($userRow['userPass'] == md5($upass)) {
                         $_SESSION['userSessionId'] = $userRow['userId'];
+                        $_SESSION['isLoggedIn'] = true;
                         return true;
                     } else {
 //                        header("Location: ../login/index.php?error");
@@ -101,7 +102,7 @@ class UserService
 
     public function is_logged_in(): bool
     {
-        if (isset($_SESSION['userSessionId'])) {
+        if ($_SESSION['isLoggedIn']) {
             return true;
         }
         return false;
@@ -115,7 +116,7 @@ class UserService
     public function logout(): void
     {
         session_destroy();
-        $_SESSION['userSessionId'] = false;
+//        $_SESSION['userSessionId'] = false;
     }
 
     public function send_mail($email, $message, $subject): void

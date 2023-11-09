@@ -2,12 +2,10 @@
 
 require_once '../headers-api.php';
 session_start();
-require_once '../class.userService.php';
+require_once '../services/class.userService.php';
 require_once '../constants/Utils.php';
-//require_once '../../api/data/Devices.php';
-//require_once '../../api/data/Trustees.php';
-require_once '../class.devicesService.php';
-require_once '../class.trusteesService.php';
+require_once '../services/class.devicesService.php';
+require_once '../services/class.trusteesService.php';
 $user_login = new UserService();
 $response = array();
 $status = false;

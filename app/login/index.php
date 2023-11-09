@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../class.user.php';
+require_once '../services/class.userService.php';
 $user_login = new UserService();
 
 if ($user_login->is_logged_in() != "") {

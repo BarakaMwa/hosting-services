@@ -25,6 +25,9 @@ class Database
     public $cart;
     public $product;
     public $invoice;
+    public $invoiceEntry;
+    public $device;
+    public $trustee;
     public $payment;
     public $qrCode;
     public $file;
@@ -42,6 +45,8 @@ class Database
         $this->payment = new Payments();
         $this->file = new Files();
         $this->cart = new Carts();
+        $this->device = new Devices();
+        $this->trustee = new Trustees();
         $this->responses = new Responses();
     }
 
@@ -100,28 +105,6 @@ class Database
         $result = $stmt->fetchAll();
         return $result[0];
     }
-
-//    /**
-//     * @param $sql
-//     * @param $db
-//     * @return void
-//     */
-//    public function runUpdateQuery($sql, $db): void
-//    {
-//        $stmt = $db->prepare($sql);
-//        $stmt->execute();
-//    }
-//
-//    /**
-//     * @param $sql
-//     * @param $db
-//     * @return void
-//     */
-//    public function runDeleteQuery($sql, $db): void
-//    {
-//        $stmt = $db->prepare($sql);
-//        $stmt->execute();
-//    }
 
     /**
      * @param $sql

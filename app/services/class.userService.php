@@ -5,6 +5,7 @@ use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
 require_once '../connection.php';
+
 //require_once '../connection-local.php';
 
 class UserService
@@ -55,10 +56,12 @@ class UserService
             $stmt->execute(array(":email_id" => $email));
             $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
+            $_SESSION['isLoggedIn'] = false;
             if ($stmt->rowCount() == 1) {
                 if ($userRow['userStatus'] == "Y") {
                     if ($userRow['userPass'] == md5($upass)) {
                         $_SESSION['userSessionId'] = $userRow['userID'];
+                        $_SESSION['isLoggedIn'] = true;
 //                        $_SESSION['userType'] = $userRow['userID'];
                         return true;
                     } else {
@@ -81,9 +84,10 @@ class UserService
 
     public function is_logged_in()
     {
-        if (isset($_SESSION['userSessionId'])) {
+        if ($_SESSION['isLoggedIn']) {
             return true;
         }
+        return false;
     }
 
     public function redirect($url)
@@ -94,7 +98,7 @@ class UserService
     public function logout()
     {
         session_destroy();
-        $_SESSION['userSessionId'] = false;
+//        $_SESSION['userSessionId'] = false;
     }
 
     function send_mail($email, $message, $subject)

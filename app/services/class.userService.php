@@ -4,10 +4,10 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
-require_once 'connection.php';
-//require_once 'connection-local.php';
+require_once '../connection.php';
+//require_once '../connection-local.php';
 
-class User
+class UserService
 {
 
     private $conn;

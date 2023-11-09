@@ -1,6 +1,6 @@
 <?php
 require_once 'class.user.php';
-$user = new User();
+$user = new UserService();
 
 if(empty($_GET['id']) && empty($_GET['code']))
 {

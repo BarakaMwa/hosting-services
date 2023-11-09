@@ -8,7 +8,7 @@ require_once '../constants/Utils.php';
 //require_once '../../api/data/Trustees.php';
 require_once '../class.devices.php';
 require_once '../class.trustees.php';
-$user_login = new User();
+$user_login = new UserService();
 $response = array();
 $status = false;
 $utils = new Utils();

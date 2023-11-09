@@ -1,6 +1,6 @@
 <?php
 
-class QrCode
+class QrCodes
 {
 
     public $vendorId;

@@ -2,7 +2,7 @@
 session_start();
 require_once '../class.user.php';
 
-$reg_user = new USER();
+$reg_user = new UserService();
 
 if ($reg_user->is_logged_in() != "") {
     $reg_user->redirect('home.php');
@@ -15,7 +15,7 @@ if (isset($_POST['btn-signup'])) {
     $upass = trim($_POST['txtpass']);
     $code = md5(uniqid(rand(), true));
 
-    $stmt = $reg_user->runQuery("SELECT * FROM tbl_users WHERE userEmail=:email_id");
+    $stmt = $reg_user->runQuery("SELECT * FROM Users WHERE userEmail=:email_id");
     $stmt->execute(array(":email_id" => $email));
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 

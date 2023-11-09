@@ -5,17 +5,17 @@ session_start();
 require_once '../class.user.php';
 require_once '../constants/Utils.php';
 require_once '../class.devices.php';
-$user_login = new USER();
+$user_login = new UserService();
 $response = array();
 $status = false;
 $utils = new Utils();
-$devices = new Devices();
+$devices = new DevicesService();
 
 if ($user_login->is_logged_in() != "") {
     $response['status'] = "success";
     $response['success'] = true;
     $response['message'] = "Logged In";
-//    $user_login->redirect('../home/index.php');
+
     echo json_encode($response, JSON_THROW_ON_ERROR);
     exit();
 }
@@ -28,21 +28,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $userDetails = $user_login->getUserDetailsByEmail($email);
         $userLogins = $user_login->getUserLogins($email);
-        $userDevices = $devices->getAllByUserId((int)$userLogins['userID']);
-        $userTopDevices = $devices->getTopFiveDevicesByUserId((int)$userLogins['userID']);
+        $userDevices = $devices->getAllByUserId((int)$userLogins['userId']);
+        $userTopDevices = $devices->getTopFiveDevicesByUserId((int)$userLogins['userId']);
 
         $response["success"] = true;
         $response["status"] = "success";
         $response["message"] = "Login successful";
-//        $userDetails['userID'] = $utils->encryptString($userDetails['userID']);
-        $response["userId"] = $userLogins['userID'];
+//        $userDetails['userId'] = $utils->encryptString($userDetails['userId']);
+        $response["userId"] = $userLogins['userId'];
         $response["userDetails"] = $userDetails;
         $response["userLogins"] = $userLogins;
         $response["userDevices"] = $userDevices;
         $response["userTopDevices"] = $userTopDevices;
         echo json_encode($response, JSON_THROW_ON_ERROR);
         exit();
-//        $user_login->redirect('../home/index.php');
+
     }
 
     $response["success"] = false;

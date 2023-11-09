@@ -1,15 +1,16 @@
 <?php
 
-require_once 'data/Vendor.php';
-require_once 'data/Cart.php';
-require_once 'data/Product.php';
-require_once 'data/Invoice.php';
-require_once 'data/Payment.php';
-require_once 'data/QrCode.php';
-require_once 'data/File.php';
+require_once 'data/Vendors.php';
+require_once 'data/Carts.php';
+require_once 'data/Products.php';
+require_once 'data/Invoices.php';
+require_once 'data/InvoiceEntries.php';
+require_once 'data/Devices.php';
+require_once 'data/Trustees.php';
+require_once 'data/Payments.php';
+require_once 'data/QrCodes.php';
+require_once 'data/Files.php';
 require_once 'errors/Responses.php';
-//$vendor = new Vendor();
-//$responses = new Responses();
 
 class Database
 {
@@ -24,6 +25,9 @@ class Database
     public $cart;
     public $product;
     public $invoice;
+    public $invoiceEntry;
+    public $device;
+    public $trustee;
     public $payment;
     public $qrCode;
     public $file;
@@ -34,13 +38,15 @@ class Database
      */
     public function __construct()
     {
-        $this->vendor = new Vendor();
-        $this->qrCode = new QrCode();
-        $this->product = new Product();
-        $this->invoice = new Invoice();
-        $this->payment = new Payment();
-        $this->file = new File();
-        $this->cart = new Cart();
+        $this->vendor = new Vendors();
+        $this->qrCode = new QrCodes();
+        $this->product = new Products();
+        $this->invoice = new Invoices();
+        $this->payment = new Payments();
+        $this->file = new Files();
+        $this->cart = new Carts();
+        $this->device = new DevicesService();
+        $this->trustee = new TrusteesService();
         $this->responses = new Responses();
     }
 
@@ -99,28 +105,6 @@ class Database
         $result = $stmt->fetchAll();
         return $result[0];
     }
-
-//    /**
-//     * @param $sql
-//     * @param $db
-//     * @return void
-//     */
-//    public function runUpdateQuery($sql, $db): void
-//    {
-//        $stmt = $db->prepare($sql);
-//        $stmt->execute();
-//    }
-//
-//    /**
-//     * @param $sql
-//     * @param $db
-//     * @return void
-//     */
-//    public function runDeleteQuery($sql, $db): void
-//    {
-//        $stmt = $db->prepare($sql);
-//        $stmt->execute();
-//    }
 
     /**
      * @param $sql

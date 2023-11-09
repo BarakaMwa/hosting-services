@@ -1,6 +1,6 @@
 <?php
 
-class Invoice{
+class Invoices{
     /**
      * @return string
      */
@@ -19,21 +19,21 @@ class Invoice{
     }
 
     /**
-     * @param int $invoice_id
+     * @param int $invoiceId
      * @return string
      */
-    final public function getById(int $invoice_id): string
+    final public function getById(int $invoiceId): string
     {
-        return "SELECT * FROM Invoices WHERE invoice_id = $invoice_id";
+        return "SELECT * FROM Invoices WHERE invoiceId = $invoiceId";
     }
 
     /**
-     * @param int $invoice_id
+     * @param int $invoiceId
      * @return string
      */
-    final public function deleteById(int $invoice_id): string
+    final public function deleteById(int $invoiceId): string
     {
-        return "DELETE FROM Invoices WHERE invoice_id = $invoice_id";
+        return "DELETE FROM Invoices WHERE invoiceId = $invoiceId";
     }
 
 
@@ -44,7 +44,7 @@ class Invoice{
      */
     final public function getByIdAndActive(int $active, int $invoice_Id): string
     {
-        return "SELECT * FROM Invoices WHERE active = $active and invoice_id = $invoice_Id";
+        return "SELECT * FROM Invoices WHERE active = $active and invoiceId = $invoice_Id";
     }
 
     /**
@@ -53,11 +53,11 @@ class Invoice{
      */
     final public function insert(array $result): string
     {
-        return "INSERT INTO Invoices (vendor_id, product_id, 
+        return "INSERT INTO Invoices (vendorId, productId, 
                    invoice_blob, active,
                    invoice_size, invoice_link,
                    invoice_name,invoice_type) 
-               VALUES ( " . $result['vendor_id'] . ", '" . $result["product_id"] . "', 
+               VALUES ( " . $result['vendorId'] . ", '" . $result["productId"] . "', 
                '" . $result["invoice_blob"] . "', " . $result['active'] . ",
                 '" . $result['invoice_size'] . "', '" . $result['invoice_link'] . "',
                  '" . $result['invoice_name'] . "','" . $result['invoice_type'] . "')";
@@ -70,20 +70,20 @@ class Invoice{
      * @param string $invoice_type
      * @param string $invoice_name
      * @param int $active
-     * @param int $invoice_id
+     * @param int $invoiceId
      * @return string
      */
     final public function update(string $invoice_blob, int $invoice_size,
                                  string $invoice_link, string $invoice_type,
                                  string $invoice_name, int $active,
-                                 int    $invoice_id): string
+                                 int    $invoiceId): string
     {
         return "UPDATE Invoices 
 SET 
     invoice_blob='" . $invoice_blob . "', invoice_size='" . $invoice_size . "',
     invoice_link='" . $invoice_link . "',invoice_type='" . $invoice_type . "',
     invoice_name='" . $invoice_name . "', active=$active 
-    WHERE invoice_id=$invoice_id";
+    WHERE invoiceId=$invoiceId";
     }
 
     /**
@@ -92,11 +92,11 @@ SET
      */
     public function insertInvoice(array $result): string
     {
-        return "INSERT INTO Invoices (vendor_id, product_id, 
+        return "INSERT INTO Invoices (vendorId, productId, 
                    invoice_blob, active,
                    invoice_size, invoice_link,
                    invoice_name,invoice_type) 
-               VALUES ( " . $result['vendor_id'] . ", '" . $result["product_id"] . "', 
+               VALUES ( " . $result['vendorId'] . ", '" . $result["productId"] . "', 
                '" . $result["invoice_blob"] . "', " . $result['active'] . ",
                 '" . $result['invoice_size'] . "', '" . $result['invoice_link'] . "',
                  '" . $result['invoice_name'] . "','" . $result['invoice_type'] . "')";

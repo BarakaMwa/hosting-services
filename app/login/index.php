@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once '../class.user.php';
-$user_login = new USER();
+require_once '../services/class.userService.php';
+$user_login = new UserService();
 
 if ($user_login->is_logged_in() != "") {
     $user_login->redirect('../home-page/index.php');

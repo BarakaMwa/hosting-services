@@ -7,7 +7,7 @@ use PHPMailer\PHPMailer\SMTP;
 require_once 'connection.php';
 //require_once 'connection-local.php';
 
-class USER
+class User
 {
 
     private $conn;
@@ -35,7 +35,7 @@ class USER
     {
         try {
             $password = md5($upass);
-            $stmt = $this->conn->prepare("INSERT INTO tbl_users(userName,userEmail,userPass,tokenCode) 
+            $stmt = $this->conn->prepare("INSERT INTO Users(userName,userEmail,userPass,tokenCode) 
                                                 VALUES(:user_name, :user_mail, :user_pass, :active_code)");
             $stmt->bindparam(":user_name", $uname);
             $stmt->bindparam(":user_mail", $email);
@@ -52,7 +52,7 @@ class USER
     {
         try {
 
-            $stmt = $this->conn->prepare("INSERT INTO user_details(userEmail,firstName,lastName,nrc,gender,phone) 
+            $stmt = $this->conn->prepare("INSERT INTO userDetails(userEmail,firstName,lastName,nrc,gender,phone) 
                                                 VALUES(:userEmail, :firstName, :lastName, :nrc, :gender, :phone)");
             $stmt->bindparam(":userEmail", $userEmail);
             $stmt->bindparam(":firstName", $firstName);
@@ -70,14 +70,14 @@ class USER
     public function login($email, $upass): bool
     {
         try {
-            $stmt = $this->conn->prepare("SELECT * FROM tbl_users WHERE userEmail=:email_id");
+            $stmt = $this->conn->prepare("SELECT * FROM Users WHERE userEmail=:email_id");
             $stmt->execute(array(":email_id" => $email));
             $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($stmt->rowCount() == 1) {
                 if ($userRow['userStatus'] == "Y") {
                     if ($userRow['userPass'] == md5($upass)) {
-                        $_SESSION['userSessionId'] = $userRow['userID'];
+                        $_SESSION['userSessionId'] = $userRow['userId'];
                         return true;
                     } else {
 //                        header("Location: ../login/index.php?error");
@@ -145,7 +145,7 @@ class USER
     {
         $userRow = array();
         try {
-            $stmt = $this->conn->prepare("SELECT * FROM user_details WHERE userEmail=:email_id");
+            $stmt = $this->conn->prepare("SELECT * FROM userDetails WHERE userEmail=:email_id");
             $stmt->execute(array(":email_id" => $email));
             $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $ex) {
@@ -159,7 +159,7 @@ class USER
     {
         $userRow = array();
         try {
-            $stmt = $this->conn->prepare("SELECT * FROM tbl_users WHERE userEmail=:email_id");
+            $stmt = $this->conn->prepare("SELECT * FROM Users WHERE userEmail=:email_id");
             $stmt->execute(array(":email_id" => $email));
             $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $ex) {

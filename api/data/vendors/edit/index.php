@@ -9,7 +9,7 @@ require_once '../../../errors/Responses.php';
 $response = array();
 $status = false;
 $responses = new Responses();
-const Entity = "Vendor";
+const Entity = "Vendors";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -22,13 +22,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 //    todo: for testing
 
     try {
-        $vendor_id = 0;
+        $vendorId = 0;
         if (isset($_POST['id']) && !empty($_POST['id'])) {
-            $vendor_id = $_POST['id'];
+            $vendorId = $_POST['id'];
         } else {
             $responses->errorInvalidRequest($response);
         }
-        $vendor->vendor_id = $vendor_id;
+        $vendor->vendorId = $vendorId;
 
         updatingVendorEdit($db, $vendor, $response, $responses, $data);
     } catch (JsonException $e) {
@@ -50,7 +50,7 @@ function checkIfPostValuesAreSetAndEdit(int $vendor_Id, ?PDO $db, array $data): 
 {
     $database = new Database();
     $vendor = $database->vendor;
-    $vendor->vendor_id = $vendor_Id;
+    $vendor->vendorId = $vendor_Id;
     $sql = $vendor->getById($vendor_Id);
     $result = $database->runSelectOneQuery($sql, $db);
 
@@ -82,19 +82,19 @@ function checkIfPostValuesAreSetAndEdit(int $vendor_Id, ?PDO $db, array $data): 
 
 /**
  * @param PDO|null $db
- * @param Vendor $vendor
+ * @param Vendors $vendor
  * @param array $response
  * @param Responses $responses
  * @param array $data
  * @return void
  * @throws JsonException
  */
-function updatingVendorEdit(?PDO $db, Vendor $vendor, array $response, Responses $responses, array $data): void
+function updatingVendorEdit(?PDO $db, Vendors $vendor, array $response, Responses $responses, array $data): void
 {
     $database = new Database();
     $result = array();
-    if ($vendor->vendor_id != null && $vendor->vendor_id !== 0) {
-        $vendor_Id = $vendor->vendor_id;
+    if ($vendor->vendorId != null && $vendor->vendorId !== 0) {
+        $vendor_Id = $vendor->vendorId;
 
         $result = checkIfPostValuesAreSetAndEdit($vendor_Id, $db, $data);
 
@@ -109,8 +109,8 @@ function updatingVendorEdit(?PDO $db, Vendor $vendor, array $response, Responses
     }
 
     /* foreach ($result as $row) {
-         $encrypted = encrypt($row['vendor_id'],$ciphering,$encryption_iv,$options);
-         $row["vendor_id"] = $encrypted;
+         $encrypted = encrypt($row['vendorId'],$ciphering,$encryption_iv,$options);
+         $row["vendorId"] = $encrypted;
          $row["0"] = $encrypted;
      }*/
 

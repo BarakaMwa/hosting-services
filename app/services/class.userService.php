@@ -4,10 +4,11 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
-require_once 'connection.php';
-//require_once 'connection-local.php';
+require_once '../connection.php';
 
-class USER
+//require_once '../connection-local.php';
+
+class UserService
 {
 
     private $conn;
@@ -35,7 +36,7 @@ class USER
     {
         try {
             $password = md5($upass);
-            $stmt = $this->conn->prepare("INSERT INTO tbl_users(userName,userEmail,userPass,tokenCode) 
+            $stmt = $this->conn->prepare("INSERT INTO Users(userName,userEmail,userPass,tokenCode) 
                                                 VALUES(:user_name, :user_mail, :user_pass, :active_code)");
             $stmt->bindparam(":user_name", $uname);
             $stmt->bindparam(":user_mail", $email);
@@ -51,15 +52,17 @@ class USER
     public function login($email, $upass)
     {
         try {
-            $stmt = $this->conn->prepare("SELECT * FROM tbl_users WHERE userEmail=:email_id");
+            $stmt = $this->conn->prepare("SELECT * FROM Users WHERE userEmail=:email_id");
             $stmt->execute(array(":email_id" => $email));
             $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
+            $_SESSION['isLoggedIn'] = false;
             if ($stmt->rowCount() == 1) {
                 if ($userRow['userStatus'] == "Y") {
                     if ($userRow['userPass'] == md5($upass)) {
-                        $_SESSION['userSessionId'] = $userRow['userID'];
-//                        $_SESSION['userType'] = $userRow['userID'];
+                        $_SESSION['userSessionId'] = $userRow['userId'];
+                        $_SESSION['isLoggedIn'] = true;
+//                        $_SESSION['userType'] = $userRow['userId'];
                         return true;
                     } else {
                         header("Location: ../login/index.php?error");
@@ -81,9 +84,10 @@ class USER
 
     public function is_logged_in()
     {
-        if (isset($_SESSION['userSessionId'])) {
+        if ($_SESSION['isLoggedIn']) {
             return true;
         }
+        return false;
     }
 
     public function redirect($url)
@@ -94,7 +98,7 @@ class USER
     public function logout()
     {
         session_destroy();
-        $_SESSION['userSessionId'] = false;
+//        $_SESSION['userSessionId'] = false;
     }
 
     function send_mail($email, $message, $subject)

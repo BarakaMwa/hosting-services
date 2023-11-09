@@ -10,7 +10,7 @@ require_once '../../../errors/Responses.php';
 $response = array();
 $responses = new Responses();
 $status = false;
-const ENTITY = "Vendor";
+const ENTITY = "Vendors";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET') {
 
@@ -22,19 +22,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 
 //    todo: for testing
 
-    $vendor_id = 0;
+    $vendorId = 0;
     try {
         $vendor = $database->vendor;
         if (isset($_POST['id']) && !empty($_POST['id'])) {
-            $vendor_id = $_POST['id'];
+            $vendorId = $_POST['id'];
         } else if (isset($_GET['id']) && !empty($_GET['id'])) {
-            $vendor_id = $_GET['id'];
+            $vendorId = $_GET['id'];
         } else {
             $responses->errorInvalidRequest($response);
         }
-        $vendor->vendor_id = $vendor_id;
+        $vendor->vendorId = $vendorId;
 
-        $sql = $vendor->getById($vendor_id);
+        $sql = $vendor->getById($vendorId);
         $result = $database->runSelectOneQuery($sql, $db);
 
         if ((int)$result['active'] === 0) {
@@ -92,25 +92,25 @@ function checkIfPostValuesAreSetAndDeactivate(int $vendor_Id, ?PDO $db): array
         $user_id = $_POST['user_id'];
     }
 
-    return array("vendor_name" => $vendor_name, "active" => $active, "vendor_email" => $vendor_email, "user_id" => $user_id, "vendor_id" => $vendor_Id);
+    return array("vendor_name" => $vendor_name, "active" => $active, "vendor_email" => $vendor_email, "user_id" => $user_id, "vendorId" => $vendor_Id);
 }
 
 
 /**
  * @param PDO|null $db
- * @param Vendor $vendor
+ * @param Vendors $vendor
  * @param array $response
  * @param Responses $responses
  * @return void
  * @throws JsonException
  */
-function updatingVendorDelete(?PDO $db, Vendor $vendor, array $response, Responses $responses): void
+function updatingVendorDelete(?PDO $db, Vendors $vendor, array $response, Responses $responses): void
 {
     $result = array();
-    if ($vendor->vendor_id !== 0) {
+    if ($vendor->vendorId !== 0) {
 
-        $vendor_Id = $vendor->vendor_id;
-//        $vendor_Id = $vendor_id;
+        $vendor_Id = $vendor->vendorId;
+//        $vendor_Id = $vendorId;
         $result = checkIfPostValuesAreSetAndDeactivate($vendor_Id, $db);
 
         $sql = $vendor->update((int)$result['user_id'], (string)$result['vendor_name'], (string)$result['vendor_email'], (int)$result['active'], (int)$vendor_Id);
@@ -124,8 +124,8 @@ function updatingVendorDelete(?PDO $db, Vendor $vendor, array $response, Respons
 
 //    todo encrypt
     /* foreach ($result as $row) {
-         $encrypted = encrypt($row['vendor_id'],$ciphering,$encryption_iv,$options);
-         $row["vendor_id"] = $encrypted;
+         $encrypted = encrypt($row['vendorId'],$ciphering,$encryption_iv,$options);
+         $row["vendorId"] = $encrypted;
          $row["0"] = $encrypted;
      }*/
 

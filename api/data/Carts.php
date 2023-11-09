@@ -1,10 +1,10 @@
 <?php
 
-class Cart
+class Carts
 {
 
     public $user_id;
-    public $product_id;
+    public $productId;
     public $quantity;
     public $active;
     public $cart_id;
@@ -14,7 +14,7 @@ class Cart
      */
     final public function getGetAll(): string
     {
-        return "SELECT * FROM Cart";
+        return "SELECT * FROM Carts";
     }
 
     /**
@@ -23,7 +23,7 @@ class Cart
      */
     final public function getAllByActive(int $active): string
     {
-        return "SELECT * FROM Cart WHERE active = $active";
+        return "SELECT * FROM Carts WHERE active = $active";
     }
 
     /**
@@ -32,7 +32,7 @@ class Cart
      */
     final public function getById(int $cart_id): string
     {
-        return "SELECT * FROM Cart WHERE cart_id = $cart_id";
+        return "SELECT * FROM Carts WHERE cart_id = $cart_id";
     }
 
     /**
@@ -41,7 +41,7 @@ class Cart
      */
     final public function deleteById(int $cartId): string
     {
-        return "DELETE FROM Cart WHERE cart_id = $cartId";
+        return "DELETE FROM Carts WHERE cart_id = $cartId";
     }
 
 
@@ -52,7 +52,7 @@ class Cart
      */
     final public function getByIdAndActive(int $active, int $cartId): string
     {
-        return "SELECT * FROM Cart WHERE active = $active and cart_id = $cartId";
+        return "SELECT * FROM Carts WHERE active = $active and cart_id = $cartId";
     }
 
     /**
@@ -61,8 +61,8 @@ class Cart
      */
     final public function insert(array $result): string
     {
-        return "INSERT INTO Cart (user_id, product_id, quantity, active) 
-               VALUES ( " . $result['user_id'] . ", '" . $result["product_id"] . "', '" . $result["quantity"] . "', " . $result['active'] . ")";
+        return "INSERT INTO Carts (user_id, productId, quantity, active) 
+               VALUES ( " . $result['user_id'] . ", '" . $result["productId"] . "', '" . $result["quantity"] . "', " . $result['active'] . ")";
     }
 
     /**
@@ -75,7 +75,7 @@ class Cart
      */
     final public function update(int $user_id, int $productId, float $quantity, int $active, int $cartId): string
     {
-        return "UPDATE Cart SET user_id=$user_id, product_id='" . $productId . "', quantity='" . $quantity . "', active=$active WHERE cart_id=$cartId";
+        return "UPDATE Carts SET user_id=$user_id, productId='" . $productId . "', quantity='" . $quantity . "', active=$active WHERE cart_id=$cartId";
     }
 
 

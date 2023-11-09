@@ -2,7 +2,7 @@
 
 class Trustees
 {
-    private $Table = "Trustees";
+    private $Table = __CLASS__;
     public $trusteeId;
     public $userId;
     public $firstName;

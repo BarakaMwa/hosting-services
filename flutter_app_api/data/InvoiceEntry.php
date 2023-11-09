@@ -4,9 +4,9 @@ class InvoiceEntry
 {
 
 
-    public $entry_id;
-    public $invoice_id;
-    public $product_id;
+    public $entryId;
+    public $invoiceId;
+    public $productId;
     public $quantity;
     public $price;
     public $total_price;
@@ -29,32 +29,32 @@ class InvoiceEntry
     }
 
     /**
-     * @param int $entry_id
+     * @param int $entryId
      * @return string
      */
-    final public function getById(int $entry_id): string
+    final public function getById(int $entryId): string
     {
-        return "SELECT * FROM Invoice_Entries WHERE entry_id = $entry_id";
+        return "SELECT * FROM Invoice_Entries WHERE entryId = $entryId";
     }
 
     /**
-     * @param int $entry_id
+     * @param int $entryId
      * @return string
      */
-    final public function deleteById(int $entry_id): string
+    final public function deleteById(int $entryId): string
     {
-        return "DELETE FROM Invoice_Entries WHERE entry_id = $entry_id";
+        return "DELETE FROM Invoice_Entries WHERE entryId = $entryId";
     }
 
 
     /**
      * @param int $active
-     * @param int $entry_id
+     * @param int $entryId
      * @return string
      */
-    final public function getByIdAndActive(int $active, int $entry_id): string
+    final public function getByIdAndActive(int $active, int $entryId): string
     {
-        return "SELECT * FROM Invoice_Entries WHERE active = $active and entry_id = $entry_id";
+        return "SELECT * FROM Invoice_Entries WHERE active = $active and entryId = $entryId";
     }
 
     /**
@@ -63,11 +63,11 @@ class InvoiceEntry
      */
     final public function insertInvoiceEntry(array $result): string
     {
-        return "INSERT INTO Invoice_Entries (vendor_id, product_id, 
+        return "INSERT INTO Invoice_Entries (vendorId, productId, 
                    invoice_blob, active,
                    invoice_size, invoice_link,
                    invoice_name,invoice_type) 
-               VALUES ( " . $result['vendor_id'] . ", '" . $result["product_id"] . "', 
+               VALUES ( " . $result['vendorId'] . ", '" . $result["productId"] . "', 
                '" . $result["invoice_blob"] . "', " . $result['active'] . ",
                 '" . $result['invoice_size'] . "', '" . $result['invoice_link'] . "',
                  '" . $result['invoice_name'] . "','" . $result['invoice_type'] . "')";
@@ -80,38 +80,38 @@ class InvoiceEntry
      * @param string $invoice_type
      * @param string $invoice_name
      * @param int $active
-     * @param int $entry_id
+     * @param int $entryId
      * @return string
      */
     final public function update(string $invoice_blob, int $invoice_size,
                                  string $invoice_link, string $invoice_type,
                                  string $invoice_name, int $active,
-                                 int    $entry_id): string
+                                 int    $entryId): string
     {
         return "UPDATE Invoice_Entries 
 SET 
     invoice_blob='" . $invoice_blob . "', invoice_size='" . $invoice_size . "',
     invoice_link='" . $invoice_link . "',invoice_type='" . $invoice_type . "',
     invoice_name='" . $invoice_name . "', active=$active 
-    WHERE entry_id=$entry_id";
+    WHERE entryId=$entryId";
     }
 
     /**
-     * @param int $invoice_id
+     * @param int $invoiceId
      * @return string
      */
-    public function getByInvoiceId(int $invoice_id): string
+    public function getByInvoiceId(int $invoiceId): string
     {
-        return "SELECT * FROM Invoice_Entries WHERE invoice_id = $invoice_id";
+        return "SELECT * FROM Invoice_Entries WHERE invoiceId = $invoiceId";
     }
 
     /**
-     * @param int $product_id
+     * @param int $productId
      * @return string
      */
-    public function getByProductId(int $product_id): string
+    public function getByProductId(int $productId): string
     {
-        return "SELECT * FROM Invoice_Entries WHERE product_id = $product_id";
+        return "SELECT * FROM Invoice_Entries WHERE productId = $productId";
     }
 
 }

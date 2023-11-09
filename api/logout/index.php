@@ -1,11 +1,11 @@
 <?php
 session_start();
-require_once '../class.user.php';
-$user = new USER();
+require_once '../class.userService.php';
+$user = new UserService();
 
 if(!$user->is_logged_in())
 {
-    $user->redirect('../home/index.php');
+    $user->redirect('../home-page/index.php');
 }
 
 if($user->is_logged_in()!="")

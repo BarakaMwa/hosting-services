@@ -1,14 +1,14 @@
 <?php
 session_start();
-require_once '../class.user.php';
+require_once '../class.userService.php';
 
-$reg_user = new USER();
+$reg_user = new UserService();
 
 if ($reg_user->is_logged_in() != "") {
     $response['status'] = "success";
     $response['success'] = true;
     $response['message'] = "Logged In";
-//    $user_login->redirect('../home/index.php');
+
     echo json_encode($response, JSON_THROW_ON_ERROR);
     exit();
 }
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = trim($_POST['password']);
     $code = md5(uniqid(rand(), true));
 
-    $stmt = $reg_user->runQuery("SELECT * FROM tbl_users WHERE userEmail=:email_id");
+    $stmt = $reg_user->runQuery("SELECT * FROM Users WHERE userEmail=:email_id");
     $stmt->execute(array(":email_id" => $email));
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 

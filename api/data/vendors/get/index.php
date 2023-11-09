@@ -6,7 +6,7 @@ require_once '../../../connection.php';
 //require_once '../../../connection-local.php';
 
 require_once '../../../errors/Responses.php';
-const Entity = "Vendor";
+const Entity = "Vendors";
 
 $response = array();
 $status = false;
@@ -21,34 +21,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     try {
-        $vendor_id = 0;
+        $vendorId = 0;
         if (isset($_POST['id']) && !empty($_POST['id'])) {
-            $vendor_id = $_POST['id'];
+            $vendorId = $_POST['id'];
         } else if (isset($_GET['id']) && !empty($_GET['id'])) {
-            $vendor_id = $_GET['id'];
+            $vendorId = $_GET['id'];
         } else {
             $responses->errorInvalidRequest($response);
         }
 
-        $sql = $vendor->getById($vendor_id);
+        $sql = $vendor->getById($vendorId);
 
         if (isset($_POST["active"]) && !empty($_POST["active"])) {
 
             (int)$active = $_POST["active"];
 
-            $sql = $vendor->getByIdAndActive((int) $active, (int) $vendor_id);
+            $sql = $vendor->getByIdAndActive((int) $active, (int) $vendorId);
         } else if (isset($_GET["active"]) && !empty($_GET["active"])) {
 
             (int)$active = $_GET["active"];
 
-            $sql = $vendor->getByIdAndActive($active, $vendor_id);
+            $sql = $vendor->getByIdAndActive($active, $vendorId);
         }
 
         $result = $database->runSelectOneQuery($sql, $db);
 
         /* foreach ($result as $row) {
-             $encrypted = encrypt($row['vendor_id'],$ciphering,$encryption_iv,$options);
-             $row["vendor_id"] = $encrypted;
+             $encrypted = encrypt($row['vendorId'],$ciphering,$encryption_iv,$options);
+             $row["vendorId"] = $encrypted;
              $row["0"] = $encrypted;
          }*/
 

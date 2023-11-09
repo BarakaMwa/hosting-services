@@ -10,7 +10,7 @@ require_once '../../class.devices.php';
 
 $response = array();
 $status = false;
-$devices = new Devices();
+$devices = new DevicesService();
 $responses = new Responses();
 const Entity = "Device";
 
@@ -18,8 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] = 'GET')
 
 //    todo encrypt
     /* foreach ($result as $row) {
-         $encrypted = encrypt($row['vendor_id'],$ciphering,$encryption_iv,$options);
-         $row["vendor_id"] = $encrypted;
+         $encrypted = encrypt($row['vendorId'],$ciphering,$encryption_iv,$options);
+         $row["vendorId"] = $encrypted;
          $row["0"] = $encrypted;
      }*/
 

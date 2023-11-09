@@ -1,9 +1,9 @@
 <?php
 
-class Payment
+class Payments
 {
     public $payment_id;
-    public $vendor_id;
+    public $vendorId;
     public $amount;
     public $payment_date;
     public $active;
@@ -60,22 +60,22 @@ class Payment
      */
     final public function insert(array $result): string
     {
-        return "INSERT INTO Payments (vendor_id, payment_date, amount, active) 
-               VALUES ( " . $result['vendor_id'] . ", '" . $result["payment_date"] . "',
+        return "INSERT INTO Payments (vendorId, payment_date, amount, active) 
+               VALUES ( " . $result['vendorId'] . ", '" . $result["payment_date"] . "',
                 '" . $result["amount"] . "', " . $result['active'] . ")";
     }
 
     /**
-     * @param int $vendor_id
+     * @param int $vendorId
      * @param int $productId
      * @param float $amount
      * @param int $active
      * @param int $cartId
      * @return string
      */
-    final public function update(int $vendor_id, int $productId, float $amount, int $active, int $cartId): string
+    final public function update(int $vendorId, int $productId, float $amount, int $active, int $cartId): string
     {
-        return "UPDATE Payments SET vendor_id=$vendor_id, payment_date='" . $productId . "', amount='" . $amount . "', active=$active WHERE payment_id=$cartId";
+        return "UPDATE Payments SET vendorId=$vendorId, payment_date='" . $productId . "', amount='" . $amount . "', active=$active WHERE payment_id=$cartId";
     }
 
 

@@ -2,22 +2,24 @@
 
 require_once '../headers-api.php';
 session_start();
-require_once '../class.user.php';
+require_once '../class.userService.php';
 require_once '../constants/Utils.php';
-require_once '../class.devices.php';
-require_once '../class.trustees.php';
-$user_login = new USER();
+//require_once '../../api/data/Devices.php';
+//require_once '../../api/data/Trustees.php';
+require_once '../class.devicesService.php';
+require_once '../class.trusteesService.php';
+$user_login = new UserService();
 $response = array();
 $status = false;
 $utils = new Utils();
-$devices = new Devices();
-$trustees = new Trustees();
+$devices = new DevicesService();
+$trustees = new TrusteesService();
 
 if ($user_login->is_logged_in() != "") {
     $response['status'] = "success";
     $response['success'] = true;
     $response['message'] = "Logged In";
-//    $user_login->redirect('../home/index.php');
+
     echo json_encode($response, JSON_THROW_ON_ERROR);
     exit();
 }
@@ -30,18 +32,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $userDetails = $user_login->getUserDetailsByEmail($email);
         $userLogins = $user_login->getUserLogins($email);
-        $userDevices = $devices->getAllByUserId((int)$userLogins['userID']);
-        $userDevicesSize = $devices->getTotalByUserId((int)$userLogins['userID']);
-        $userTopDevices = $devices->getTopByUserId((int)$userLogins['userID'],5);
-        $userTrustees = $trustees->getAllByUserId((int)$userLogins['userID']);
-        $userTrusteesSize = $trustees->getTotalByUserId((int)$userLogins['userID']);
-        $userTopTrustees = $trustees->getTopByUserId((int)$userLogins['userID'],5);
+        $userDevices = $devices->getAllByUserId((int)$userLogins['userId']);
+        $userDevicesSize = $devices->getTotalByUserId((int)$userLogins['userId']);
+        $userTopDevices = $devices->getTopByUserId((int)$userLogins['userId'],5);
+        $userTrustees = $trustees->getAllByUserId((int)$userLogins['userId']);
+        $userTrusteesSize = $trustees->getTotalByUserId((int)$userLogins['userId']);
+        $userTopTrustees = $trustees->getTopByUserId((int)$userLogins['userId'],5);
 
         $response["success"] = true;
         $response["status"] = "success";
         $response["message"] = "Login successful";
-//        $userDetails['userID'] = $utils->encryptString($userDetails['userID']);
-        $response["userId"] = $userLogins['userID'];
+//        $userDetails['userId'] = $utils->encryptString($userDetails['userId']);
+        $response["userId"] = $userLogins['userId'];
         $response["userDetails"] = $userDetails;
         $response["userLogins"] = $userLogins;
         $response["userDevices"] = $userDevices;
@@ -52,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $response["userTopTrustees"] = $userTopTrustees;
         echo json_encode($response, JSON_THROW_ON_ERROR);
         exit();
-//        $user_login->redirect('../home/index.php');
+
     }
 
     $response["success"] = false;

@@ -1,12 +1,21 @@
 <?php
 
-class Invoice{
+class InvoiceEntries
+{
+    private $table = __CLASS__;
+    public $entryId;
+    public $invoiceId;
+    public $productId;
+    public $quantity;
+    public $price;
+    public $total_price;
+
     /**
      * @return string
      */
     final public function getGetAll(): string
     {
-        return "SELECT * FROM Invoices";
+        return "SELECT * FROM ".$this ->table;
     }
 
     /**
@@ -15,45 +24,45 @@ class Invoice{
      */
     final public function getAllByActive(int $active): string
     {
-        return "SELECT * FROM Invoices WHERE active = $active";
+        return "SELECT * FROM ".$this->table." WHERE active = $active";
     }
 
     /**
-     * @param int $invoiceId
+     * @param int $entryId
      * @return string
      */
-    final public function getById(int $invoiceId): string
+    final public function getById(int $entryId): string
     {
-        return "SELECT * FROM Invoices WHERE invoiceId = $invoiceId";
+        return "SELECT * FROM ".$this->table." WHERE entryId = $entryId";
     }
 
     /**
-     * @param int $invoiceId
+     * @param int $entryId
      * @return string
      */
-    final public function deleteById(int $invoiceId): string
+    final public function deleteById(int $entryId): string
     {
-        return "DELETE FROM Invoices WHERE invoiceId = $invoiceId";
+        return "DELETE FROM ".$this->table." WHERE entryId = $entryId";
     }
 
 
     /**
      * @param int $active
-     * @param int $invoice_Id
+     * @param int $entryId
      * @return string
      */
-    final public function getByIdAndActive(int $active, int $invoice_Id): string
+    final public function getByIdAndActive(int $active, int $entryId): string
     {
-        return "SELECT * FROM Invoices WHERE active = $active and invoiceId = $invoice_Id";
+        return "SELECT * FROM ".$this->table." WHERE active = $active and entryId = $entryId";
     }
 
     /**
      * @param array $result
      * @return string
      */
-    final public function insert(array $result): string
+    final public function insertInvoiceEntry(array $result): string
     {
-        return "INSERT INTO Invoices (vendorId, productId, 
+        return "INSERT INTO ".$this->table." (vendorId, productId, 
                    invoice_blob, active,
                    invoice_size, invoice_link,
                    invoice_name,invoice_type) 
@@ -70,36 +79,38 @@ class Invoice{
      * @param string $invoice_type
      * @param string $invoice_name
      * @param int $active
-     * @param int $invoiceId
+     * @param int $entryId
      * @return string
      */
     final public function update(string $invoice_blob, int $invoice_size,
                                  string $invoice_link, string $invoice_type,
                                  string $invoice_name, int $active,
-                                 int    $invoiceId): string
+                                 int    $entryId): string
     {
-        return "UPDATE Invoices 
+        return "UPDATE ".$this->table." 
 SET 
     invoice_blob='" . $invoice_blob . "', invoice_size='" . $invoice_size . "',
     invoice_link='" . $invoice_link . "',invoice_type='" . $invoice_type . "',
     invoice_name='" . $invoice_name . "', active=$active 
-    WHERE invoiceId=$invoiceId";
+    WHERE entryId=$entryId";
     }
 
     /**
-     * @param array $result
+     * @param int $invoiceId
      * @return string
      */
-    public function insertInvoice(array $result): string
+    public function getByInvoiceId(int $invoiceId): string
     {
-        return "INSERT INTO Invoices (vendorId, productId, 
-                   invoice_blob, active,
-                   invoice_size, invoice_link,
-                   invoice_name,invoice_type) 
-               VALUES ( " . $result['vendorId'] . ", '" . $result["productId"] . "', 
-               '" . $result["invoice_blob"] . "', " . $result['active'] . ",
-                '" . $result['invoice_size'] . "', '" . $result['invoice_link'] . "',
-                 '" . $result['invoice_name'] . "','" . $result['invoice_type'] . "')";
+        return "SELECT * FROM ".$this->table." WHERE invoiceId = $invoiceId";
+    }
+
+    /**
+     * @param int $productId
+     * @return string
+     */
+    public function getByProductId(int $productId): string
+    {
+        return "SELECT * FROM ".$this->table." WHERE productId = $productId";
     }
 
 }

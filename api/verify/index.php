@@ -1,5 +1,5 @@
 <?php
-require_once '../class.user.php';
+require_once '../class.userService.php';
 $user = new UserService();
 
 if (empty($_GET['id']) && empty($_GET['code'])) {
@@ -13,12 +13,12 @@ if (isset($_GET['id'], $_GET['code'])) {
     $statusY = "Y";
     $statusN = "N";
 
-    $stmt = $user->runQuery("SELECT userID,userStatus FROM Users WHERE userID=:uID AND tokenCode=:code LIMIT 1");
+    $stmt = $user->runQuery("SELECT userId,userStatus FROM Users WHERE userId=:uID AND tokenCode=:code LIMIT 1");
     $stmt->execute(array(":uID" => $id, ":code" => $code));
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($stmt->rowCount() > 0) {
         if ($row['userStatus'] == $statusN) {
-            $stmt = $user->runQuery("UPDATE Users SET userStatus=:status WHERE userID=:uID");
+            $stmt = $user->runQuery("UPDATE Users SET userStatus=:status WHERE userId=:uID");
             $stmt->bindparam(":status", $statusY);
             $stmt->bindparam(":uID", $id);
             $stmt->execute();

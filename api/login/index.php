@@ -2,7 +2,7 @@
 
 require_once '../headers-api.php';
 session_start();
-require_once '../class.user.php';
+require_once '../class.userService.php';
 require_once '../constants/Utils.php';
 //require_once '../../api/data/Devices.php';
 //require_once '../../api/data/Trustees.php';
@@ -32,18 +32,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $userDetails = $user_login->getUserDetailsByEmail($email);
         $userLogins = $user_login->getUserLogins($email);
-        $userDevices = $devices->getAllByUserId((int)$userLogins['userID']);
-        $userDevicesSize = $devices->getTotalByUserId((int)$userLogins['userID']);
-        $userTopDevices = $devices->getTopByUserId((int)$userLogins['userID'],5);
-        $userTrustees = $trustees->getAllByUserId((int)$userLogins['userID']);
-        $userTrusteesSize = $trustees->getTotalByUserId((int)$userLogins['userID']);
-        $userTopTrustees = $trustees->getTopByUserId((int)$userLogins['userID'],5);
+        $userDevices = $devices->getAllByUserId((int)$userLogins['userId']);
+        $userDevicesSize = $devices->getTotalByUserId((int)$userLogins['userId']);
+        $userTopDevices = $devices->getTopByUserId((int)$userLogins['userId'],5);
+        $userTrustees = $trustees->getAllByUserId((int)$userLogins['userId']);
+        $userTrusteesSize = $trustees->getTotalByUserId((int)$userLogins['userId']);
+        $userTopTrustees = $trustees->getTopByUserId((int)$userLogins['userId'],5);
 
         $response["success"] = true;
         $response["status"] = "success";
         $response["message"] = "Login successful";
-//        $userDetails['userID'] = $utils->encryptString($userDetails['userID']);
-        $response["userId"] = $userLogins['userID'];
+//        $userDetails['userId'] = $utils->encryptString($userDetails['userId']);
+        $response["userId"] = $userLogins['userId'];
         $response["userDetails"] = $userDetails;
         $response["userLogins"] = $userLogins;
         $response["userDevices"] = $userDevices;

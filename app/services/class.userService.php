@@ -60,9 +60,9 @@ class UserService
             if ($stmt->rowCount() == 1) {
                 if ($userRow['userStatus'] == "Y") {
                     if ($userRow['userPass'] == md5($upass)) {
-                        $_SESSION['userSessionId'] = $userRow['userID'];
+                        $_SESSION['userSessionId'] = $userRow['userId'];
                         $_SESSION['isLoggedIn'] = true;
-//                        $_SESSION['userType'] = $userRow['userID'];
+//                        $_SESSION['userType'] = $userRow['userId'];
                         return true;
                     } else {
                         header("Location: ../login/index.php?error");

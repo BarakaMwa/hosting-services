@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../class.user.php';
+require_once '../class.userService.php';
 
 $reg_user = new UserService();
 

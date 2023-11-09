@@ -52,7 +52,7 @@ class User
     {
         try {
 
-            $stmt = $this->conn->prepare("INSERT INTO user_details(userEmail,firstName,lastName,nrc,gender,phone) 
+            $stmt = $this->conn->prepare("INSERT INTO userDetails(userEmail,firstName,lastName,nrc,gender,phone) 
                                                 VALUES(:userEmail, :firstName, :lastName, :nrc, :gender, :phone)");
             $stmt->bindparam(":userEmail", $userEmail);
             $stmt->bindparam(":firstName", $firstName);
@@ -77,7 +77,7 @@ class User
             if ($stmt->rowCount() == 1) {
                 if ($userRow['userStatus'] == "Y") {
                     if ($userRow['userPass'] == md5($upass)) {
-                        $_SESSION['userSessionId'] = $userRow['userID'];
+                        $_SESSION['userSessionId'] = $userRow['userId'];
                         return true;
                     } else {
 //                        header("Location: ../login/index.php?error");
@@ -145,7 +145,7 @@ class User
     {
         $userRow = array();
         try {
-            $stmt = $this->conn->prepare("SELECT * FROM user_details WHERE userEmail=:email_id");
+            $stmt = $this->conn->prepare("SELECT * FROM userDetails WHERE userEmail=:email_id");
             $stmt->execute(array(":email_id" => $email));
             $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $ex) {

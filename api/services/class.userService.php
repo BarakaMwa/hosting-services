@@ -4,10 +4,10 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
-require_once 'connection.php';
+require_once '../connection.php';
 //require_once 'connection-local.php';
 
-class User
+class UserService
 {
 
     private const EMAIL_ID = ":email_id";
@@ -54,7 +54,7 @@ class User
     {
         try {
 
-            $stmt = $this->conn->prepare("INSERT INTO user_details(userEmail,firstName,lastName,nrc,gender,phone) 
+            $stmt = $this->conn->prepare("INSERT INTO UserDetails(userEmail,firstName,lastName,nrc,gender,phone) 
                                                 VALUES(:userEmail, :firstName, :lastName, :nrc, :gender, :phone)");
             $stmt->bindparam(":userEmail", $userEmail);
             $stmt->bindparam(":firstName", $firstName);
@@ -79,7 +79,7 @@ class User
             if ($stmt->rowCount() == 1) {
                 if ($userRow['userStatus'] == "Y") {
                     if ($userRow['userPass'] == md5($upass)) {
-                        $_SESSION['userSessionId'] = $userRow['userID'];
+                        $_SESSION['userSessionId'] = $userRow['userId'];
                         return true;
                     } else {
 //                        header("Location: ../login/index.php?error");
@@ -147,7 +147,7 @@ class User
     {
         $userRow = array();
         try {
-            $stmt = $this->conn->prepare("SELECT * FROM user_details WHERE userEmail=:email_id");
+            $stmt = $this->conn->prepare("SELECT * FROM UserDetails WHERE userEmail=:email_id");
             $stmt->execute(array(self::EMAIL_ID => $email));
             $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $ex) {

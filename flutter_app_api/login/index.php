@@ -28,14 +28,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $userDetails = $user_login->getUserDetailsByEmail($email);
         $userLogins = $user_login->getUserLogins($email);
-        $userDevices = $devices->getAllByUserId((int)$userLogins['userID']);
-        $userTopDevices = $devices->getTopFiveDevicesByUserId((int)$userLogins['userID']);
+        $userDevices = $devices->getAllByUserId((int)$userLogins['userId']);
+        $userTopDevices = $devices->getTopFiveDevicesByUserId((int)$userLogins['userId']);
 
         $response["success"] = true;
         $response["status"] = "success";
         $response["message"] = "Login successful";
-//        $userDetails['userID'] = $utils->encryptString($userDetails['userID']);
-        $response["userId"] = $userLogins['userID'];
+//        $userDetails['userId'] = $utils->encryptString($userDetails['userId']);
+        $response["userId"] = $userLogins['userId'];
         $response["userDetails"] = $userDetails;
         $response["userLogins"] = $userLogins;
         $response["userDevices"] = $userDevices;

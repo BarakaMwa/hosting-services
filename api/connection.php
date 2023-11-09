@@ -4,6 +4,7 @@ require_once 'data/Vendors.php';
 require_once 'data/Carts.php';
 require_once 'data/Products.php';
 require_once 'data/Invoices.php';
+require_once 'data/InvoiceEntries.php';
 require_once 'data/Devices.php';
 require_once 'data/Trustees.php';
 require_once 'data/Payments.php';
@@ -24,9 +25,12 @@ class Database
     public $cart;
     public $product;
     public $invoice;
+    public $invoiceEntry;
     public $payment;
     public $qrCode;
     public $file;
+    public $device;
+    public $trustee;
     public $responses;
 
     /**
@@ -34,13 +38,16 @@ class Database
      */
     public function __construct()
     {
-        $this->vendor = new Vendor();
-        $this->qrCode = new QrCode();
-        $this->product = new Product();
-        $this->invoice = new Invoice();
+        $this->vendor = new Vendors();
+        $this->qrCode = new QrCodes();
+        $this->product = new Products();
+        $this->invoice = new Invoices();
+        $this->invoiceEntry = new InvoiceEntries();
         $this->payment = new Payments();
-        $this->file = new File();
-        $this->cart = new Cart();
+        $this->device = new Devices();
+        $this->trustee = new Trustees();
+        $this->file = new Files();
+        $this->cart = new Carts();
         $this->responses = new Responses();
     }
 

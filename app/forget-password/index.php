@@ -10,11 +10,11 @@ if ($user->is_logged_in() != "") {
 if (isset($_POST['btn-submit'])) {
     $email = $_POST['txtemail'];
 
-    $stmt = $user->runQuery("SELECT userID FROM Users WHERE userEmail=:email LIMIT 1");
+    $stmt = $user->runQuery("SELECT userId FROM Users WHERE userEmail=:email LIMIT 1");
     $stmt->execute(array(":email" => $email));
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($stmt->rowCount() == 1) {
-        $id = base64_encode($row['userID']);
+        $id = base64_encode($row['userId']);
         $code = md5(uniqid(rand(), true));
 
         $stmt = $user->runQuery("UPDATE Users SET tokenCode=:token WHERE userEmail=:email");

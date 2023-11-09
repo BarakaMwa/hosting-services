@@ -10,7 +10,7 @@ require_once '../../class.devices.php';
 
 $response = array();
 $status = false;
-$devices = new Devices();
+$devices = new DevicesService();
 $responses = new Responses();
 const Entity = "Device";
 

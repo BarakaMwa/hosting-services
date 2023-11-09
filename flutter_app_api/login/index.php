@@ -9,7 +9,7 @@ $user_login = new UserService();
 $response = array();
 $status = false;
 $utils = new Utils();
-$devices = new Devices();
+$devices = new DevicesService();
 
 if ($user_login->is_logged_in() != "") {
     $response['status'] = "success";

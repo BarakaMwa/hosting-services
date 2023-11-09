@@ -3,7 +3,7 @@
 //require_once 'connection-local.php';
 require_once 'connection.php';
 
-class Devices
+class TrusteesService
 {
     private $conn;
 
@@ -20,20 +20,14 @@ class Devices
         return $stmt;
     }
 
-    public function lasdID()
-    {
-        $stmt = $this->conn->lastInsertId();
-        return $stmt;
-    }
-
     /**
      * @return array
      */
-    public function getAllDevices(): array
+    public function getAllTrustees(): array
     {
         $data = array();
         try {
-            $stmt = $this->conn->query("SELECT * FROM Devices");
+            $stmt = $this->conn->query("SELECT * FROM Trustees");
             $data = $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $ex) {
             echo $ex->getMessage();
@@ -46,12 +40,12 @@ class Devices
      * @param int $Id
      * @return array
      */
-    public function getDeviceById(int $Id): array
+    public function getById(int $Id): array
     {
         $data = array();
         try {
-            $stmt = $this->conn->prepare("SELECT * FROM Devices WHERE DeviceID=:DeviceId");
-            $stmt->execute(array(":DeviceId" => $Id));
+            $stmt = $this->conn->prepare("SELECT * FROM Trustees WHERE trusteeId=:trusteeId");
+            $stmt->execute(array(":trusteeId" => $Id));
             $data = $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $ex) {
             echo $ex->getMessage();
@@ -67,15 +61,15 @@ class Devices
     {
         $data = array();
         try {
-            $stmt = $this->conn->prepare("SELECT * FROM Devices WHERE userId=:UserId");
-            $stmt->execute(array(":UserId" => $Id));
-            $stmt->setFetchMode(PDO::FETCH_ASSOC);
-            $data = $stmt->fetchAll();
+            $stmt = $this->conn->prepare("SELECT * FROM Trustees WHERE userId=:userId");
+            $stmt->execute(array(":userId" => $Id));
+            $data = $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $ex) {
             echo $ex->getMessage();
         }
         return $data;
     }
+
 
     /**
      * @param int $Id
@@ -85,15 +79,15 @@ class Devices
     {
         $data = array();
         try {
-            $stmt = $this->conn->prepare("SELECT * FROM Devices WHERE userId=:UserId");
-            $stmt->execute(array(":UserId" => $Id));
-            $stmt->setFetchMode(PDO::FETCH_ASSOC);
-            $data = $stmt->fetchAll();
+            $stmt = $this->conn->prepare("SELECT * FROM Trustees WHERE userId=:userId");
+            $stmt->execute(array(":userId" => $Id));
+            $data = $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $ex) {
             echo $ex->getMessage();
         }
         return count($data);
     }
+
 
     /**
      * @param int $Id
@@ -105,9 +99,9 @@ class Devices
         $data = array();
         try {
             $stmt = $this->conn->prepare("SELECT *
-                                                    FROM Devices
-                                                    WHERE UserId IS NOT NULL and UserId=:UserId
-                                                    ORDER BY DeviceId DESC
+                                                    FROM Trustees
+                                                    WHERE userId IS NOT NULL and UserId=:UserId
+                                                    ORDER BY trusteeId DESC
                                                     LIMIT " . $Size . ";");
             $stmt->execute(array(":UserId" => $Id));
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -117,4 +111,6 @@ class Devices
         }
         return $data;
     }
+
+
 }

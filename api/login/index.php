@@ -6,14 +6,14 @@ require_once '../class.user.php';
 require_once '../constants/Utils.php';
 //require_once '../../api/data/Devices.php';
 //require_once '../../api/data/Trustees.php';
-require_once '../class.devices.php';
-require_once '../class.trustees.php';
+require_once '../class.devicesService.php';
+require_once '../class.trusteesService.php';
 $user_login = new UserService();
 $response = array();
 $status = false;
 $utils = new Utils();
-$devices = new Devices();
-$trustees = new Trustees();
+$devices = new DevicesService();
+$trustees = new TrusteesService();
 
 if ($user_login->is_logged_in() != "") {
     $response['status'] = "success";

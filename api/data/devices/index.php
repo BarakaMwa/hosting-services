@@ -6,11 +6,11 @@ require_once '../../connection.php';
 //require_once '../../connection-local.php';
 
 require_once '../../errors/Responses.php';
-require_once '../../class.devices.php';
+require_once '../../class.devicesService.php';
 
 $response = array();
 $status = false;
-$devices = new Devices();
+$devices = new DevicesService();
 $responses = new Responses();
 const Entity = "Device";
 

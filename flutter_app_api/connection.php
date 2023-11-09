@@ -45,8 +45,8 @@ class Database
         $this->payment = new Payments();
         $this->file = new Files();
         $this->cart = new Carts();
-        $this->device = new Devices();
-        $this->trustee = new Trustees();
+        $this->device = new DevicesService();
+        $this->trustee = new TrusteesService();
         $this->responses = new Responses();
     }
 

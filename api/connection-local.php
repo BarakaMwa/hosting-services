@@ -12,7 +12,7 @@ require_once 'data/QrCodes.php';
 require_once 'data/Files.php';
 require_once 'errors/Responses.php';
 
-class Database
+class LocalDatabase
 {
 
     private $host = "localhost:3306";
@@ -25,7 +25,7 @@ class Database
     public $cart;
     public $product;
     public $invoice;
-    public $invoice_entries;
+    public $invoiceEntries;
     public $payment;
     public $qrCode;
     public $file;
@@ -37,12 +37,12 @@ class Database
     public function __construct()
     {
         $this->vendor = new Vendor();
-        $this->qrCode = new QrCode();
+        $this->qrCode = new QrCodes();
         $this->product = new Product();
         $this->invoice = new Invoice();
-        $this->invoice_entries = new InvoiceEntries();
+        $this->invoiceEntries = new InvoiceEntries();
         $this->payment = new Payments();
-        $this->file = new File();
+        $this->file = new Files();
         $this->cart = new Cart();
         $this->responses = new Responses();
     }

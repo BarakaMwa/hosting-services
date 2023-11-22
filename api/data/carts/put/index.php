@@ -17,7 +17,7 @@ const Entity = "Carts";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $result = array();
-    $database = new Database();
+    $database = new LocalDatabase();
     $db = $database->dbConnection();
     $cart = $database->cart;
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
  */
 function insertingCartEdit(?PDO $db, Carts $cart, array $data): array
 {
-    $database = new Database();
+    $database = new LocalDatabase();
 
     $result = checkIfPostValuesAreSetAndInsert($data);
 

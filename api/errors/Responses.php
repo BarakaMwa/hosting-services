@@ -1,5 +1,6 @@
 <?php
 
+namespace Errors;
 
 class Responses
 {

@@ -1,8 +1,11 @@
 <?php
 
+namespace Api\Models;
+
 class Trustees
 {
-    private $Table = __CLASS__;
+    private const SELECT_FROM = "SELECT * FROM ";
+    private $table = __CLASS__;
     public $trusteeId;
     public $userId;
     public $firstName;
@@ -20,7 +23,7 @@ class Trustees
      */
     final public function getGetAll(): string
     {
-        return "SELECT * FROM ".$this->Table;
+        return self::SELECT_FROM .$this->table;
     }
 
     /**
@@ -29,7 +32,7 @@ class Trustees
      */
     final public function getAllByActive(int $active): string
     {
-        return "SELECT * FROM ".$this->Table." WHERE active = $active";
+        return self::SELECT_FROM .$this->table." WHERE active = $active";
     }
 
     /**
@@ -38,7 +41,37 @@ class Trustees
      */
     final public function getById(int $device_id): string
     {
-        return "SELECT * FROM ".$this->Table." WHERE trusteeId = $device_id";
+        return self::SELECT_FROM .$this->table." WHERE trusteeId = $device_id";
+    }
+
+    /**
+     * @param int $userId
+     * @return string
+     */
+    final public function getByUserId(int $userId): string
+    {
+        return self::SELECT_FROM .$this->table." WHERE userId = $userId";
+    }
+
+    /**
+     * @param string $sql
+     * @param array $search
+     * @return string
+     */
+    final public function searchBy(string $sql, array $search): string
+    {
+        return $sql . " Where name LIKE '%" . $search['value'] . "%' OR status LIKE '%" . $search['value'] . "%'";
+    }
+
+    /**
+     * @param string $sql
+     * @param string $start
+     * @param string $length
+     * @return string
+     */
+    final public function getPage(string $sql, string $start, string $length): string
+    {
+        return $sql. " LIMIT ".$start.", ".$length;
     }
 
 }

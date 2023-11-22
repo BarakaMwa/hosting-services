@@ -15,10 +15,10 @@ const INVOICE_ENTRIES = "Invoice Entries";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET') {
 
-    $database = new Database();
+    $database = new LocalDatabase();
     $db = $database->dbConnection();
     $invoice = $database -> invoice;
-    $invoice_entries = $database -> invoice_entries;
+    $invoice_entries = $database -> invoiceEntries;
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $invoiceId = 0;
     $data= array();

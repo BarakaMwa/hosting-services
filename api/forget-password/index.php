@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../class.userService.php';
+require_once '../services/class.userService.php';
 $user = new UserService();
 $response = array();
 $status = false;

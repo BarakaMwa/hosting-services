@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     $result = array();
-    $database = new Database();
+    $database = new LocalDatabase();
     $db = $database->dbConnection();
     $file = $database->file;
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 function
 checkIfPostValuesAreSetAndDeactivate(int $fileId, ?PDO $db, array $data): array
 {
-    $database = new Database();
+    $database = new LocalDatabase();
     $file = $database->file;
     $sql = $file->getById($fileId);
     $result = $database->runSelectOneQuery($sql, $db);
@@ -115,7 +115,7 @@ function updatingImageDelete(?PDO $db, Files $file, array $response, Responses $
             (string)$result['file_link'], (string)$result['file_type'],
             (string)$result['file_name'], (int)$result['active'], (int)$file_Id);
 
-        $database = new Database();
+        $database = new LocalDatabase();
         $database->runQuery($sql, $db);
 
     } else {

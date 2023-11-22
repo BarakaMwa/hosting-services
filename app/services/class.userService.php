@@ -14,7 +14,7 @@ class UserService
 
     public function __construct()
     {
-        $database = new Database();
+        $database = new LocalDatabase();
         $db = $database->dbConnection();
         $this->conn = $db;
     }

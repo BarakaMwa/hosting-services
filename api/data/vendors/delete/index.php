@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 
 
     $result = array();
-    $database = new Database();
+    $database = new LocalDatabase();
     $db = $database->dbConnection();
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 function checkIfPostValuesAreSetAndDeactivate(int $vendor_Id, ?PDO $db): array
 {
     $responses = new Responses();
-    $database = new Database();
+    $database = new LocalDatabase();
     $vendor = $database->vendor;
     $sql = $vendor->getById($vendor_Id);
     $result = $database->runSelectOneQuery($sql, $db);
@@ -115,7 +115,7 @@ function updatingVendorDelete(?PDO $db, Vendors $vendor, array $response, Respon
 
         $sql = $vendor->update((int)$result['user_id'], (string)$result['vendor_name'], (string)$result['vendor_email'], (int)$result['active'], (int)$vendor_Id);
 
-        $database = new Database();
+        $database = new LocalDatabase();
         $database->runQuery($sql, $db);
 
     } else {

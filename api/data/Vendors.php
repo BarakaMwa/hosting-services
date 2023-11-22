@@ -6,6 +6,7 @@ require_once '../connection.php';
 class Vendors
 {
 
+    public $table=__CLASS__;
 
     public $vendorId;
     public $user_id;

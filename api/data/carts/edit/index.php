@@ -15,7 +15,7 @@ $responses = new Responses();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $result = array();
-    $database = new Database();
+    $database = new LocalDatabase();
     $db = $database->dbConnection();
     $cart = $database->cart;
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
  */
 function checkIfPostValuesAreSetAndEdit(int $cart_Id, ?PDO $db, array $data): array
 {
-    $database = new Database();
+    $database = new LocalDatabase();
     $cart = $database->cart;
     $sql = $cart->getById($cart_Id);
     $result = $database->runSelectOneQuery($sql, $db);
@@ -84,7 +84,7 @@ function checkIfPostValuesAreSetAndEdit(int $cart_Id, ?PDO $db, array $data): ar
  */
 function updatingCartEdit(?PDO $db, Carts $cart, array $response, Responses $responses, array $data): void
 {
-    $database = new Database();
+    $database = new LocalDatabase();
     $result = array();
     if (isset($data['id']) && !empty($data['id'])) {
         $cart_Id = $data['id'];

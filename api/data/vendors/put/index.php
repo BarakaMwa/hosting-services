@@ -17,7 +17,7 @@ const Entity = "Vendors";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $result = array();
-    $database = new Database();
+    $database = new LocalDatabase();
     $db = $database->dbConnection();
     $vendor = $database->vendor;
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
  */
 function insertingVendorEdit(?PDO $db, Vendors $vendor, array $data): array
 {
-    $database = new Database();
+    $database = new LocalDatabase();
 
     $result = checkIfPostValuesAreSetAndInsert($data);
 

@@ -15,7 +15,7 @@ const Entity = "Files";
 if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] = 'GET') {
 
 
-    $database = new Database();
+    $database = new LocalDatabase();
     $db = $database->dbConnection();
     $file = $database->file;
 

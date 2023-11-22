@@ -14,7 +14,7 @@ const Entity = "Vendors";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $result = array();
-    $database = new Database();
+    $database = new LocalDatabase();
     $db = $database->dbConnection();
     $vendor = $database->vendor;
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
  */
 function checkIfPostValuesAreSetAndEdit(int $vendor_Id, ?PDO $db, array $data): array
 {
-    $database = new Database();
+    $database = new LocalDatabase();
     $vendor = $database->vendor;
     $vendor->vendorId = $vendor_Id;
     $sql = $vendor->getById($vendor_Id);
@@ -91,7 +91,7 @@ function checkIfPostValuesAreSetAndEdit(int $vendor_Id, ?PDO $db, array $data): 
  */
 function updatingVendorEdit(?PDO $db, Vendors $vendor, array $response, Responses $responses, array $data): void
 {
-    $database = new Database();
+    $database = new LocalDatabase();
     $result = array();
     if ($vendor->vendorId != null && $vendor->vendorId !== 0) {
         $vendor_Id = $vendor->vendorId;

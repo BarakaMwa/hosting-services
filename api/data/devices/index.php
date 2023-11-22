@@ -6,7 +6,7 @@ require_once '../../connection.php';
 //require_once '../../connection-local.php';
 
 require_once '../../errors/Responses.php';
-require_once '../../class.devicesService.php';
+require_once '../../services/class.devicesService.php';
 
 $response = array();
 $status = false;

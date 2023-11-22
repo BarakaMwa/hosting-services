@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     $result = array();
-    $database = new Database();
+    $database = new LocalDatabase();
     $db = $database->dbConnection();
     $cart = $database->cart;
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 function
 checkIfPostValuesAreSetAndDeactivate(int $cart_Id, ?PDO $db, array $data): array
 {
-    $database = new Database();
+    $database = new LocalDatabase();
     $cart = $database->cart;
     $sql = $cart->getById($cart_Id);
     $result = $database->runSelectOneQuery($sql, $db);
@@ -108,7 +108,7 @@ function updatingCartDelete(?PDO $db, Carts $cart, array $response, Responses $r
 
         $sql = $cart->update((int)$result['user_id'], (int)$result['productId'], (float)$result['quantity'], (int)$result['active'], (int)$cart_Id);
 
-        $database = new Database();
+        $database = new LocalDatabase();
         $database->runQuery($sql, $db);
 
     } else {

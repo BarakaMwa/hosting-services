@@ -12,7 +12,7 @@ require_once 'data/QrCodes.php';
 require_once 'data/Files.php';
 require_once 'errors/Responses.php';
 
-class Database
+class RemoteDatabase
 {
 
     private $host = "infyenterprise.com";

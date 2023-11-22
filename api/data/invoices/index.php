@@ -16,7 +16,7 @@ const Entity_Entry = "Invoice Entry";
 if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] = 'GET') {
 
 
-    $database = new Database();
+    $database = new LocalDatabase();
     $db = $database->dbConnection();
     $invoice = $database->invoice;
 

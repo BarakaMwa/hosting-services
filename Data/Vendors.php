@@ -1,7 +1,7 @@
 <?php
 
-//require_once '../connection-local.php';
-require_once '../connection.php';
+//require_once '../LocalDatabase.php';
+require_once '../RemoteDatabase.php';
 
 class Vendors
 {

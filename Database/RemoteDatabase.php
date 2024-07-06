@@ -1,5 +1,7 @@
 <?php
 
+namespace Database;
+
 require_once 'data/Vendors.php';
 require_once 'data/Carts.php';
 require_once 'data/Products.php';

@@ -9,7 +9,7 @@ class Devices
 
     public function __construct()
     {
-        $database = new LocalDatabase();
+        $database = new Database();
         $db = $database->dbConnection();
         $this->conn = $db;
     }
@@ -67,7 +67,7 @@ class Devices
     {
         $data = array();
         try {
-            $stmt = $this->conn->prepare("SELECT * FROM Devices WHERE user_id=:user_id");
+            $stmt = $this->conn->prepare("SELECT * FROM DevicesModel WHERE user_id=:user_id");
             $stmt->execute(array(":user_id" => $Id));
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $data = $stmt->fetchAll();
@@ -86,7 +86,7 @@ class Devices
         $data = array();
         try {
             $stmt = $this->conn->prepare("SELECT *
-                                                    FROM Devices
+                                                    FROM DevicesModel
                                                     WHERE user_id IS NOT NULL and user_id=:user_id
                                                     ORDER BY device_id DESC
                                                     LIMIT 5;

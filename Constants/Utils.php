@@ -1,5 +1,7 @@
 <?php
 
+namespace Constants;
+
 class Utils
 {
     private $cipheringValue = "AES-128-CTR";

@@ -1,20 +1,26 @@
 <?php
 
+namespace Services;
+
+
+//require_once '../RemoteDatabase.php';
+require_once '../connection-local.php';
+
 use PHPMailer\PHPMailer\PHPMailer;
+use App\Database\LocalDatabase;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
+use PDO;
 
-require_once 'connection.php';
-//require_once 'connection-local.php';
-
-class User
+class UserService
 {
 
     private $conn;
 
     public function __construct()
     {
-        $database = new LocalDatabase();
+        $localDatabase = new LocalDatabase();
+        $database = $localDatabase;
         $db = $database->dbConnection();
         $this->conn = $db;
     }
@@ -48,75 +54,59 @@ class User
         }
     }
 
-    public function registerUserDetails($userEmail, $firstName, $lastName, $nrc, $gender, $phone)
-    {
-        try {
-
-            $stmt = $this->conn->prepare("INSERT INTO userDetails(userEmail,firstName,lastName,nrc,gender,phone) 
-                                                VALUES(:userEmail, :firstName, :lastName, :nrc, :gender, :phone)");
-            $stmt->bindparam(":userEmail", $userEmail);
-            $stmt->bindparam(":firstName", $firstName);
-            $stmt->bindparam(":lastName", $lastName);
-            $stmt->bindparam(":nrc", $nrc);
-            $stmt->bindparam(":gender", $gender);
-            $stmt->bindparam(":phone", $phone);
-            $stmt->execute();
-            return $stmt;
-        } catch (PDOException $ex) {
-            echo $ex->getMessage();
-        }
-    }
-
-    public function login($email, $upass): bool
+    public function login($email, $upass)
     {
         try {
             $stmt = $this->conn->prepare("SELECT * FROM Users WHERE userEmail=:email_id");
             $stmt->execute(array(":email_id" => $email));
             $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
+            $_SESSION['isLoggedIn'] = false;
             if ($stmt->rowCount() == 1) {
                 if ($userRow['userStatus'] == "Y") {
                     if ($userRow['userPass'] == md5($upass)) {
                         $_SESSION['userSessionId'] = $userRow['userId'];
+                        $_SESSION['isLoggedIn'] = true;
+//                        $_SESSION['userType'] = $userRow['userId'];
                         return true;
                     } else {
-//                        header("Location: ../login/index.php?error");
-                        return false;
+                        header("Location: ../login/index.php?error");
+                        exit;
                     }
                 } else {
-//                    header("Location: ../login/index.php?inactive");
-                    return false;
+                    header("Location: ../login/index.php?inactive");
+                    exit;
                 }
             } else {
-//                header("Location: ../login/index.php?error");
-                return false;
+                header("Location: ../login/index.php?error");
+                exit;
             }
         } catch (PDOException $ex) {
             echo $ex->getMessage();
-            return false;
         }
     }
 
-    public function is_logged_in(): bool
+
+    public function is_logged_in()
     {
-        if (isset($_SESSION['userSessionId'])) {
+        if ($_SESSION['isLoggedIn']) {
             return true;
         }
         return false;
     }
 
-    public function redirect($url): void
+    public function redirect($url)
     {
         header("Location: $url");
     }
 
-    public function logout(): void
+    public function logout()
     {
         session_destroy();
-        $_SESSION['userSessionId'] = false;
+//        $_SESSION['userSessionId'] = false;
     }
 
-    public function send_mail($email, $message, $subject): void
+    function send_mail($email, $message, $subject)
     {
 
 
@@ -139,34 +129,4 @@ class User
         $mail->MsgHTML($message);
         $mail->Send();
     }
-
-
-    public function get_user_Details($email): array
-    {
-        $userRow = array();
-        try {
-            $stmt = $this->conn->prepare("SELECT * FROM userDetails WHERE userEmail=:email_id");
-            $stmt->execute(array(":email_id" => $email));
-            $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
-        } catch (PDOException $ex) {
-            echo $ex->getMessage();
-        }
-        return $userRow;
-    }
-
-
-    public function get_user_Logins($email): array
-    {
-        $userRow = array();
-        try {
-            $stmt = $this->conn->prepare("SELECT * FROM Users WHERE userEmail=:email_id");
-            $stmt->execute(array(":email_id" => $email));
-            $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
-        } catch (PDOException $ex) {
-            echo $ex->getMessage();
-        }
-        return $userRow;
-    }
-
-
 }

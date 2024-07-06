@@ -1,5 +1,5 @@
 <?php
-
+namespace Constants;
 // Store a string into the variable which
 // need to be Encrypted
 //$simple_string = "Welcome to GeeksforGeeks\n";

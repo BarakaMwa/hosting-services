@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once '../class.userService.php';
-require_once '../constants/Utils.php';
+require_once '../../Services/UserService.php';
+require_once '../../constants/Utils.php';
 
 $utils = new Utils();
-$reg_user = new UserService();
+$reg_user = new Services\UserService();
 
 if ($reg_user->is_logged_in() != "") {
     $response['status'] = "success";

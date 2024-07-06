@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once '../services/class.userService.php';
-$user_home = new UserService();
+require_once '../../services/UserService.php';
+$user_home = new Services\UserService();
 
 if (!$user_home->is_logged_in()) {
     $user_home->redirect('../logout/index.php');

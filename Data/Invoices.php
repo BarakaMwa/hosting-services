@@ -1,6 +1,11 @@
 <?php
-
+namespace Data;
 class Invoices{
+
+
+
+    public function __construct()
+    {}
     /**
      * @return string
      */

@@ -3,9 +3,12 @@
 const Entity = "Carts";
 require_once '../../../headers-api.php';
 session_start();
-require_once '../../../connection.php';
-//require_once '../../../connection-local.php';
-require_once '../../../errors/Responses.php';
+/*require_once '../../../RemoteDatabase.php';
+//require_once '../../../LocalDatabase.php';
+require_once '../../../errors/Responses.php';*/
+
+use Errors\Responses;
+use Database\LocalDatabase;
 
 $response = array();
 $status = false;

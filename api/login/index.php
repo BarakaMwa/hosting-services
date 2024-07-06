@@ -1,19 +1,26 @@
 <?php
 
 require_once '../headers-api.php';
+require_once '../../services/UserService.php';
+require_once '../../constants/Utils.php';
+require_once '../../services/DevicesService.php';
+require_once '../../services/TrusteesService.php';
+
 session_start();
-require_once '../services/class.userService.php';
-require_once '../constants/Utils.php';
-require_once '../services/class.devicesService.php';
-require_once '../services/class.trusteesService.php';
-$user_login = new UserService();
+
+use Services\UserService;
+use Services\DevicesService;
+use Services\TrusteesService;
+use Constants\Utils;
+
+$userService = new Services\UserService();
 $response = array();
 $status = false;
-$utils = new Utils();
-$devices = new DevicesService();
-$trustees = new TrusteesService();
+$utils = new Constants\Utils();
+$deviceService = new Services\DevicesService();
+$trusteeService = new Services\TrusteesService();
 
-if ($user_login->is_logged_in() != "") {
+if ($userService->is_logged_in()) {
     $response['status'] = "success";
     $response['success'] = true;
     $response['message'] = "Logged In";
@@ -26,16 +33,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST['username']);
     $password = trim($_POST['password']);
 
-    if ($user_login->login($email, $password)) {
+    if ($userService->login($email, $password)) {
 
-        $userDetails = $user_login->getUserDetailsByEmail($email);
-        $userLogins = $user_login->getUserLogins($email);
-        $userDevices = $devices->getAllByUserId((int)$userLogins['userId']);
-        $userDevicesSize = $devices->getTotalByUserId((int)$userLogins['userId']);
-        $userTopDevices = $devices->getTopByUserId((int)$userLogins['userId'],5);
-        $userTrustees = $trustees->getAllByUserId((int)$userLogins['userId']);
-        $userTrusteesSize = $trustees->getTotalByUserId((int)$userLogins['userId']);
-        $userTopTrustees = $trustees->getTopByUserId((int)$userLogins['userId'],5);
+        $userDetails = $userService->getUserDetailsByEmail($email);
+        $userLogins = $userService->getUserLogins($email);
+        $userDevices = $deviceService->getAllByUserId((int)$userLogins['userId']);
+        $userDevicesSize = $deviceService->getTotalByUserId((int)$userLogins['userId']);
+        $userTopDevices = $deviceService->getTopByUserId((int)$userLogins['userId'],5);
+        $userTrustees = $trusteeService->getAllByUserId((int)$userLogins['userId']);
+        $userTrusteesSize = $trusteeService->getTotalByUserId((int)$userLogins['userId']);
+        $userTopTrustees = $trusteeService->getTopByUserId((int)$userLogins['userId'],5);
 
         $response["success"] = true;
         $response["status"] = "success";
@@ -58,12 +65,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $response["success"] = false;
     $response["status"] = "error";
     $response["message"] = "Invalid logins";
-    echo json_encode($response, JSON_THROW_ON_ERROR);
-    exit();
 } else {
     $response["success"] = false;
     $response["status"] = "error";
     $response["message"] = "Invalid Request";
-    echo json_encode($response, JSON_THROW_ON_ERROR);
-    exit();
 }
+echo json_encode($response, JSON_THROW_ON_ERROR);
+exit();

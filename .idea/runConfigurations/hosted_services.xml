@@ -1,8 +1,8 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="hosted-services" type="PhpBuiltInWebServerConfigurationType" factoryName="PHP Built-in Web Server" document_root="$PROJECT_DIR$/.." port="8080">
+  <configuration default="false" name="hosted-services" type="PhpBuiltInWebServerConfigurationType" factoryName="PHP Built-in Web Server" document_root="$PROJECT_DIR$" port="8090" router_script="$PROJECT_DIR$/index.php" use_router_script="true">
     <CommandLine workingDirectory="$PROJECT_DIR$" />
     <method v="2">
-      <option name="LaunchBrowser.Before.Run" browser="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" url="http://localhost:8080/hosting-services/app/login/index.php" />
+      <option name="LaunchBrowser.Before.Run" browser="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" url="http://localhost:8090/hosting-services/app/login/index.php" />
     </method>
   </configuration>
 </component>

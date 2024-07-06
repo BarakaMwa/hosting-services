@@ -1,5 +1,5 @@
 <?php
-
+namespace Data;
 class Products{
 
 
@@ -9,6 +9,10 @@ class Products{
     public $product_name;
     public $product_description;
     public $active;
+
+    public function __construct()
+    {}
+
     /**
      * @return string
      */

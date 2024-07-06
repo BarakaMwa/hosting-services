@@ -5,5 +5,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" OR $_SERVER["REQUEST_METHOD"] == "GET")
     $data["status"]=false;
     $data["message"]="Invalid Request";
     echo json_encode($data);
+    exit();
 }
 

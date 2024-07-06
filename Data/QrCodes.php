@@ -1,5 +1,5 @@
 <?php
-
+namespace Data;
 class QrCodes
 {
 
@@ -9,6 +9,10 @@ class QrCodes
     public $image_link;
     public $active;
     public $qr_id;
+
+
+    public function __construct()
+    {}
 
     /**
      * @return string

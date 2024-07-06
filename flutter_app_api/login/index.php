@@ -4,14 +4,18 @@ require_once '../headers-api.php';
 session_start();
 require_once '../class.user.php';
 require_once '../constants/Utils.php';
-require_once '../class.devices.php';
+require_once '../services/UserService.php';
+
+
+
+
 $user_login = new UserService();
 $response = array();
 $status = false;
 $utils = new Utils();
 $devices = new DevicesService();
 
-if ($user_login->is_logged_in() != "") {
+if ($user_login->is_logged_in()) {
     $response['status'] = "success";
     $response['success'] = true;
     $response['message'] = "Logged In";

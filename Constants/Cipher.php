@@ -1,5 +1,6 @@
 <?php
 
+namespace Constants;
 /**
  * Class for encrypting, obfuscating and hashing strings with the ability to specify an arbitrary base for output
  */

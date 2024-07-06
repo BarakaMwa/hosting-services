@@ -2,12 +2,11 @@
 
 namespace Services;
 
-
 //require_once '../RemoteDatabase.php';
-require_once '../connection-local.php';
+require_once(realpath(__DIR__ . '/../Database/LocalDatabase.php'));
 
 use PHPMailer\PHPMailer\PHPMailer;
-use App\Database\LocalDatabase;
+use Database\LocalDatabase;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 use PDO;

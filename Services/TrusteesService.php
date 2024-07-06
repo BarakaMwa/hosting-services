@@ -2,7 +2,8 @@
 
 namespace Services;
 
-require_once '../Database/LocalDatabase.php';
+//require_once '../Database/LocalDatabase.php';
+use Database\LocalDatabase;
 
 class TrusteesService
 {

@@ -1,5 +1,5 @@
 <?php
-
+namespace Data;
 class Files
 {
 

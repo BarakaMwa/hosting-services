@@ -1,11 +1,13 @@
 <?php
+
+require_once '../../services/UserService.php';
 session_start();
-require_once '../class.user.php';
+use Services\UserService;
 
-$reg_user = new UserService();
+$usersService = new UserService();
 
-if ($reg_user->is_logged_in() != "") {
-    $reg_user->redirect('home.php');
+if ($usersService->is_logged_in()) {
+    $usersService->redirect('home.php');
 }
 
 
@@ -15,7 +17,7 @@ if (isset($_POST['btn-signup'])) {
     $upass = trim($_POST['txtpass']);
     $code = md5(uniqid(rand(), true));
 
-    $stmt = $reg_user->runQuery("SELECT * FROM Users WHERE userEmail=:email_id");
+    $stmt = $usersService->runQuery("SELECT * FROM Users WHERE userEmail=:email_id");
     $stmt->execute(array(":email_id" => $email));
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -27,8 +29,8 @@ if (isset($_POST['btn-signup'])) {
      </div>
      ";
     } else {
-        if ($reg_user->register($uname, $email, $upass, $code)) {
-            $id = $reg_user->lasdID();
+        if ($usersService->register($uname, $email, $upass, $code)) {
+            $id = $usersService->lasdID();
             $key = base64_encode($id);
             $id = $key;
 
@@ -44,7 +46,7 @@ if (isset($_POST['btn-signup'])) {
 
             $subject = "Confirm Registration";
 
-            $reg_user->send_mail($email, $message, $subject);
+            $usersService->send_mail($email, $message, $subject);
             $msg = "
      <div class='alert alert-success'>
       <button class='close' data-dismiss='alert'>&times;</button>

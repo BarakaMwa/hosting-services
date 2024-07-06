@@ -256,7 +256,7 @@ class SMTP
      * Output debugging info via a user-selected method.
      *
      * @param string $str   Debug string to output
-     * @param int    $level The debug level of this message; see DEBUG_* constants
+     * @param int    $level The debug level of this message; see DEBUG_* Constants
      *
      * @see SMTP::$Debugoutput
      * @see SMTP::$do_debug

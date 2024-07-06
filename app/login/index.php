@@ -1,18 +1,19 @@
 <?php
 session_start();
-require_once '../services/class.userService.php';
-$user_login = new UserService();
+require_once '../../Services/UserService.php';
+use Services\UserService;
+$userService = new UserService();
 
-if ($user_login->is_logged_in() != "") {
-    $user_login->redirect('../home-page/index.php');
+if ($userService->is_logged_in()) {
+    $userService->redirect('../home-page/index.php');
 }
 
 if (isset($_POST['btn-login'])) {
     $email = trim($_POST['txtemail']);
     $upass = trim($_POST['txtupass']);
 
-    if ($user_login->login($email, $upass)) {
-        $user_login->redirect('../home-page/index.php');
+    if ($userService->login($email, $upass)) {
+        $userService->redirect('../home-page/index.php');
     }
 }
 ?>

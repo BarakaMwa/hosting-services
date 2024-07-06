@@ -1,0 +1,16 @@
+
+dphp:S1037"KSplit this 127 characters long line (which is greater than 120 authorized).(ï½ó¾ùÿÿÿÿ
+jphp:S116"QRename this field "$db_name" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(Åœ± ûÿÿÿÿ
+8php:S125j"Remove this commented out code.(ÊÚ·áùÿÿÿÿ
+k	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(Ê½¿ùÿÿÿÿ
+f	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(Í‹ãì
+k	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(Œ¿Õ†ıÿÿÿÿ
+f	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(®ÍÂş
+k	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(¼æô¬şÿÿÿÿ
+k	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(ùéŒãøÿÿÿÿ
+f	php:S4833	"QReplace "require_once" with namespace import mechanism through the "use" keyword.(¢óìÄ
+f	php:S4833
+"QReplace "require_once" with namespace import mechanism through the "use" keyword.(·Ä£
+k	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(³­¬áûÿÿÿÿ
+k	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(³’Øúÿÿÿÿ
+e	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(Ì£š

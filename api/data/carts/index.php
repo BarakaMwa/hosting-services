@@ -1,10 +1,12 @@
 <?php
 //todo validation
 require_once '../../headers-api.php';
+require_once '../../../Database/LocalDatabase.php';
+require_once '../../../Errors/Responses.php';
+
 session_start();
-require_once '../../connection.php';
-//require_once '../../connection-local.php';
-require_once '../../errors/Responses.php';
+use Database\LocalDatabase;
+use Errors\Responses;
 
 $response = array();
 $status = false;

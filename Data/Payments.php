@@ -1,5 +1,5 @@
 <?php
-
+namespace Data;
 class Payments
 {
     public $payment_id;
@@ -7,6 +7,10 @@ class Payments
     public $amount;
     public $payment_date;
     public $active;
+
+
+    public function __construct()
+    {}
 
     /**
      * @return string

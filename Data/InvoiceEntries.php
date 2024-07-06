@@ -1,5 +1,5 @@
 <?php
-
+namespace Data;
 class InvoiceEntries
 {
     private $table = __CLASS__;
@@ -10,6 +10,9 @@ class InvoiceEntries
     public $price;
     public $total_price;
 
+
+    public function __construct()
+    {}
     /**
      * @return string
      */

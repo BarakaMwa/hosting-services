@@ -1,6 +1,6 @@
 <?php
 
-namespace Api\Models;
+namespace Data;
 
 class Trustees
 {
@@ -25,6 +25,10 @@ class Trustees
     {
         return self::SELECT_FROM .$this->table;
     }
+
+
+    public function __construct()
+    {}
 
     /**
      * @param int $active

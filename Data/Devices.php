@@ -1,5 +1,5 @@
 <?php
-
+namespace Data;
 class Devices
 {
 
@@ -20,6 +20,10 @@ class Devices
     public $UserId;
     public $DateCreated;
     public $Status;
+
+
+    public function __construct()
+    {}
 
     /**
      * @return string

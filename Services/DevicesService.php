@@ -2,7 +2,10 @@
 
 namespace Services;
 
-require_once 'LocalDatabase.php';
+//require_once '../Database/LocalDatabase.php';
+use Database\LocalDatabase;
+use PDO;
+use PDOException;
 
 
 class DevicesService
@@ -39,6 +42,9 @@ class DevicesService
             $data = $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $ex) {
             echo $ex->getMessage();
+        }
+        if($data === false or $data === true){
+            $data = array();
         }
         return $data;
 //        return $this->conn;

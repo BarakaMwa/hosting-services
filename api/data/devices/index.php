@@ -1,17 +1,16 @@
 <?php
 //todo validation
 require_once '../../headers-api.php';
-session_start();
-require_once '../../connection.php';
-//require_once '../../connection-local.php';
+require_once '../../../Database/LocalDatabase.php';
+require_once '../../../Errors/Responses.php';
+require_once '../../../Services/DevicesService.php';
 
-require_once '../../errors/Responses.php';
-require_once '../../services/class.devicesService.php';
+session_start();
 
 $response = array();
 $status = false;
-$devices = new DevicesService();
-$responses = new Responses();
+$devices = new Services\DevicesService();
+$responses = new Errors\Responses();
 const Entity = "Device";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] = 'GET') {
@@ -25,6 +24,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] = 'GET')
 
     try {
         $result = $devices->getAllDevices();
+        if(count($result) >= 0){
+            $responses -> warningInput("No Results for Devices");
+        }
         $responses->successDataRetrieved($response, $result, Entity);
     } catch (JsonException $e) {
         $responses -> warningInput("Error retrieving Devices");

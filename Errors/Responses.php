@@ -2,8 +2,14 @@
 
 namespace Errors;
 
+use Exception;
+use JsonException;
+
 class Responses
 {
+    public function __construct()
+    {
+    }
 
     /**
      * @param array $response
@@ -14,7 +20,7 @@ class Responses
      */
     public function successDataRetrieved(array $response, array $result, string $entity): void
     {
-        $response["message"] = $entity." Data Retrieved Successfully.";
+        $response["message"] = $entity . " Data Retrieved Successfully.";
         $response["success"] = true;
         $response["status"] = "success";
         $response["data"] = $result;
@@ -31,7 +37,7 @@ class Responses
      */
     public function errorUpDating(array $response, Exception $e, string $entity): void
     {
-        $response["message"] = "Error Updating ".$entity." Data";
+        $response["message"] = "Error Updating " . $entity . " Data";
         $response["success"] = false;
         $response["status"] = "error";
         $response["data"] = $e->getMessage();
@@ -60,9 +66,9 @@ class Responses
      * @return void
      * @throws JsonException
      */
-    public function successDataDeactivated(array $response, array $result, string  $entity): void
+    public function successDataDeactivated(array $response, array $result, string $entity): void
     {
-        $response["message"] = $entity." Data Removal/ Deactivation Successful";
+        $response["message"] = $entity . " Data Removal/ Deactivation Successful";
         $response["success"] = true;
         $response["status"] = "success";
         $response["data"] = $result;
@@ -77,9 +83,9 @@ class Responses
      * @return void
      * @throws JsonException
      */
-    public function errorInsertingData(array $response, Exception $e, string  $entity): void
+    public function errorInsertingData(array $response, Exception $e, string $entity): void
     {
-        $response["message"] = "Error Inserting ".$entity." Data";
+        $response["message"] = "Error Inserting " . $entity . " Data";
         $response["success"] = false;
         $response["status"] = "error";
         $response["data"] = $e->getMessage();
@@ -111,7 +117,7 @@ class Responses
      */
     public function successDataInsert(array $response, array $result, string $entity): void
     {
-        $response["message"] = $entity." Data Inserted Successfully";
+        $response["message"] = $entity . " Data Inserted Successfully";
         $response["success"] = true;
         $response["status"] = "success";
         $response["data"] = $result;
@@ -128,7 +134,7 @@ class Responses
      */
     public function warningAlreadyDeleted(array $response, array $result, string $entity): void
     {
-        $response["message"] = $entity." Data Already Deleted/ Deactivated";
+        $response["message"] = $entity . " Data Already Deleted/ Deactivated";
         $response["success"] = false;
         $response["status"] = "warning";
         $response["data"] = $result;
@@ -145,7 +151,7 @@ class Responses
      */
     public function successDataUpdated(array $response, array $result, string $entity): void
     {
-        $response["message"] = $entity." Data Updated Successfully";
+        $response["message"] = $entity . " Data Updated Successfully";
         $response["success"] = true;
         $response["status"] = "success";
         $response["data"] = $result;

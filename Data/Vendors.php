@@ -1,12 +1,11 @@
 <?php
 
-//require_once '../LocalDatabase.php';
-require_once '../RemoteDatabase.php';
+namespace Data;
 
 class Vendors
 {
 
-    public $table=__CLASS__;
+    public $table = __CLASS__;
 
     public $vendorId;
     public $user_id;
@@ -22,14 +21,17 @@ class Vendors
      * @param string $vendor_name
      * @param int $active
      */
-   /* public function __construct(int $vendorId, int $user_id, string $vendor_email, string $vendor_name, int $active)
+    public function createVendor(int $vendorId, int $user_id, string $vendor_email, string $vendor_name, int $active)
     {
         $this->vendorId = $vendorId;
         $this->user_id = $user_id;
         $this->active = $active;
         $this->vendor_name = $vendor_name;
         $this->vendor_email = $vendor_email;
-    }*/
+    }
+
+    public function __construct()
+    {}
 
     /**
      * @return string

@@ -1,5 +1,8 @@
 <?php
-require_once '../class.userService.php';
+require_once '../../Services/UserService.php';
+
+use Services\UserService;
+
 $user = new UserService();
 
 if (empty($_GET['id']) && empty($_GET['code'])) {

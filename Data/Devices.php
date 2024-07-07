@@ -1,5 +1,7 @@
 <?php
+
 namespace Data;
+
 class Devices
 {
 
@@ -23,14 +25,15 @@ class Devices
 
 
     public function __construct()
-    {}
+    {
+    }
 
     /**
      * @return string
      */
     final public function getGetAll(): string
     {
-        return "SELECT * FROM ".$this->table;
+        return "SELECT * FROM " . $this->table;
     }
 
     /**
@@ -39,7 +42,7 @@ class Devices
      */
     final public function getAllByActive(int $active): string
     {
-        return "SELECT * FROM ".$this->table." WHERE active = $active";
+        return "SELECT * FROM " . $this->table . " WHERE active = $active";
     }
 
     /**

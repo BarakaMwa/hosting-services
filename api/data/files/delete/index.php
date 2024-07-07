@@ -2,7 +2,7 @@
 //todo validation
 require_once '../../../headers-api.php';
 session_start();
-require_once '../../../RemoteDatabase.php';
+require_once '../../../connection.php';
 //require_once '../../../LocalDatabase.php';
 
 require_once '../../../errors/Responses.php';
@@ -10,7 +10,7 @@ require_once '../../../errors/Responses.php';
 $response = array();
 $responses = new Responses();
 $status = false;
-const Entity = "File";
+const Entity = "Files";
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

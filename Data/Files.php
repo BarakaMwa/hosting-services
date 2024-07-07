@@ -1,4 +1,5 @@
 <?php
+
 namespace Data;
 class Files
 {
@@ -12,6 +13,12 @@ class Files
     public $active = 1;
     public $file_name = "file_name";
     public $file_size = 0;
+
+
+    public function __construct()
+    {
+
+    }
 
     /**
      * @return string

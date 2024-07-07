@@ -18,17 +18,18 @@ class Trustees
     public $dateCreated;
     public $status;
 
+    public function __construct()
+    {
+
+    }
+
     /**
      * @return string
      */
     final public function getGetAll(): string
     {
-        return self::SELECT_FROM .$this->table;
+        return self::SELECT_FROM . $this->table;
     }
-
-
-    public function __construct()
-    {}
 
     /**
      * @param int $active
@@ -36,7 +37,7 @@ class Trustees
      */
     final public function getAllByActive(int $active): string
     {
-        return self::SELECT_FROM .$this->table." WHERE active = $active";
+        return self::SELECT_FROM . $this->table . " WHERE active = $active";
     }
 
     /**
@@ -45,7 +46,7 @@ class Trustees
      */
     final public function getById(int $device_id): string
     {
-        return self::SELECT_FROM .$this->table." WHERE trusteeId = $device_id";
+        return self::SELECT_FROM . $this->table . " WHERE trusteeId = $device_id";
     }
 
     /**
@@ -54,7 +55,7 @@ class Trustees
      */
     final public function getByUserId(int $userId): string
     {
-        return self::SELECT_FROM .$this->table." WHERE userId = $userId";
+        return self::SELECT_FROM . $this->table . " WHERE userId = $userId";
     }
 
     /**
@@ -75,7 +76,7 @@ class Trustees
      */
     final public function getPage(string $sql, string $start, string $length): string
     {
-        return $sql. " LIMIT ".$start.", ".$length;
+        return $sql . " LIMIT " . $start . ", " . $length;
     }
 
 }

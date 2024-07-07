@@ -2,17 +2,28 @@
 
 namespace Database;
 
-require_once 'data/Vendors.php';
-require_once 'data/Carts.php';
-require_once 'data/Products.php';
-require_once 'data/Invoices.php';
-require_once 'data/InvoiceEntries.php';
-require_once 'data/Devices.php';
-require_once 'data/Trustees.php';
-require_once 'data/Payments.php';
-require_once 'data/QrCodes.php';
-require_once 'data/Files.php';
-require_once 'errors/Responses.php';
+require_once './../data/Vendors.php';
+use Data\Vendors;
+require_once './../data/Carts.php';
+use Data\Carts;
+require_once './../data/Products.php';
+use Data\Products;
+require_once './../data/Invoices.php';
+use Data\Invoices;
+require_once './../data/Invoice_Entries.php';
+use Data\Invoice_Entries;
+require_once './../data/Devices.php';
+use Data\Devices;
+require_once './../data/Trustees.php';
+use Data\Trustees;
+require_once './../data/Payments.php';
+use Data\Payments;
+require_once './../data/Qr_Codes.php';
+use Data\Qr_Codes;
+require_once './../data/Files.php';
+use Data\Files;
+require_once './../Responses/Responses.php';
+use Responses\Responses;
 
 class RemoteDatabase
 {
@@ -41,10 +52,10 @@ class RemoteDatabase
     public function __construct()
     {
         $this->vendor = new Vendors();
-        $this->qrCode = new QrCodes();
+        $this->qrCode = new Qr_Codes();
         $this->product = new Products();
         $this->invoice = new Invoices();
-        $this->invoiceEntry = new InvoiceEntries();
+        $this->invoiceEntry = new Invoice_Entries();
         $this->payment = new Payments();
         $this->device = new Devices();
         $this->trustee = new Trustees();

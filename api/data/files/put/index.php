@@ -2,7 +2,7 @@
 //todo validation
 require_once '../../../headers-api.php';
 session_start();
-require_once '../../../RemoteDatabase.php';
+require_once '../../../connection.php';
 //require_once '../../../LocalDatabase.php';
 
 require_once '../../../constants/Utils.php';

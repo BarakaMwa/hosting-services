@@ -1,6 +1,8 @@
 <?php
+
 namespace Data;
-class Products{
+class Products
+{
 
 
     public $productId;
@@ -11,7 +13,8 @@ class Products{
     public $active;
 
     public function __construct()
-    {}
+    {
+    }
 
     /**
      * @return string
@@ -47,6 +50,7 @@ class Products{
     {
         return "DELETE FROM Products WHERE productId = $productId";
     }
+
     /**
      * @param int $active
      * @param int $product_Id
@@ -80,5 +84,5 @@ class Products{
         return "INSERT INTO Vendors (vendorId, product_name, product_description, active, price) 
                VALUES ( " . $result['vendorId'] . ", '" . $result["product_name"] . "', '" . $result["product_description"] . "', " . $result['active'] . ", " . $result['price'] . ")";
     }
-    
+
 }

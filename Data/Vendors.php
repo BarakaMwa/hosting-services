@@ -13,6 +13,11 @@ class Vendors
     public $vendor_email;
     public $active;
 
+    public function __construct()
+    {
+
+    }
+
     /**
      *
      * @param int|null $vendorId
@@ -29,9 +34,6 @@ class Vendors
         $this->vendor_name = $vendor_name;
         $this->vendor_email = $vendor_email;
     }
-
-    public function __construct()
-    {}
 
     /**
      * @return string

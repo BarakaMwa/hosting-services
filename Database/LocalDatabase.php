@@ -2,6 +2,12 @@
 
 namespace Database;
 
+require_once(realpath(__DIR__ . '/../Data/Cart_Items.php'));
+use Data\Cart_Items;
+require_once(realpath(__DIR__ . '/../Data/User_Details.php'));
+use Data\User_Details;
+require_once(realpath(__DIR__ . '/../Data/Tbl_Users.php'));
+use Data\Tbl_Users;
 require_once(realpath(__DIR__ . '/../Data/Vendors.php'));
 use Data\Vendors;
 require_once(realpath(__DIR__ . '/../Data/Carts.php'));
@@ -14,21 +20,27 @@ require_once(realpath(__DIR__ . '/../Data/Trustees.php'));
 use Data\Trustees;
 require_once(realpath(__DIR__ . '/../Data/Devices.php'));
 use Data\Devices;
-require_once(realpath(__DIR__ . '/../Data/InvoiceEntries.php'));
-use Data\InvoiceEntries;
+require_once(realpath(__DIR__ . '/../Data/Invoice_Entries.php'));
+use Data\Invoice_Entries;
 require_once(realpath(__DIR__ . '/../Data/Payments.php'));
 use Data\Payments;
-require_once(realpath(__DIR__ . '/../Data/QrCodes.php'));
-use Data\QrCodes;
+require_once(realpath(__DIR__ . '/../Data/Qr_Codes.php'));
+use Data\Qr_Codes;
 require_once(realpath(__DIR__ . '/../Data/Files.php'));
 use Data\Files;
-require_once(realpath(__DIR__ . '/../Errors/Responses.php'));
-use Errors\Responses;
-
+require_once(realpath(__DIR__ . '/../Responses/Responses.php'));
+use Responses\Responses;
+use JsonException;
 use PDO;
+use PDOException;
 
 class LocalDatabase
 {
+
+    /*private $host = "infyenterprise.com";
+    private $dBName = "u818699652_test_db";
+    private $username = "u818699652_test_db";
+    private $password = "bDPPQuJ1UoKfl3f9SzIvSXOT8uNRE0Vy";*/
 
     private $host = "localhost:3306";
     private $dBName = "hosted_services";
@@ -39,6 +51,8 @@ class LocalDatabase
     public $vendor;
     public $device;
     public $cart;
+    public $cartItems;
+    public $userDetails;
     public $product;
     public $invoice;
     public $invoiceEntries;
@@ -47,6 +61,7 @@ class LocalDatabase
     public $file;
     public $responses;
     public $trustee;
+    public $tblUsers;
 
     /**
      * @return void
@@ -54,15 +69,18 @@ class LocalDatabase
     public function __construct()
     {
         $this->vendor = new Vendors();
-        $this->qrCode = new QrCodes();
+        $this->userDetails = new User_Details();
+        $this->tblUsers = new Tbl_Users();
+        $this->qrCode = new Qr_Codes();
         $this->trustee = new Trustees();
         $this->device = new Devices();
         $this->product = new Products();
         $this->invoice = new Invoices();
-        $this->invoiceEntries = new InvoiceEntries();
+        $this->invoiceEntries = new Invoice_Entries();
         $this->payment = new Payments();
         $this->file = new Files();
         $this->cart = new Carts();
+        $this->cartItems = new Cart_Items();
         $this->responses = new Responses();
     }
 

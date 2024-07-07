@@ -1,4 +1,5 @@
 <?php
+
 namespace Data;
 class Payments
 {
@@ -10,7 +11,8 @@ class Payments
 
 
     public function __construct()
-    {}
+    {
+    }
 
     /**
      * @return string

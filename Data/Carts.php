@@ -5,13 +5,17 @@ namespace Data;
 
 class Carts
 {
-
+    private $table = __CLASS__;
     public $user_id;
     public $productId;
     public $quantity;
     public $active;
     public $cart_id;
 
+
+    public function __construct(){
+
+    }
     /**
      * @return string
      */

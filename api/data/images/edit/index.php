@@ -3,7 +3,7 @@
 const Entity = "Files";
 require_once '../../../headers-api.php';
 session_start();
-require_once '../../../RemoteDatabase.php';
+require_once '../../../connection.php';
 //require_once '../../../LocalDatabase.php';
 require_once '../../../errors/Responses.php';
 

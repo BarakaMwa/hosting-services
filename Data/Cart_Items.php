@@ -5,7 +5,7 @@ namespace Data;
 
 class Cart_Items
 {
-    private $table = __CLASS__;
+    private $table;
     public $cart_item_id;
     public $cart_id;
     public $owner_id;
@@ -16,10 +16,14 @@ class Cart_Items
     public $item_price;
     public $total_price;
 
-
+    /**
+     *
+     */
     public function __construct()
     {
-
+        $this->table = get_class($this);
+        $array = explode("\\", $this->table);
+        $this->table = $array[1];
     }
 
     /**

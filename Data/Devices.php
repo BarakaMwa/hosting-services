@@ -5,7 +5,7 @@ namespace Data;
 class Devices
 {
 
-    private $table = __CLASS__;
+    private $table;
     public $DeviceID;
     public $Manufacturer;
     public $Model;
@@ -26,6 +26,9 @@ class Devices
 
     public function __construct()
     {
+        $this->table = get_class($this);
+        $array = explode("\\", $this->table);
+        $this->table = $array[1];
     }
 
     /**
@@ -51,7 +54,7 @@ class Devices
      */
     final public function getById(int $device_id): string
     {
-        return "SELECT * FROM Device WHERE DeviceID = $device_id";
+        return "SELECT * FROM $this->table WHERE DeviceID = $device_id";
     }
 
 }

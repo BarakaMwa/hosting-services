@@ -13,11 +13,17 @@ class Files
     public $active = 1;
     public $file_name = "file_name";
     public $file_size = 0;
+    /**
+     * @var mixed|string
+     */
+    private $table;
 
 
     public function __construct()
     {
-
+        $this->table = get_class($this);
+        $array = explode("\\", $this->table);
+        $this->table = $array[1];
     }
 
     /**
@@ -25,7 +31,7 @@ class Files
      */
     final public function getGetAll(): string
     {
-        return "SELECT * FROM Files";
+        return "SELECT * FROM $this->table";
     }
 
     /**
@@ -34,7 +40,7 @@ class Files
      */
     final public function getAllByActive(int $active): string
     {
-        return "SELECT * FROM Files WHERE active = $active";
+        return "SELECT * FROM $this->table WHERE active = $active";
     }
 
     /**
@@ -43,7 +49,7 @@ class Files
      */
     final public function getById(int $file_id): string
     {
-        return "SELECT * FROM Files WHERE file_id = $file_id";
+        return "SELECT * FROM $this->table WHERE file_id = $file_id";
     }
 
     /**
@@ -52,7 +58,7 @@ class Files
      */
     final public function deleteById(int $file_id): string
     {
-        return "DELETE FROM Files WHERE file_id = $file_id";
+        return "DELETE FROM $this->table WHERE file_id = $file_id";
     }
 
 
@@ -63,7 +69,7 @@ class Files
      */
     final public function getByIdAndActive(int $active, int $file_Id): string
     {
-        return "SELECT * FROM Files WHERE active = $active and file_id = $file_Id";
+        return "SELECT * FROM $this->table WHERE active = $active and file_id = $file_Id";
     }
 
     /**
@@ -72,7 +78,7 @@ class Files
      */
     final public function insert(array $result): string
     {
-        return "INSERT INTO Files (vendorId, productId, 
+        return "INSERT INTO $this->table (vendorId, productId, 
                    file_blob, active,
                    file_size, file_link,
                    file_name,file_type) 

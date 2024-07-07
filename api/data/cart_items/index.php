@@ -11,14 +11,14 @@ use Responses\Responses;
 $response = array();
 $status = false;
 $responses = new Responses();
-const Entity = "Carts";
+const Entity = "Cart Items";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] = 'GET') {
 
 
     $database = new LocalDatabase();
     $db = $database->dbConnection();
-    $cart_items = $database->cart_items;
+    $cart_items = $database->cartItems;
 
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 

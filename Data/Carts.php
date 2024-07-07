@@ -5,7 +5,7 @@ namespace Data;
 
 class Carts
 {
-    private $table = __CLASS__;
+    private $table;
     public $user_id;
     public $productId;
     public $quantity;
@@ -13,15 +13,19 @@ class Carts
     public $cart_id;
 
 
-    public function __construct(){
 
+    public function __construct()
+    {
+        $this->table = get_class($this);
+        $array = explode("\\", $this->table);
+        $this->table = $array[1];
     }
     /**
      * @return string
      */
     final public function getGetAll(): string
     {
-        return "SELECT * FROM Carts";
+        return "SELECT * FROM $this->table";
     }
 
     /**
@@ -30,7 +34,7 @@ class Carts
      */
     final public function getAllByActive(int $active): string
     {
-        return "SELECT * FROM Carts WHERE active = $active";
+        return "SELECT * FROM $this->table WHERE active = $active";
     }
 
     /**
@@ -39,7 +43,7 @@ class Carts
      */
     final public function getById(int $cart_id): string
     {
-        return "SELECT * FROM Carts WHERE cart_id = $cart_id";
+        return "SELECT * FROM $this->table WHERE cart_id = $cart_id";
     }
 
     /**
@@ -48,7 +52,7 @@ class Carts
      */
     final public function deleteById(int $cartId): string
     {
-        return "DELETE FROM Carts WHERE cart_id = $cartId";
+        return "DELETE FROM $this->table WHERE cart_id = $cartId";
     }
 
 
@@ -59,7 +63,7 @@ class Carts
      */
     final public function getByIdAndActive(int $active, int $cartId): string
     {
-        return "SELECT * FROM Carts WHERE active = $active and cart_id = $cartId";
+        return "SELECT * FROM $this->table WHERE active = $active and cart_id = $cartId";
     }
 
     /**
@@ -68,7 +72,7 @@ class Carts
      */
     final public function insert(array $result): string
     {
-        return "INSERT INTO Carts (user_id, productId, quantity, active) 
+        return "INSERT INTO $this->table (user_id, productId, quantity, active) 
                VALUES ( " . $result['user_id'] . ", '" . $result["productId"] . "', '" . $result["quantity"] . "', " . $result['active'] . ")";
     }
 
@@ -82,7 +86,7 @@ class Carts
      */
     final public function update(int $user_id, int $productId, float $quantity, int $active, int $cartId): string
     {
-        return "UPDATE Carts SET user_id=$user_id, productId='" . $productId . "', quantity='" . $quantity . "', active=$active WHERE cart_id=$cartId";
+        return "UPDATE $this->table SET user_id=$user_id, productId='" . $productId . "', quantity='" . $quantity . "', active=$active WHERE cart_id=$cartId";
     }
 
 

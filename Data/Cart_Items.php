@@ -2,7 +2,6 @@
 
 namespace Data;
 
-
 class Cart_Items
 {
     private $table;
@@ -25,6 +24,19 @@ class Cart_Items
         $array = explode("\\", $this->table);
         $this->table = $array[1];
     }
+
+
+    /**
+     * @return string
+     */
+    public function getClassName(): string
+    {
+        $this->table = get_class($this);
+        $array = explode("\\", $this->table);
+        $this->table = $array[1];
+        return $this->table;
+    }
+
 
     /**
      * @return string
@@ -78,8 +90,23 @@ class Cart_Items
      */
     final public function insert(array $result): string
     {
-        return "INSERT INTO $this->table (user_id, productId, quantity, active) 
-               VALUES ( " . $result['user_id'] . ", '" . $result["productId"] . "', '" . $result["quantity"] . "', " . $result['active'] . ")";
+        return "INSERT INTO $this->table (
+                   cart_id,
+                   owner_id, 
+                   product_id, 
+                   item, 
+                   status, 
+                   count, 
+                   item_price, 
+                   total_price)
+               VALUES ( " . $result['cart_id'] . "
+               ," . $result['owner_id'] . "
+               , '" . $result["product_id"] . "'
+               , '" . $result["item"] . "'
+               , '" . $result["status"] . "'
+               , '" . $result["count"] . "'
+               , '" . $result["item_price"] . "'
+               , " . $result['total_price'] . ")";
     }
 
     /**
@@ -92,7 +119,10 @@ class Cart_Items
      */
     final public function update(int $user_id, int $productId, float $quantity, int $active, int $cartId): string
     {
-        return "UPDATE $this->table SET user_id=$user_id, productId='" . $productId . "', quantity='" . $quantity . "', active=$active WHERE cart_id=$cartId";
+        return "UPDATE 
+    $this->table 
+SET 
+    user_id=$user_id, productId='" . $productId . "', quantity='" . $quantity . "', active=$active WHERE cart_id=$cartId";
     }
 
 

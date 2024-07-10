@@ -8,10 +8,17 @@ class Payments
     public $amount;
     public $payment_date;
     public $active;
+    /**
+     * @var mixed|string
+     */
+    private $table;
 
 
     public function __construct()
     {
+        $this->table = get_class($this);
+        $array = explode("\\", $this->table);
+        $this->table = $array[1];
     }
 
     /**
@@ -19,7 +26,7 @@ class Payments
      */
     final public function getGetAll(): string
     {
-        return "SELECT * FROM Payments";
+        return "SELECT * FROM $this->table";
     }
 
     /**
@@ -28,7 +35,7 @@ class Payments
      */
     final public function getAllByActive(int $active): string
     {
-        return "SELECT * FROM Payments WHERE active = $active";
+        return "SELECT * FROM $this->table WHERE active = $active";
     }
 
     /**
@@ -37,7 +44,7 @@ class Payments
      */
     final public function getById(int $payment_id): string
     {
-        return "SELECT * FROM Payments WHERE payment_id = $payment_id";
+        return "SELECT * FROM $this->table WHERE payment_id = $payment_id";
     }
 
     /**
@@ -46,7 +53,7 @@ class Payments
      */
     final public function deleteById(int $cartId): string
     {
-        return "DELETE FROM Payments WHERE payment_id = $cartId";
+        return "DELETE FROM $this->table WHERE payment_id = $cartId";
     }
 
 
@@ -57,7 +64,7 @@ class Payments
      */
     final public function getByIdAndActive(int $active, int $cartId): string
     {
-        return "SELECT * FROM Payments WHERE active = $active and payment_id = $cartId";
+        return "SELECT * FROM $this->table WHERE active = $active and payment_id = $cartId";
     }
 
     /**
@@ -66,7 +73,7 @@ class Payments
      */
     final public function insert(array $result): string
     {
-        return "INSERT INTO Payments (vendorId, payment_date, amount, active) 
+        return "INSERT INTO $this->table (vendorId, payment_date, amount, active) 
                VALUES ( " . $result['vendorId'] . ", '" . $result["payment_date"] . "',
                 '" . $result["amount"] . "', " . $result['active'] . ")";
     }
@@ -81,7 +88,7 @@ class Payments
      */
     final public function update(int $vendorId, int $productId, float $amount, int $active, int $cartId): string
     {
-        return "UPDATE Payments SET vendorId=$vendorId, payment_date='" . $productId . "', amount='" . $amount . "', active=$active WHERE payment_id=$cartId";
+        return "UPDATE $this->table SET vendorId=$vendorId, payment_date='" . $productId . "', amount='" . $amount . "', active=$active WHERE payment_id=$cartId";
     }
 
 

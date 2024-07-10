@@ -11,9 +11,16 @@ class Products
     public $product_name;
     public $product_description;
     public $active;
+    /**
+     * @var mixed|string
+     */
+    private $table;
 
     public function __construct()
     {
+        $this->table = get_class($this);
+        $array = explode("\\", $this->table);
+        $this->table = $array[1];
     }
 
     /**

@@ -9,10 +9,12 @@ if ($userService->is_logged_in()) {
 }
 
 if (isset($_POST['btn-login'])) {
-    $email = trim($_POST['txtemail']);
-    $upass = trim($_POST['txtupass']);
+    $userName = trim($_POST['userName']);
+    $upass = trim($_POST['userPassword']);
 
-    if ($userService->login($email, $upass)) {
+    $user = $_POST;
+    
+    if ($userService->login($user)) {
         $userService->redirect('../home-page/index.php');
     }
 }
@@ -57,8 +59,8 @@ if (isset($_POST['btn-login'])) {
         ?>
         <h2 class="form-signin-heading">Sign In.</h2>
         <hr/>
-        <input type="email" class="form-control" placeholder="Email address" name="txtemail" required/>
-        <input type="password" class="form-control" placeholder="Password" name="txtupass" required/>
+        <input type="email" class="form-control" placeholder="Email address" name="userName" required/>
+        <input type="password" class="form-control" placeholder="Password" name="userPassword" required/>
         <hr/>
         <button class="btn btn-large btn-primary" type="submit" name="btn-login">Sign in</button>
         <a href="../register/index.php" style="float:right;" class="btn btn-large">Sign Up</a>

@@ -3,7 +3,7 @@
 namespace Data;
 class Invoice_Entries
 {
-    private $table = __CLASS__;
+    private $table;
     public $entryId;
     public $invoiceId;
     public $productId;
@@ -14,6 +14,9 @@ class Invoice_Entries
 
     public function __construct()
     {
+        $this->table = get_class($this);
+        $array = explode("\\", $this->table);
+        $this->table = $array[1];
     }
 
     /**

@@ -5,16 +5,19 @@ require_once '../../../Database/LocalDatabase.php';
 require_once '../../../Responses/DatatablesResponse.php';
 require_once '../../../Responses/Responses.php';
 session_start();
-$_SESSION['userSessionId'] = 1;
+if (!isset($_SESSION['userSessionId'])) {
+    $_SESSION['userSessionId'] = 1;
+}
 
 use Database\LocalDatabase;
 use Responses\Responses;
-use Responses\DatatablesResponse;
+
+//use Responses\DatatablesResponse;
 
 $response = array();
 $status = false;
 $responses = new Responses();
-$dataTable = new DatatablesResponse();
+//$dataTable = new DatatablesResponse();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -23,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $database = new LocalDatabase();
         $db = $database->dbConnection();
         $trustees = $database->trustee;
+        $Entity = $trustees->getClassName();
 
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -37,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $start = 0;
         $draw = 1;
         $length = 10;
-        if (isset($_POST['start'],$_POST['length'],$_POST['draw'])) {
+        if (isset($_POST['start'], $_POST['length'], $_POST['draw'])) {
             $start = $_POST['start'];
             $length = $_POST['length'];
             $draw = $_POST['draw'];
@@ -53,12 +57,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
              $row["0"] = $encrypted;
          }*/
 
-        $dataTable->data = $data;
-        $dataTable->draw =$draw;
-        $dataTable->recordsTotal = $countAll;
-        $dataTable->recordsFiltered = count($data);
+        if ($data === null || count($data) === 0) {
+            $data = [];
+        }
 
-        $responses->dataTableResponse($response, $dataTable);
+        $responses->successDataRetrieved($response, $data, $Entity);
 
 
     } catch (Exception $ex) {

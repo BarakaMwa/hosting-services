@@ -10,6 +10,8 @@ require_once(realpath(__DIR__ . '/../Data/Tbl_Users.php'));
 use Data\Tbl_Users;
 require_once(realpath(__DIR__ . '/../Data/Vendors.php'));
 use Data\Vendors;
+require_once(realpath(__DIR__ . '/../Data/Users.php'));
+use Data\Users;
 require_once(realpath(__DIR__ . '/../Data/Carts.php'));
 use Data\Carts;
 require_once(realpath(__DIR__ . '/../Data/Products.php'));
@@ -51,6 +53,7 @@ class LocalDatabase
     public $vendor;
     public $device;
     public $cart;
+    public $user;
     public $cartItems;
     public $userDetails;
     public $product;
@@ -70,6 +73,7 @@ class LocalDatabase
     {
         $this->vendor = new Vendors();
         $this->userDetails = new User_Details();
+        $this->user = new Users();
         $this->tblUsers = new Tbl_Users();
         $this->qrCode = new Qr_Codes();
         $this->trustee = new Trustees();

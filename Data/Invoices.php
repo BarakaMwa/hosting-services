@@ -3,15 +3,23 @@ namespace Data;
 class Invoices{
 
 
+    /**
+     * @var mixed|string
+     */
+    private $table;
 
     public function __construct()
-    {}
+    {
+        $this->table = get_class($this);
+        $array = explode("\\", $this->table);
+        $this->table = $array[1];
+    }
     /**
      * @return string
      */
     final public function getGetAll(): string
     {
-        return "SELECT * FROM Invoices";
+        return "SELECT * FROM $this->table";
     }
 
     /**
@@ -20,7 +28,7 @@ class Invoices{
      */
     final public function getAllByActive(int $active): string
     {
-        return "SELECT * FROM Invoices WHERE active = $active";
+        return "SELECT * FROM $this->table WHERE active = $active";
     }
 
     /**
@@ -29,7 +37,7 @@ class Invoices{
      */
     final public function getById(int $invoiceId): string
     {
-        return "SELECT * FROM Invoices WHERE invoiceId = $invoiceId";
+        return "SELECT * FROM $this->table WHERE invoiceId = $invoiceId";
     }
 
     /**
@@ -38,7 +46,7 @@ class Invoices{
      */
     final public function deleteById(int $invoiceId): string
     {
-        return "DELETE FROM Invoices WHERE invoiceId = $invoiceId";
+        return "DELETE FROM $this->table WHERE invoiceId = $invoiceId";
     }
 
 
@@ -49,7 +57,7 @@ class Invoices{
      */
     final public function getByIdAndActive(int $active, int $invoice_Id): string
     {
-        return "SELECT * FROM Invoices WHERE active = $active and invoiceId = $invoice_Id";
+        return "SELECT * FROM $this->table WHERE active = $active and invoiceId = $invoice_Id";
     }
 
     /**
@@ -58,7 +66,7 @@ class Invoices{
      */
     final public function insert(array $result): string
     {
-        return "INSERT INTO Invoices (vendorId, productId, 
+        return "INSERT INTO $this->table (vendorId, productId, 
                    invoice_blob, active,
                    invoice_size, invoice_link,
                    invoice_name,invoice_type) 
@@ -83,7 +91,7 @@ class Invoices{
                                  string $invoice_name, int $active,
                                  int    $invoiceId): string
     {
-        return "UPDATE Invoices 
+        return "UPDATE $this->table 
 SET 
     invoice_blob='" . $invoice_blob . "', invoice_size='" . $invoice_size . "',
     invoice_link='" . $invoice_link . "',invoice_type='" . $invoice_type . "',

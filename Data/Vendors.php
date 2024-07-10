@@ -5,7 +5,7 @@ namespace Data;
 class Vendors
 {
 
-    public $table = __CLASS__;
+    public $table;
 
     public $vendorId;
     public $user_id;
@@ -16,6 +16,9 @@ class Vendors
     public function __construct()
     {
 
+        $this->table = get_class($this);
+        $array = explode("\\", $this->table);
+        $this->table = $array[1];
     }
 
     /**
@@ -40,7 +43,7 @@ class Vendors
      */
     public function getGetAll(): string
     {
-        return "SELECT * FROM Vendors";
+        return "SELECT * FROM $this->table";
     }
 
     /**
@@ -49,7 +52,7 @@ class Vendors
      */
     public function getAllByActive(int $active): string
     {
-        return "SELECT * FROM Vendors WHERE active = $active";
+        return "SELECT * FROM $this->table WHERE active = $active";
     }
 
     /**
@@ -58,7 +61,7 @@ class Vendors
      */
     public function getById(int $vendorId): string
     {
-        return "SELECT * FROM Vendors WHERE vendorId = $vendorId";
+        return "SELECT * FROM $this->table WHERE vendorId = $vendorId";
     }
 
     /**
@@ -67,7 +70,7 @@ class Vendors
      */
     public function deleteById(int $vendorId): string
     {
-        return "DELETE FROM Vendors WHERE vendorId = $vendorId";
+        return "DELETE FROM $this->table WHERE vendorId = $vendorId";
     }
 
     /**
@@ -77,7 +80,7 @@ class Vendors
      */
     public function getByIdAndActive(int $active, int $vendor_Id): string
     {
-        return "SELECT * FROM `Vendors` WHERE `active` = $active and `vendorId` = $vendor_Id";
+        return "SELECT * FROM $this->table WHERE `active` = $active and `vendorId` = $vendor_Id";
     }
 
 
@@ -91,7 +94,7 @@ class Vendors
      */
     public function update(int $user_id, string $vendor_name, string $vendor_email, int $active, int $vendor_Id): string
     {
-        return "UPDATE Vendors SET user_id=$user_id, vendor_name='" . $vendor_name . "', vendor_email='" . $vendor_email . "', active=$active WHERE vendorId=$vendor_Id";
+        return "UPDATE $this->table SET user_id=$user_id, vendor_name='" . $vendor_name . "', vendor_email='" . $vendor_email . "', active=$active WHERE vendorId=$vendor_Id";
     }
 
 //    /**
@@ -111,7 +114,7 @@ class Vendors
      */
     public function insert(array $result): string
     {
-        return "INSERT INTO Vendors (user_id, vendor_name, vendor_email, active) 
+        return "INSERT INTO $this->table (user_id, vendor_name, vendor_email, active) 
                VALUES ( " . $result['user_id'] . ", '" . $result["vendor_email"] . "', '" . $result["vendor_email"] . "', " . $result['active'] . ")";
     }
 }

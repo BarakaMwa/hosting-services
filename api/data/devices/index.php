@@ -9,29 +9,29 @@ session_start();
 
 $response = array();
 $status = false;
-$devices = new Services\DevicesService();
+$deviceService = new Services\DevicesService();
 $responses = new Responses\Responses();
-const Entity = "Device";
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] = 'GET') {
+
+try {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] = 'GET') {
 
 //    todo encrypt
-    /* foreach ($result as $row) {
-         $encrypted = encrypt($row['vendorId'],$ciphering,$encryption_iv,$options);
-         $row["vendorId"] = $encrypted;
-         $row["0"] = $encrypted;
-     }*/
-
-    try {
-        $result = $devices->getAllDevices();
+        /* foreach ($result as $row) {
+             $encrypted = encrypt($row['vendorId'],$ciphering,$encryption_iv,$options);
+             $row["vendorId"] = $encrypted;
+             $row["0"] = $encrypted;
+         }*/
+        $result = $deviceService->getAllDevices();
         $responses->successDataRetrieved($response, $result, Entity);
-    } catch (JsonException $e) {
-        $responses -> warningInput("Error retrieving Devices");
+    } else {
+
+        $responses->errorInvalidRequest($response);
     }
-
-} else {
-
-    $responses -> errorInvalidRequest($response);
+} catch (JsonException $e) {
+    $responses->warningInput("Error retrieving Devices");
 }
+
+
 
 

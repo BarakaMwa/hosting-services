@@ -1,6 +1,5 @@
 <?php
 //todo validation
-const Entity = "Cart_Items";
 require_once '../../../headers-api.php';
 require_once '../../../../Database/LocalDatabase.php';
 require_once '../../../../Responses/Responses.php';
@@ -12,29 +11,33 @@ use Database\LocalDatabase;
 $response = array();
 $status = false;
 $responses = new Responses();
+try {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    $result = array();
-    $database = new LocalDatabase();
-    $db = $database->dbConnection();
-    $cart = $database->cart;
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $data = $_POST;
+        $result = array();
+        $database = new LocalDatabase();
+        $db = $database->dbConnection();
+        $cartItems = $database->cartItems;
+        $entity = $cartItems->getClassName();
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $data = $_POST;
 
 //    todo: for testing
 
-    try {
-        updatingCartEdit($db, $cart, $response, $responses, $data);
-    } catch (JsonException $e) {
-        $responses->errorUpDating($response, $e, Entity );
+        try {
+            updatingCartEdit($db, $cartItems, $response, $responses, $data);
+        } catch (JsonException $e) {
+            $responses->errorUpDating($response, $e, $entity);
+        }
+
+    } else {
+
+        $responses->errorInvalidRequest($response);
     }
-
-} else {
-
-    $responses->errorInvalidRequest($response);
+} catch (Exception $ex) {
+    $responses->failedOperation($ex);
 }
+
 
 /**
  * @param int $cart_Id
@@ -71,7 +74,7 @@ function checkIfPostValuesAreSetAndEdit(int $cart_Id, ?PDO $db, array $data): ar
         $quantity = $data['quantity'];
     }
 
-    return array("productId" => (int)$productId, "active" => (int)$active, "quantity" => (double) $quantity, "user_id" => (int)$user_id);
+    return array("productId" => (int)$productId, "active" => (int)$active, "quantity" => (double)$quantity, "user_id" => (int)$user_id);
 }
 
 

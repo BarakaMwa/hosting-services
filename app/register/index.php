@@ -2,6 +2,7 @@
 
 require_once '../../services/UserService.php';
 session_start();
+
 use Services\UserService;
 
 $usersService = new UserService();
@@ -12,30 +13,41 @@ if ($usersService->is_logged_in()) {
 
 
 if (isset($_POST['btn-signup'])) {
-    $uname = trim($_POST['txtuname']);
-    $email = trim($_POST['txtemail']);
-    $upass = trim($_POST['txtpass']);
-    $code = md5(uniqid(rand(), true));
 
-    $stmt = $usersService->runQuery("SELECT * FROM Users WHERE userEmail=:email_id");
-    $stmt->execute(array(":email_id" => $email));
+    $user = $_POST;
+    $valid = validateRegistrationData($user, true);
+
+    $user['activationCode'] = $code = md5(uniqid(mt_rand(), true));
+
+    if ($valid['valid'] === false) {
+        $msg = "
+        <div class='alert alert-info'>
+    <button class='close' data-dismiss='alert'>&times;</button>
+     <strong>Error !</strong>  " . $valid['msg'] . "
+     </div>
+     ";
+    }
+    $user = $valid['user'];
+
+    $stmt = $usersService->runQuery("SELECT * FROM Users WHERE userEmail=:userEmail");
+    $stmt->execute(array(":userEmail" => $user['userEmail']));
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($stmt->rowCount() > 0) {
         $msg = "
         <div class='alert alert-info'>
     <button class='close' data-dismiss='alert'>&times;</button>
-     <strong>Sorry !</strong>  email allready exists , Please Try another one
+     <strong>Sorry !</strong>  email already exists , Please Try another one
      </div>
      ";
     } else {
-        if ($usersService->register($uname, $email, $upass, $code)) {
-            $id = $usersService->lasdID();
+        if ($usersService->register($user)) {
+            $id = $usersService->lastID();
             $key = base64_encode($id);
             $id = $key;
 
             $message = "     
-      Hello $uname,
+      Hello " . $user['userName'] . ",
       <br /><br />
       Welcome to Infy Enterprise!<br/>
       To complete your registration  please , just click following link<br/>
@@ -46,11 +58,11 @@ if (isset($_POST['btn-signup'])) {
 
             $subject = "Confirm Registration";
 
-            $usersService->send_mail($email, $message, $subject);
+            $usersService->send_mail($user['userEmail'], $message, $subject);
             $msg = "
      <div class='alert alert-success'>
       <button class='close' data-dismiss='alert'>&times;</button>
-      <strong>Success!</strong>  We've emailed $email.
+      <strong>Success!</strong>  We've emailed " . $user['userEmail'] . ".
                     Please click on the confirmation link in the email to create your account. 
        </div>
      ";
@@ -59,6 +71,91 @@ if (isset($_POST['btn-signup'])) {
         }
     }
 }
+
+/**
+ * @param array $user
+ * @param bool $validated
+ * @return array
+ */
+function validateRegistrationData(array $user, bool $validated): array
+{
+    if (empty($user['userName'])) {
+        $valid['valid'] = false;
+        $valid['msg'] = "User Name is required";
+        if (!preg_match("/^[a-zA-Z-0-9']*$/", $user['userName'])) {
+            $valid['msg'] = "User Name. Only letters Or Numbers and No white space allowed";
+        }
+        return $valid;
+    } else if (empty($user['firstName'])) {
+        $valid['valid'] = false;
+        $valid['msg'] = "First Name is required";
+        if (!preg_match("/^[a-zA-Z- ']*$/", $user['firstName'])) {
+            $valid['msg'] = "First Name. Only letters and white space allowed";
+        }
+        return $valid;
+    } else if (empty($user['lastName'])) {
+        $valid['valid'] = false;
+        $valid['msg'] = "Last Name is required";
+        if (!preg_match("/^[a-zA-Z- ']*$/", $user['lastName'])) {
+            $valid['msg'] = "Last Name. Only letters and white space allowed";
+        }
+        return $valid;
+    } else if (empty($user['userEmail'])) {
+        $valid['msg'] = "User Email is required";
+        $valid['valid'] = false;
+        if (!filter_var($user['userEmail'], FILTER_VALIDATE_EMAIL)) {
+            $valid['msg'] = "Invalid Email format";
+        }
+        return $valid;
+    } else if (empty($user['userPassword'])) {
+        $valid['msg'] = "User Password is required";
+        $valid['valid'] = false;
+        if ($user['userPassword'] === $user['confirmPassword']) {
+            $valid['msg'] = "User Name. Only letters Or Numbers and No white space allowed";
+        }
+        return $valid;
+    } else if (empty($user['phone'])) {
+        $valid['msg'] = "User Phone Number is required";
+        $valid['valid'] = false;
+        if (!preg_match("/^[0-9 ']*$/", $user['phone'])) {
+            $valid['msg'] = "User Phone Number. Only Numbers and white space allowed";
+        }
+        return $valid;
+    } else if (empty($user['nrc'])) {
+        $valid['msg'] = "User NRC Number is required";
+        $valid['valid'] = false;
+        return $valid;
+    } else if (empty($user['gender'])) {
+        $valid['msg'] = "User Gender is required";
+        $valid['valid'] = false;
+        return $valid;
+    } else {
+        $valid['valid'] = $validated;
+        $user['gender'] = cleanData($user['gender']);
+        $user['nrc'] = cleanData($user['nrc']);
+        $user['phone'] = cleanData($user['phone']);
+        $user['userPassword'] = cleanData($user['userPassword']);
+        $user['userEmail'] = cleanData($user['userEmail']);
+        $user['firstName'] = cleanData($user['firstName']);
+        $user['lastName'] = cleanData($user['lastName']);
+        $user['userName'] = cleanData($user['userName']);
+        $valid['user'] = $user;
+        return $valid;
+    }
+}
+
+/**
+ * @param $data
+ * @return string
+ */
+function cleanData($data): string
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -80,9 +177,21 @@ if (isset($_POST['btn-signup'])) {
     <form class="form-signin" method="post">
         <h2 class="form-signin-heading">Sign Up</h2>
         <hr/>
-        <input type="text" class="form-control" placeholder="Username" name="txtuname" required/>
-        <input type="email" class="form-control" placeholder="Email address" name="txtemail" required/>
-        <input type="password" class="form-control" placeholder="Password" name="txtpass" required/>
+        <input type="text" class="form-control" placeholder="First Name" name="firstName" maxlength="200" required/>
+        <input type="text" class="form-control" placeholder="Last Name" name="lastName" maxlength="200" required/>
+        <input type="text" class="form-control" placeholder="Username" name="userName" maxlength="200" required/>
+        <input type="email" class="form-control" placeholder="Email address" name="userName" maxlength="250" required/>
+        <input type="password" class="form-control" placeholder="Password" name="userPassword" maxlength="100"
+               required/>
+        <input type="password" class="form-control" placeholder="Confirm Password" name="confirmPassword"
+               maxlength="100" required/>
+        <input type="text" class="form-control" placeholder="NRC" name="nrc" required/>
+        <input type="text" class="form-control" placeholder="Phone" name="phone" required/>
+        <select type="text" class="form-control" placeholder="Gender" name="gender" required>
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
         <hr/>
         <button class="btn btn-large btn-primary" type="submit" name="btn-signup">Sign Up</button>
         <a href="../login/index.php" style="float:right;" class="btn btn-large">Sign In</a>

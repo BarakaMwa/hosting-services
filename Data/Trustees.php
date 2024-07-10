@@ -4,8 +4,7 @@ namespace Data;
 
 class Trustees
 {
-    private const SELECT_FROM = "SELECT * FROM ";
-    private $table = __CLASS__;
+    private $table;
     public $trusteeId;
     public $userId;
     public $firstName;
@@ -20,24 +19,26 @@ class Trustees
 
     public function __construct()
     {
-
+        $this->table = get_class($this);
+        $array = explode("\\", $this->table);
+        $this->table = $array[1];
     }
 
     /**
      * @return string
      */
-    final public function getGetAll(): string
+    public function getGetAll(): string
     {
-        return self::SELECT_FROM . $this->table;
+        return "SELECT * FROM $this->table";
     }
 
     /**
      * @param int $active
      * @return string
      */
-    final public function getAllByActive(int $active): string
+    public function getAllByActive(int $active): string
     {
-        return self::SELECT_FROM . $this->table . " WHERE active = $active";
+        return "SELECT * FROM $this->table  WHERE active = $active";
     }
 
     /**
@@ -46,7 +47,7 @@ class Trustees
      */
     final public function getById(int $device_id): string
     {
-        return self::SELECT_FROM . $this->table . " WHERE trusteeId = $device_id";
+        return "SELECT * FROM $this->table  WHERE trusteeId = $device_id";
     }
 
     /**
@@ -55,7 +56,7 @@ class Trustees
      */
     final public function getByUserId(int $userId): string
     {
-        return self::SELECT_FROM . $this->table . " WHERE userId = $userId";
+        return "SELECT * FROM $this->table  WHERE userId = $userId";
     }
 
     /**
@@ -70,13 +71,24 @@ class Trustees
 
     /**
      * @param string $sql
-     * @param string $start
-     * @param string $length
+     * @param int $start
+     * @param int $length
      * @return string
      */
-    final public function getPage(string $sql, string $start, string $length): string
+    final public function getPage(string $sql, int $start = 0, int $length = 10): string
     {
         return $sql . " LIMIT " . $start . ", " . $length;
+    }
+
+    /**
+     * @return string
+     */
+    public function getClassName(): string
+    {
+        $this->table = get_class($this);
+        $array = explode("\\", $this->table);
+        $this->table = $array[1];
+        return $this->table;
     }
 
 }

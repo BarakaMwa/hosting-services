@@ -89,5 +89,16 @@ class Carts
         return "UPDATE $this->table SET user_id=$user_id, productId='" . $productId . "', quantity='" . $quantity . "', active=$active WHERE cart_id=$cartId";
     }
 
+    /**
+     * @return string
+     */
+    public function getClassName(): string
+    {
+        $this->table = get_class($this);
+        $array = explode("\\", $this->table);
+        $this->table = $array[1];
+        return $this->table;
+    }
+
 
 }

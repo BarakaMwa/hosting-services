@@ -187,4 +187,34 @@ class Responses
         exit();
     }
 
+    /**
+     * @throws JsonException
+     */
+    public function failedOperation(Exception $ex): void
+
+    {
+        $response["message"] = $ex->getMessage();
+        $response["success"] = false;
+        $response["status"] = "warning";
+        $response["data"] = $ex->getTraceAsString();
+        echo json_encode($response, JSON_THROW_ON_ERROR);
+        exit();
+    }
+
+    /**
+     * @param array $response
+     * @param DatatablesResponse $dataTable
+     * @return void
+     * @throws JsonException
+     */
+    public function dataTableResponse(array $response, DatatablesResponse $dataTable): void
+    {
+        $response["message"] = "Data Retrieved";
+        $response["success"] = true;
+        $response["status"] = "success";
+        $response["data"] = $dataTable;
+        echo json_encode($response, JSON_THROW_ON_ERROR);
+        exit();
+    }
+
 }

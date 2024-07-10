@@ -1,7 +1,7 @@
 <?php
 //todo validation
 require_once '../../../headers-api.php';
-require_once '../../../../Database/RemoteDatabase.php';
+require_once '../../../../Database/LocalDatabase.php';
 require_once '../../../../Responses/Responses.php';
 session_start();
 
@@ -11,54 +11,58 @@ use Responses\Responses;
 $response = array();
 $responses = new Responses();
 $status = false;
-const Entity = "Cart_Items";
+try {
+    if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-
-    $result = array();
-    $database = new LocalDatabase();
-    $db = $database->dbConnection();
-    $cart = $database->cart;
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $data = $_POST;
-
+        $result = array();
+        $database = new LocalDatabase();
+        $db = $database->dbConnection();
+        $cartItems = $database->cartItems;
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $data = $_POST;
+        $entity = $cartItems->getClassName();
 //    todo: for testing
+        $cartItemId = 0;
 
-    $cart_Id = 0;
-    try {
+        try {
 
-        if (isset($_POST['id']) && !empty($_POST['id'])) {
-            $cart_Id = $_POST['id'];
-        } else {
-            $responses->errorInvalidRequest($response);
+            if (isset($_POST['id']) && !empty($_POST['id'])) {
+                $cartItemId = $_POST['id'];
+            }
+            /*else {
+                $responses->errorInvalidRequest($response);
+            }*/
+            $cartItems->cart_item_id = $cartItemId;
+
+            updatingCartDelete($db, $cartItems, $response, $responses, $data, $entity);
+
+        } catch (JsonException $e) {
+            $responses->errorUpDating($response, $e, $entity);
         }
-        $cart->cart_id = $cart_Id;
 
-        updatingCartDelete($db, $cart, $response, $responses, $data);
+    } else {
 
-    } catch (JsonException $e) {
-        $responses->errorUpDating($response, $e, Entity);
+        $responses->errorInvalidRequest($response);
     }
-
-} else {
-
-    $responses->errorInvalidRequest($response);
+} catch (Exception $ex) {
+    $responses->failedOperation($ex);
 }
 
+
 /**
- * @param int $cart_Id
+ * @param int $cart_item_id
  * @param PDO|null $db
  * @param array $data
+ * @param string $Entity
  * @return array
  * @throws JsonException
  */
 function
-checkIfPostValuesAreSetAndDeactivate(int $cart_Id, ?PDO $db, array $data): array
+checkIfPostValuesAreSetAndDeactivate(int $cart_item_id, ?PDO $db, array $data, string $Entity): array
 {
     $database = new LocalDatabase();
-    $cart = $database->cart;
-    $sql = $cart->getById($cart_Id);
+    $cartItems = $database->cartItems;
+    $sql = $cartItems->getById($cart_item_id);
     $result = $database->runSelectOneQuery($sql, $db);
 
 //    todo for testing
@@ -67,7 +71,7 @@ checkIfPostValuesAreSetAndDeactivate(int $cart_Id, ?PDO $db, array $data): array
     if ($active === 0 || $active === false) {
         $responses = new Responses();
         $response = array();
-        $responses->warningAlreadyDeleted($response, $result, Entity);
+        $responses->warningAlreadyDeleted($response, $result, $Entity);
     }
     $active = 0;
 
@@ -86,28 +90,28 @@ checkIfPostValuesAreSetAndDeactivate(int $cart_Id, ?PDO $db, array $data): array
         $quantity = $data['quantity'];
     }
 
-    return array("productId" => (int)$productId, "active" => (int)$active, "quantity" => (float)$quantity, "user_id" => (int)$user_id, "cart_id" => $cart_Id);
+    return array("productId" => (int)$productId, "active" => (int)$active, "quantity" => (float)$quantity, "user_id" => (int)$user_id, "cart_id" => $$cart_item_id);
 }
 
 
 /**
  * @param PDO|null $db
- * @param Carts $cart
+ * @param Data\Cart_Items $cart_Items
  * @param array $response
  * @param Responses $responses
  * @param array $data
  * @return void
  * @throws JsonException
  */
-function updatingCartDelete(?PDO $db, Carts $cart, array $response, Responses $responses, array $data): void
+function updatingCartDelete(?PDO $db, Data\Cart_Items $cart_Items, array $response, Responses $responses, array $data, string $entity): void
 {
     $result = array();
-    if ($cart->cart_id !== null && $cart->cart_id !== 0) {
-        $cart_Id = $cart->cart_id;
+    if ($cart_Items->cart_item_id !== null && $cart_Items->cart_item_id !== 0) {
+        $cart_item_id = $cart_Items->cart_item_id;
 
-        $result = checkIfPostValuesAreSetAndDeactivate($cart_Id, $db, $data);
+        $result = checkIfPostValuesAreSetAndDeactivate($cart_item_id, $db, $data, $entity);
 
-        $sql = $cart->update((int)$result['user_id'], (int)$result['productId'], (float)$result['quantity'], (int)$result['active'], (int)$cart_Id);
+        $sql = $cart_Items->update((int)$result['user_id'], (int)$result['productId'], (float)$result['quantity'], (int)$result['active'], (int)$cart_item_id);
 
         $database = new LocalDatabase();
         $database->runQuery($sql, $db);

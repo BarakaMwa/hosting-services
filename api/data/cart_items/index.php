@@ -11,7 +11,6 @@ use Responses\Responses;
 $response = array();
 $status = false;
 $responses = new Responses();
-const Entity = "Cart Items";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] = 'GET') {
 
@@ -19,6 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] = 'GET')
     $database = new LocalDatabase();
     $db = $database->dbConnection();
     $cart_items = $database->cartItems;
+
+    $Entity = $cart_items->getClassName();
 
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -43,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] = 'GET')
         $row["0"] = $encrypted;
     }*/
 
-    $responses->successDataRetrieved($response, $result, Entity);
+    $responses->successDataRetrieved($response, $result, $Entity);
 
 } else {
 

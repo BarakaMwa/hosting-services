@@ -75,8 +75,8 @@ class UserService
     public function login(array $user)
     {
         try {
-            $stmt = $this->conn->prepare("SELECT * FROM Users WHERE userName=:userName");
-            $stmt->execute(array(":userName" => $user['userName']));
+            $stmt = $this->conn->prepare("SELECT * FROM Users WHERE userEmail=:userEmail");
+            $stmt->execute(array(":userEmail" => $user['userEmail']));
             $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
             $_SESSION['isLoggedIn'] = false;
@@ -137,25 +137,34 @@ class UserService
     /**
      * @throws Exception
      */
-    function send_mail($email, $message, $subject): void
+    public function sendMail($email, $message, $subject): bool
     {
-        require_once(realpath(__DIR__ . '/../mailer/src/Exception.php'));
-        require_once(realpath(__DIR__ . '/../mailer/src/PHPMailer.php'));
-        require_once(realpath(__DIR__ . '/../mailer/src/SMTP.php'));
-        $mail = new PHPMailer();
-        $mail->IsSMTP();
-        $mail->SMTPDebug = 0;
-        $mail->SMTPAuth = true;
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-        $mail->Host = "smtp.titan.email";
-        $mail->Port = 465;
-        $mail->AddAddress($email);
-        $mail->Username = "info@infyenterprise.com";
-        $mail->Password = "2SU!cwD@j!3.hTX";
-        $mail->SetFrom('info@infyenterprise.com', 'Infy Enterprise');
-        $mail->AddReplyTo("info@infyenterprise.com", "Infy Enterprise");
-        $mail->Subject = $subject;
-        $mail->MsgHTML($message);
-        $mail->Send();
+        try{
+            require_once(realpath(__DIR__ . '/../mailer/src/Exception.php'));
+            require_once(realpath(__DIR__ . '/../mailer/src/PHPMailer.php'));
+            require_once(realpath(__DIR__ . '/../mailer/src/SMTP.php'));
+            $mail = new PHPMailer();
+            $mail->IsSMTP();
+            $mail->SMTPDebug = 0;
+            $mail->SMTPAuth = true;
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+            $mail->Host = "smtp.titan.email";
+            $mail->Port = 465;
+            $mail->AddAddress($email);
+            $mail->Username = "info@infyenterprise.com";
+            $mail->Password = "2SU!cwD@j!3.hTX";
+            $mail->SetFrom('info@infyenterprise.com', 'Infy Enterprise');
+            $mail->AddReplyTo("info@infyenterprise.com", "Infy Enterprise");
+            $mail->Subject = $subject;
+            $mail->MsgHTML($message);
+            $mail->Send();
+            return true;
+        }catch (Exception $ex){
+
+            echo $ex->getMessage();
+            return false;
+
+        }
+
     }
 }

@@ -33,7 +33,7 @@ if (isset($_POST['btn-submit'])) {
        ";
         $subject = "Password Reset";
 
-        $user->send_mail($email, $message, $subject);
+        $user->sendMail($email, $message, $subject);
 
         $msg = "<div class='alert alert-success'>
      <button class='close' data-dismiss='alert'>&times;</button>

@@ -4,7 +4,7 @@ const Entity = "Files";
 require_once '../../../headers-api.php';
 session_start();
 require_once '../../../connection.php';
-//require_once '../../../connection-local.php';
+//require_once '../../../LocalDatabase.php';
 require_once '../../../errors/Responses.php';
 
 $response = array();
@@ -15,7 +15,7 @@ $responses = new Responses();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $result = array();
-    $database = new Database();
+    $database = new LocalDatabase();
     $db = $database->dbConnection();
     $file = $database->file;
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
  */
 function checkIfPostValuesAreSetAndEdit(int $file_Id, ?PDO $db, array $data): array
 {
-    $database = new Database();
+    $database = new LocalDatabase();
     $file = $database->file;
     $sql = $file->getById($file_Id);
     $result = $database->runSelectOneQuery($sql, $db);
@@ -109,7 +109,7 @@ function checkIfPostValuesAreSetAndEdit(int $file_Id, ?PDO $db, array $data): ar
  */
 function updatingImageEdit(?PDO $db, Files $file, array $response, Responses $responses, array $data): void
 {
-    $database = new Database();
+    $database = new LocalDatabase();
     $result = array();
     if (isset($data['id']) && !empty($data['id'])) {
         $file_Id = $data['id'];

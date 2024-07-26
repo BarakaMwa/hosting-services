@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../class.userService.php';
+require_once '../UserService.php';
 
 $reg_user = new UserService();
 
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = trim($_POST['password']);
     $code = md5(uniqid(rand(), true));
 
-    $stmt = $reg_user->runQuery("SELECT * FROM Users WHERE userEmail=:email_id");
+    $stmt = $reg_user->runQuery("SELECT * FROM Users WHERE userName=:email_id");
     $stmt->execute(array(":email_id" => $email));
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 

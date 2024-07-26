@@ -2,8 +2,8 @@
 //todo validation
 require_once '../../../headers-api.php';
 session_start();
-require_once '../../../connection.php';
-//require_once '../../../connection-local.php';
+require_once '../../../RemoteDatabase.php';
+//require_once '../../../LocalDatabase.php';
 
 require_once '../../../constants/Utils.php';
 require_once '../../../errors/Responses.php';
@@ -17,7 +17,7 @@ const Entity = "Carts";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $result = array();
-    $database = new Database();
+    $database = new LocalDatabase();
     $db = $database->dbConnection();
     $cart = $database->cart;
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
  */
 function insertingCartEdit(?PDO $db, Carts $cart, array $data): array
 {
-    $database = new Database();
+    $database = new LocalDatabase();
 
     $result = checkIfPostValuesAreSetAndInsert($data);
 

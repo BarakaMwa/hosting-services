@@ -3,7 +3,7 @@
 require_once '../../../headers-api.php';
 session_start();
 require_once '../../../connection.php';
-//require_once '../../../connection-local.php';
+//require_once '../../../LocalDatabase.php';
 
 require_once '../../../errors/Responses.php';
 
@@ -14,7 +14,7 @@ const Entity = "Files";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET') {
 
-    $database = new Database();
+    $database = new LocalDatabase();
     $db = $database->dbConnection();
     $file = $database -> file;
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

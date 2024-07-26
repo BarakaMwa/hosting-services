@@ -1,23 +1,23 @@
 <?php
 session_start();
-require_once '../class.user.php';
-$user = new UserService();
+require_once '../../Services/UserService.php';
+$user = new Services\UserService();
 
-if ($user->is_logged_in() != "") {
+if ($user->is_logged_in()) {
     $user->redirect('../home-page/index.php');
 }
 
 if (isset($_POST['btn-submit'])) {
-    $email = $_POST['txtemail'];
+    $email = $_POST['userName'];
 
-    $stmt = $user->runQuery("SELECT userId FROM Users WHERE userEmail=:email LIMIT 1");
+    $stmt = $user->runQuery("SELECT userId FROM Users WHERE userName=:email LIMIT 1");
     $stmt->execute(array(":email" => $email));
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    if ($stmt->rowCount() == 1) {
+    if ($stmt->rowCount() === 1) {
         $id = base64_encode($row['userId']);
         $code = md5(uniqid(rand(), true));
 
-        $stmt = $user->runQuery("UPDATE Users SET tokenCode=:token WHERE userEmail=:email");
+        $stmt = $user->runQuery("UPDATE Users SET tokenCode=:token WHERE userName=:email");
         $stmt->execute(array(":token" => $code, "email" => $email));
 
         $message = "
@@ -33,7 +33,7 @@ if (isset($_POST['btn-submit'])) {
        ";
         $subject = "Password Reset";
 
-        $user->send_mail($email, $message, $subject);
+        $user->sendMail($email, $message, $subject);
 
         $msg = "<div class='alert alert-success'>
      <button class='close' data-dismiss='alert'>&times;</button>
@@ -81,7 +81,7 @@ if (isset($_POST['btn-submit'])) {
         }
         ?>
 
-        <input type="email" class="form-control" placeholder="Email address" name="txtemail" required/>
+        <input type="email" class="form-control" placeholder="Email address" name="userName" required/>
         <hr/>
         <button class="btn btn-danger btn-primary" type="submit" name="btn-submit">Generate new Password</button>
         <a href="../register/index.php" class="btn btn-info btn-primary" type="button">Sign Up</a>

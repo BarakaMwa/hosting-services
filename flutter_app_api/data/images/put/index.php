@@ -3,7 +3,7 @@
 require_once '../../../headers-api.php';
 session_start();
 require_once '../../../connection.php';
-//require_once '../../../connection-local.php';
+//require_once '../../../LocalDatabase.php';
 
 require_once '../../../constants/Utils.php';
 require_once '../../../errors/Responses.php';
@@ -19,7 +19,7 @@ const TARGET_DIR = "../uploads/";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $result = array();
-    $database = new Database();
+    $database = new LocalDatabase();
     $db = $database->dbConnection();
     $file = $database->file;
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
  */
 function insertingFileEdit(?PDO $db, Files $file, array $data, array $filesData): array
 {
-    $database = new Database();
+    $database = new LocalDatabase();
 
     $result = checkIfPostValuesAreSetAndInsert($data, $filesData);
 

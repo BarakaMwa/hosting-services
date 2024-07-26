@@ -1,39 +1,33 @@
 <?php
-require_once 'class.user.php';
-$user = new UserService();
 
-if(empty($_GET['id']) && empty($_GET['code']))
-{
+require_once '../../Services/UserService.php';
+$user = new Services\UserService();
+
+if (empty($_GET['id']) && empty($_GET['code'])) {
     $user->redirect('index.php');
 }
 
-if(isset($_GET['id']) && isset($_GET['code']))
-{
+if (isset($_GET['id'], $_GET['code'])) {
     $id = base64_decode($_GET['id']);
     $code = $_GET['code'];
 
     $stmt = $user->runQuery("SELECT * FROM Users WHERE userId=:uid AND tokenCode=:token");
-    $stmt->execute(array(":uid"=>$id,":token"=>$code));
+    $stmt->execute(array(":uid" => $id, ":token" => $code));
     $rows = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if($stmt->rowCount() == 1)
-    {
-        if(isset($_POST['btn-reset-pass']))
-        {
+    if ($stmt->rowCount() == 1) {
+        if (isset($_POST['btn-reset-pass'])) {
             $pass = $_POST['pass'];
             $cpass = $_POST['confirm-pass'];
 
-            if($cpass!==$pass)
-            {
+            if ($cpass !== $pass) {
                 $msg = "<div class='alert alert-warning>
       <button class='close' data-dismiss='alert'>&times;</button>
       <strong>Sorry!</strong>  Password Doesn't match. 
       </div>";
-            }
-            else
-            {
+            } else {
                 $stmt = $user->runQuery("UPDATE Users SET userPass=:upass WHERE userId=:uid");
-                $stmt->execute(array(":upass"=>$cpass,":uid"=>$rows['userId']));
+                $stmt->execute(array(":upass" => $cpass, ":uid" => $rows['userId']));
 
                 $msg = "<div class='alert alert-success'>
       <button class='close' data-dismiss='alert'>&times;</button>
@@ -42,9 +36,7 @@ if(isset($_GET['id']) && isset($_GET['code']))
                 header("refresh:5;index.php");
             }
         }
-    }
-    else
-    {
+    } else {
         exit;
     }
 
@@ -68,19 +60,19 @@ if(isset($_GET['id']) && isset($_GET['code']))
 <body id="login">
 <div class="container">
     <div class='alert alert-success'>
-        <strong>Hello !</strong>  <?php echo $rows['userName'] ?> you are here to reset your forgotten password.
+        <strong>Hello !</strong> <?php echo $rows['userName'] ?> you are here to reset your forgotten password.
     </div>
     <form class="form-signin" method="post">
-        <h3 class="form-signin-heading">Password Reset.</h3><hr />
+        <h3 class="form-signin-heading">Password Reset.</h3>
+        <hr/>
         <?php
-        if(isset($msg))
-        {
+        if (isset($msg)) {
             echo $msg;
         }
         ?>
-        <input type="password" class="form-control" placeholder="New Password" name="pass" required />
-        <input type="password" class="form-control" placeholder="Confirm New Password" name="confirm-pass" required />
-        <hr />
+        <input type="password" class="form-control" placeholder="New Password" name="pass" required/>
+        <input type="password" class="form-control" placeholder="Confirm New Password" name="confirm-pass" required/>
+        <hr/>
         <button class="btn btn-large btn-primary" type="submit" name="btn-reset-pass">Reset Your Password</button>
 
     </form>

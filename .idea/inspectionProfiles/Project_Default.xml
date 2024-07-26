@@ -3,7 +3,7 @@
     <option name="myName" value="Project Default" />
     <inspection_tool class="DuplicatedCode" enabled="true" level="WEAK WARNING" enabled_by_default="true">
       <Languages>
-        <language minSize="93" name="PHP" />
+        <language minSize="360" name="PHP" />
       </Languages>
     </inspection_tool>
     <inspection_tool class="ForgottenDebugOutputInspection" enabled="true" level="ERROR" enabled_by_default="true">
@@ -72,6 +72,12 @@
         </list>
       </option>
       <option name="migratedIntoUserSpace" value="true" />
+    </inspection_tool>
+    <inspection_tool class="PhpCSValidationInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="CODING_STANDARD" value="PHPCompatibility" />
+      <option name="USE_INSTALLED_PATHS" value="true" />
+      <option name="INSTALLED_PATHS" value="$PROJECT_DIR$/mailer/vendor/phpcompatibility/php-compatibility/PHPCompatibility" />
+      <option name="EXTENSIONS" value="php,js,css,inc" />
     </inspection_tool>
     <inspection_tool class="SecurityAdvisoriesInspection" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="optionConfiguration">

@@ -1,0 +1,9 @@
+
+Z	php:S1131,"@Remove the useless trailing whitespaces at the end of this line.(•´×åùÿÿÿÿ
+_php:S1032"KSplit this 130 characters long line (which is greater than 120 authorized).(ı²±
+_php:S103:"KSplit this 132 characters long line (which is greater than 120 authorized).(áîØë
+7	php:S1780H"Remove this closing tag "?>".(Ö‘äÏúÿÿÿÿ
+3php:S113"'Add a new line at the end of this file.
+V	php:S1793%"<Replace this "else if" keyword sequence by "elseif" keyword.(Í‘€ÿÿÿÿÿ
+f	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(ªú¸”
+k	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(ÔÁ—úÿÿÿÿ

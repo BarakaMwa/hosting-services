@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../class.userService.php';
+require_once '../UserService.php';
 $user_home = new UserService();
 
 if (!$user_home->is_logged_in()) {
@@ -17,7 +17,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 <html class="no-js">
 
 <head>
-    <title><?php echo $row['userEmail']; ?></title>
+    <title><?php echo $row['userName']; ?></title>
     <!-- Bootstrap -->
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="../bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
@@ -43,7 +43,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
                     <li class="dropdown">
                         <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i
                                     class="icon-user"></i>
-                            <?php echo $row['userEmail']; ?> <i class="caret"></i>
+                            <?php echo $row['userName']; ?> <i class="caret"></i>
                         </a>
                         <ul class="dropdown-menu">
                             <li>

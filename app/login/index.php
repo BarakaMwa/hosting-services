@@ -95,7 +95,7 @@ if (isset($_POST['btn-login'])) {
         html,
         body {
             height: 100%;
-            background-color: #333;
+            background-color: #5c9fbf;
         }
 
         body {

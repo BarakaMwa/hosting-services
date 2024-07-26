@@ -152,7 +152,7 @@ class UserService
             $mail->Port = 465;
             $mail->AddAddress($email);
             $mail->Username = "info@infyenterprise.com";
-            $mail->Password = "2SU!cwD@j!3.hTX";
+            $mail->Password = "Mwakezulah2023@";
             $mail->SetFrom('info@infyenterprise.com', 'Infy Enterprise');
             $mail->AddReplyTo("info@infyenterprise.com", "Infy Enterprise");
             $mail->Subject = $subject;

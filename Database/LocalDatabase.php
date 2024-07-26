@@ -30,6 +30,8 @@ require_once(realpath(__DIR__ . '/../Data/Qr_Codes.php'));
 use Data\Qr_Codes;
 require_once(realpath(__DIR__ . '/../Data/Files.php'));
 use Data\Files;
+require_once(realpath(__DIR__ . '/../Data/EmailNotifications.php'));
+use Data\EmailNotifications;
 require_once(realpath(__DIR__ . '/../Responses/Responses.php'));
 use Responses\Responses;
 use JsonException;
@@ -65,6 +67,7 @@ class LocalDatabase
     public $responses;
     public $trustee;
     public $tblUsers;
+    public $emailNotifications;
 
     /**
      * @return void
@@ -86,6 +89,7 @@ class LocalDatabase
         $this->cart = new Carts();
         $this->cartItems = new Cart_Items();
         $this->responses = new Responses();
+        $this->emailNotifications = new EmailNotifications();
     }
 
     /**

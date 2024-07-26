@@ -16,7 +16,7 @@ if (isset($_GET['id'], $_GET['code'])) {
     $statusY = "Y";
     $statusN = "N";
 
-    $stmt = $user->runQuery("SELECT userId,userStatus FROM Users WHERE userId=:uID AND tokenCode=:code LIMIT 1");
+    $stmt = $user->runQuery("SELECT userId,active FROM Users WHERE userId=:uID AND tokenCode=:code LIMIT 1");
     $stmt->execute(array(":uID" => $id, ":code" => $code));
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($stmt->rowCount() > 0) {

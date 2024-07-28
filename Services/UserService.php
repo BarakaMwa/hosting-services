@@ -4,6 +4,7 @@ namespace Services;
 
 require_once(realpath(__DIR__ . '/../Database/LocalDatabase.php'));
 
+use PDOException;
 use PHPMailer\PHPMailer\PHPMailer;
 use Database\LocalDatabase;
 use PHPMailer\PHPMailer\Exception;
@@ -75,28 +76,28 @@ class UserService
     public function login(array $user)
     {
         try {
-            $stmt = $this->conn->prepare("SELECT * FROM Users WHERE userEmail=:userEmail");
+            $stmt = $this->conn->prepare("SELECT * FROM Users WHERE userEmail=:userEmail LIMIT 1");
             $stmt->execute(array(":userEmail" => $user['userEmail']));
             $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
             $_SESSION['isLoggedIn'] = false;
             if ($stmt->rowCount() === 1) {
-                if ($userRow['userStatus'] == "Y") {
-                    if ($userRow['userPassword'] === md5($upass)) {
+                if ($userRow['status'] === "ACTIVE") {
+                    if ($userRow['userPassword'] === md5($user['userPassword'])) {
                         $_SESSION['userSessionId'] = $userRow['userId'];
                         $_SESSION['isLoggedIn'] = true;
 //                        $_SESSION['userType'] = $userRow['userId'];
                         return true;
                     } else {
-                        header("Location: ../login/index.php?error");
+                        header("Location: ../login/index.php?error='Password or UserEmail Do not Match'");
                         exit;
                     }
                 } else {
-                    header("Location: ../login/index.php?inactive");
+                    header("Location: ../login/index.php?inactive='Account is Not Activated'");
                     exit;
                 }
             } else {
-                header("Location: ../login/index.php?error");
+                header("Location: ../login/index.php?error='User not Found'");
                 exit;
             }
         } catch (PDOException $ex) {

@@ -1,6 +1,9 @@
 <?php
 require_once '../../Services/UserService.php';
-$userService = new Services\UserService();
+
+use Services\UserService;
+
+$userService = new UserService();
 
 if (empty($_GET['id']) && empty($_GET['code'])) {
     $userService->redirect('index.php');
@@ -9,18 +12,18 @@ if (empty($_GET['id']) && empty($_GET['code'])) {
 if (isset($_GET['id'], $_GET['code'])) {
     $id = base64_decode($_GET['id']);
     $code = $_GET['code'];
+    $active = 1;
+    $status = "ACTIVE";
 
-    $statusY = "Y";
-    $statusN = "N";
-
-    $stmt = $userService->runQuery("SELECT userId,userStatus FROM Users WHERE userId=:uID AND tokenCode=:code LIMIT 1");
-    $stmt->execute(array(":uID" => $id, ":code" => $code));
+    $stmt = $userService->runQuery("SELECT userId,active,status FROM Users WHERE userEmail=:uId AND activationCode=:code LIMIT 1");
+    $stmt->execute(array(":uId" => $id, ":code" => $code));
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($stmt->rowCount() > 0) {
-        if ($row['userStatus'] == $statusN) {
-            $stmt = $userService->runQuery("UPDATE Users SET userStatus=:status WHERE userId=:uID");
-            $stmt->bindparam(":status", $statusY);
-            $stmt->bindparam(":uID", $id);
+        if ($row['status'] !== $status) {
+            $stmt = $userService->runQuery("UPDATE Users SET active=:active, status=:status WHERE userEmail=:uId");
+            $stmt->bindparam(":status", $status);
+            $stmt->bindparam(":uId", $id);
+            $stmt->bindparam(":active", $active);
             $stmt->execute();
 
             $msg = "
@@ -42,6 +45,10 @@ if (isset($_GET['id'], $_GET['code'])) {
          <div class='alert alert-info'>
       <button class='close' data-dismiss='alert'>&times;</button>
       <strong>sorry !</strong>  No Account Found : <a href='signup.php'>Signup here</a>
+      <br>
+      ".$id."
+      <br>
+      ".$code."
       </div>
       ";
     }

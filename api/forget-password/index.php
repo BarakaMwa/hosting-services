@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id = base64_encode($row['userId']);
         $code = md5(uniqid(rand(), true));
 
-        $stmt = $user->runQuery("UPDATE Users SET tokenCode=:token WHERE userName=:email");
+        $stmt = $user->runQuery("UPDATE Users SET activationCode=:token WHERE userName=:email");
         $stmt->execute(array(":token" => $code, "email" => $email));
 
         $message = "Hello , $email

@@ -11,10 +11,9 @@ if ($userService->is_logged_in()) {
 }
 
 if (isset($_POST['btn-login'])) {
-    $userName = trim($_POST['userName']);
-    $upass = trim($_POST['userPassword']);
+    $userEmail = trim($_POST['userEmail']);
 
-    $user = $_POST;
+    $user['userEmail'] = $_POST[$userEmail] = $userEmail;
 
     if ($userService->login($user)) {
         $userService->redirect('../home-page/index.php');
@@ -166,9 +165,10 @@ if (isset($_POST['btn-login'])) {
             padding: .75rem 1.25rem;
             font-weight: 700;
         }
-.form-control{
-    color: white;
-}
+
+        .form-control {
+            color: white;
+        }
 
         /*
          * Footer
@@ -186,7 +186,7 @@ if (isset($_POST['btn-login'])) {
         <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the
             text, and add your own fullscreen background photo to make it your own.</p>
         <p class="lead">
-<!--            <a href="#" class="btn btn-lg btn-secondary">Learn more</a>-->
+            <!--            <a href="#" class="btn btn-lg btn-secondary">Learn more</a>-->
         </p>
         <div class="row">
             <div class="col-lg-8">
@@ -225,7 +225,7 @@ if (isset($_POST['btn-login'])) {
                     ?>
                     <h2 class="form-signin-heading">Sign In.</h2>
                     <hr/>
-                    <input type="email" class="form-control" placeholder="Email Address" name="userEmails" required/>
+                    <input type="email" class="form-control" placeholder="Email Address" name="userEmail" required/>
                     <input type="password" class="form-control" placeholder="Password" name="userPassword" required/>
                     <hr/>
                     <button class="btn btn-block btn-primary" type="submit" name="btn-login">Sign in</button>

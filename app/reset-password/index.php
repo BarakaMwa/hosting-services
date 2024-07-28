@@ -11,7 +11,7 @@ if (isset($_GET['id'], $_GET['code'])) {
     $id = base64_decode($_GET['id']);
     $code = $_GET['code'];
 
-    $stmt = $user->runQuery("SELECT * FROM Users WHERE userId=:uid AND tokenCode=:token");
+    $stmt = $user->runQuery("SELECT * FROM Users WHERE userId=:uid AND activationCode=:token");
     $stmt->execute(array(":uid" => $id, ":token" => $code));
     $rows = $stmt->fetch(PDO::FETCH_ASSOC);
 

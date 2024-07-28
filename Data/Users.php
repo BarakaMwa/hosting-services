@@ -12,8 +12,10 @@ class Users
     private $userName;
     private $nrc;
     private $gender;
+    private $status;
     private $phone;
     private $firstName;
+    private $activationCode;
     private $lastName;
 
     public function __construct()

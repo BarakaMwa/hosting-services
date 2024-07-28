@@ -7,16 +7,16 @@ if(empty($_GET['id']) && empty($_GET['code']))
     $user->redirect('index.php');
 }
 
-if(isset($_GET['id']) && isset($_GET['code']))
+if(isset($_GET['id'], $_GET['code']))
 {
     $id = base64_decode($_GET['id']);
     $code = $_GET['code'];
 
-    $stmt = $user->runQuery("SELECT * FROM Users WHERE userId=:uid AND tokenCode=:token");
+    $stmt = $user->runQuery("SELECT * FROM Users WHERE userId=:uid AND activationCode=:token");
     $stmt->execute(array(":uid"=>$id,":token"=>$code));
     $rows = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if($stmt->rowCount() == 1)
+    if($stmt->rowCount() === 1)
     {
         if(isset($_POST['btn-reset-pass']))
         {

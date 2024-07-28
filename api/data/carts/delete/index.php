@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $responses->errorInvalidRequest($response);
         }
-        $cart->cart_id = $cart_Id;
+        $cart->id = $cart_Id;
 
         updatingCartDelete($db, $cart, $response, $responses, $data);
 

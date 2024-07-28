@@ -15,11 +15,11 @@ $stmt = $user_home->runQuery("SELECT COUNT(userId) as Total FROM Users");
 $stmt->execute();
 $user_count = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$stmt = $user_home->runQuery("SELECT COUNT(productId) as Total FROM Products");
+$stmt = $user_home->runQuery("SELECT COUNT(id) as Total FROM Products");
 $stmt->execute();
 $product_count = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$stmt = $user_home->runQuery("SELECT COUNT(invoiceId) as Total FROM Invoices");
+$stmt = $user_home->runQuery("SELECT COUNT(id) as Total FROM Invoices");
 $stmt->execute();
 $invoice_count = $stmt->fetch(PDO::FETCH_ASSOC);
 

@@ -5,7 +5,7 @@ namespace Data;
 class Trustees
 {
     private $table;
-    public $trusteeId;
+    public $id;
     public $userId;
     public $firstName;
     public $lastName;

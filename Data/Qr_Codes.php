@@ -9,7 +9,7 @@ class Qr_Codes
     public $image_blob;
     public $image_link;
     public $active;
-    public $qr_id;
+    public $id;
 
 
     public function __construct()

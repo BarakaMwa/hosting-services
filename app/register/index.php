@@ -222,7 +222,7 @@ function validateRegistrationData(array $user): array
             $valid['status'] = 0;
             return $valid;
         }
-        $user['userPassword'] = cleanData($user['userPassword']);
+        $user['userPassword'] = $user['userPassword'];
     }
 
 

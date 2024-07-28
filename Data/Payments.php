@@ -3,7 +3,7 @@
 namespace Data;
 class Payments
 {
-    public $payment_id;
+    public $id;
     public $vendorId;
     public $amount;
     public $payment_date;

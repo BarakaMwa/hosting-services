@@ -4,7 +4,7 @@ namespace Data;
 class Invoice_Entries
 {
     private $table;
-    public $entryId;
+    public $id;
     public $invoiceId;
     public $productId;
     public $quantity;

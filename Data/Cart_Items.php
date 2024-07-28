@@ -5,7 +5,7 @@ namespace Data;
 class Cart_Items
 {
     private $table;
-    public $cart_item_id;
+    public $id;
     public $cart_id;
     public $owner_id;
     public $product_id;

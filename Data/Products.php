@@ -5,7 +5,7 @@ class Products
 {
 
 
-    public $productId;
+    public $id;
     public $vendorId;
     public $price;
     public $product_name;

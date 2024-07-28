@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         } else {
             $responses->errorInvalidRequest($response);
         }
-        $vendor->vendorId = $vendorId;
+        $vendor->id = $vendorId;
 
         $sql = $vendor->getById($vendorId);
         $result = $database->runSelectOneQuery($sql, $db);

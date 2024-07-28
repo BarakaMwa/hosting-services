@@ -10,7 +10,7 @@ class Carts
     public $productId;
     public $quantity;
     public $active;
-    public $cart_id;
+    public $id;
 
 
 

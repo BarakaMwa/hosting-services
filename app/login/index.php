@@ -13,7 +13,8 @@ if ($userService->is_logged_in()) {
 if (isset($_POST['btn-login'])) {
     $userEmail = trim($_POST['userEmail']);
 
-    $user['userEmail'] = $_POST[$userEmail] = $userEmail;
+    $user['userEmail'] = $_POST['userEmail'] = $userEmail;
+    $user['userPassword'] = $_POST['userPassword'];
 
     if ($userService->login($user)) {
         $userService->redirect('../home-page/index.php');
@@ -204,23 +205,20 @@ if (isset($_POST['btn-login'])) {
 
                 <?php
                 if (isset($_GET['inactive'])) {
-                    ?>
-                    <div class='alert alert-danger'>
+
+                    echo "<div class='alert alert-danger'>
                         <button class='close' data-dismiss='alert'>&times;</button>
-                        <strong>Sorry!</strong> This Account is not Activated Go to your Inbox and Activate it.
-                    </div>
-                    <?php
+                        <strong>Sorry!</strong> ".$_GET['inactive']."
+                    </div>";
                 }
                 ?>
                 <form class="form-signin" method="post">
                     <?php
                     if (isset($_GET['error'])) {
-                        ?>
-                        <div class='alert alert-warning'>
-                            <button class='close' data-dismiss='alert'>&times;</button>
-                            <strong>Wrong Details!</strong>
-                        </div>
-                        <?php
+                        echo "<div class='alert alert-danger'>
+                        <button class='close' data-dismiss='alert'>&times;</button>
+                        <strong>Sorry!</strong> ".$_GET['error']."
+                    </div>";
                     }
                     ?>
                     <h2 class="form-signin-heading">Sign In.</h2>

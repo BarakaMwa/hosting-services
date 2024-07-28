@@ -1,8 +1,14 @@
 <?php
+
 namespace Data;
-class Invoices{
+class Invoices
+{
 
-
+    public $id = 0;
+    public $vendor_id = 0;
+    public $invoice_date;
+    public $total_amount = 0.00;
+    public $active;
     /**
      * @var mixed|string
      */
@@ -14,6 +20,7 @@ class Invoices{
         $array = explode("\\", $this->table);
         $this->table = $array[1];
     }
+
     /**
      * @return string
      */

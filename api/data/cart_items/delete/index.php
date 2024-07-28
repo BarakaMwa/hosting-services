@@ -32,7 +32,7 @@ try {
             /*else {
                 $responses->errorInvalidRequest($response);
             }*/
-            $cartItems->cart_item_id = $cartItemId;
+            $cartItems->id = $cartItemId;
 
             updatingCartDelete($db, $cartItems, $response, $responses, $data, $entity);
 
@@ -106,8 +106,8 @@ checkIfPostValuesAreSetAndDeactivate(int $cart_item_id, ?PDO $db, array $data, s
 function updatingCartDelete(?PDO $db, Data\Cart_Items $cart_Items, array $response, Responses $responses, array $data, string $entity): void
 {
     $result = array();
-    if ($cart_Items->cart_item_id !== null && $cart_Items->cart_item_id !== 0) {
-        $cart_item_id = $cart_Items->cart_item_id;
+    if ($cart_Items->id !== null && $cart_Items->id !== 0) {
+        $cart_item_id = $cart_Items->id;
 
         $result = checkIfPostValuesAreSetAndDeactivate($cart_item_id, $db, $data, $entity);
 

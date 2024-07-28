@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $responses->errorInvalidRequest($response);
         }
-        $vendor->vendorId = $vendorId;
+        $vendor->id = $vendorId;
 
         updatingVendorEdit($db, $vendor, $response, $responses, $data);
     } catch (JsonException $e) {
@@ -53,7 +53,7 @@ function checkIfPostValuesAreSetAndEdit(int $vendor_Id, ?PDO $db, array $data): 
 {
     $database = new LocalDatabase();
     $vendor = $database->vendor;
-    $vendor->vendorId = $vendor_Id;
+    $vendor->id = $vendor_Id;
     $sql = $vendor->getById($vendor_Id);
     $result = $database->runSelectOneQuery($sql, $db);
 

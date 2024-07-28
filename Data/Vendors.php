@@ -7,7 +7,7 @@ class Vendors
 
     public $table;
 
-    public $vendorId;
+    public $id;
     public $user_id;
     public $vendor_name;
     public $vendor_email;
@@ -31,7 +31,7 @@ class Vendors
      */
     public function createVendor(int $vendorId, int $user_id, string $vendor_email, string $vendor_name, int $active)
     {
-        $this->vendorId = $vendorId;
+        $this->id = $vendorId;
         $this->user_id = $user_id;
         $this->active = $active;
         $this->vendor_name = $vendor_name;

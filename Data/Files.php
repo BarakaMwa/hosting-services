@@ -4,7 +4,7 @@ namespace Data;
 class Files
 {
 
-    public $file_id = 0;
+    public $id = 0;
     public $vendorId = 0;
     public $productId = 0;
     public $file_blob = null;

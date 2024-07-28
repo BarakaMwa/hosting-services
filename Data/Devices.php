@@ -6,7 +6,7 @@ class Devices
 {
 
     private $table;
-    public $DeviceID;
+    public $id;
     public $Manufacturer;
     public $Model;
     public $OS;

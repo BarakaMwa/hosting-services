@@ -49,8 +49,8 @@ if (isset($_GET['id'], $_GET['code'])) {
 <head>
     <title>Password Reset</title>
     <!-- Bootstrap -->
-    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="../bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+    <link href="../bootstrap-4/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="../bootstrap-4/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
     <link href="../assets/styles.css" rel="stylesheet" media="screen">
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -78,7 +78,7 @@ if (isset($_GET['id'], $_GET['code'])) {
     </form>
 
 </div> <!-- /container -->
-<script src="../bootstrap/js/jquery-1.9.1.min.js"></script>
-<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="../bootstrap-4/js/jquery-1.9.1.min.js"></script>
+<script src="../bootstrap-4/js/bootstrap.min.js"></script>
 </body>
 </html>

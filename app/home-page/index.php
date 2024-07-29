@@ -31,7 +31,7 @@ $stmt = $user_home->runQuery("SELECT SUM(amount) as Total FROM Payments");
 $stmt->execute();
 $total_payments = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$page_index = "active"
+$dashboard = "active"
 ?>
 
 <!DOCTYPE html>

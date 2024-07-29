@@ -6,8 +6,14 @@
 <div class="sidebar-inner slimscroll">
     <div id="sidebar-menu" class="sidebar-menu">
         <ul>
-            <li class="<?php echo $page_index;?>">
+            <li class="<?php echo $dashboard;?>">
                 <a href="index.php"><i class="fas fa-columns"></i> <span>Dashboard</span></a>
+            </li>
+            <li class="<?php echo $products;?>">
+                <a href="products.php"><i class="fas fa-layer-group"></i> <span>Products</span></a>
+            </li>
+            <li class="<?php echo $invoices;?>">
+                <a href="invoices.php"><i class="fas fa-layer-group"></i> <span>Invoices</span></a>
             </li>
             <li class="<?php echo $categories;?>">
                 <a href="categories.php"><i class="fas fa-layer-group"></i> <span>Categories</span></a>
